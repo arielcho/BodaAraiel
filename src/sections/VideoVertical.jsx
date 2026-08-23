@@ -95,7 +95,7 @@ const VideoVertical = () => {
                 muted
                 playsInline
                 preload="metadata"
-                src="/videos/1 (1).mp4"
+                src="./videos/1 (1).mp4"
                 className="w-full h-full object-cover"
               />
               

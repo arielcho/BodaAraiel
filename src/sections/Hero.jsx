@@ -312,7 +312,7 @@ const Hero = () => {
       {/* Fondo con gradiente mejorado */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
-          src="/images/hero-bg.jpg" 
+          src="./images/hero-bg.jpg" 
           alt="Fondo Boda" 
           className="hero-bg w-full h-full object-cover"
           loading="eager"

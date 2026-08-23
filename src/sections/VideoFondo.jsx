@@ -108,7 +108,7 @@ const VideoFondo = () => {
           playsInline
           preload="auto"
           loop
-          src="/videos/3.mp4"
+          src="./videos/3.mp4"
           className="w-full h-full object-cover"
         />
         

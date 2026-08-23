@@ -69,7 +69,7 @@ const FinalSection = () => {
           muted
           playsInline
           preload="auto"
-          src="/videos/4.mp4"
+          src="./videos/4.mp4"
           className="w-full h-full object-cover"
         />
         
