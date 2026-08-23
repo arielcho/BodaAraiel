@@ -200,10 +200,10 @@ const Hero = () => {
             key={i}
             className="sparkle-particle absolute"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${2 + Math.random() * 3}px`,
-              height: `${2 + Math.random() * 3}px`,
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+              width: 2 + Math.random() * 3 + 'px',
+              height: 2 + Math.random() * 3 + 'px',
               background: ['#D4AF37', '#FFB6C1', '#FFFFFF', '#FFD700'][Math.floor(Math.random() * 4)],
               borderRadius: '50%',
               boxShadow: '0 0 8px currentColor',
@@ -220,9 +220,9 @@ const Hero = () => {
             key={i}
             className="heart-3d absolute text-5xl"
             style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${80 + Math.random() * 20}%`,
-              fontSize: `${30 + Math.random() * 50}px`,
+              left: 10 + Math.random() * 80 + '%',
+              top: 80 + Math.random() * 20 + '%',
+              fontSize: 30 + Math.random() * 50 + 'px',
               color: ['#FF6B6B', '#FFB6C1', '#D4AF37', '#FF4757'][Math.floor(Math.random() * 4)],
               textShadow: '0 0 25px currentColor, 0 0 50px currentColor',
               opacity: 0.2,
@@ -267,7 +267,7 @@ const Hero = () => {
              transformStyle: 'preserve-3d',
              letterSpacing: '0.3em'
            }}>
-          El Amor No Tiene Límites
+          El Amor No Tiene Limites
         </p>
         
         <div className="hero-date-3d inline-block px-8 py-3 md:px-10 md:py-4 border-2 border-[#C9A84C]/40 rounded-full backdrop-blur-sm bg-black/30 hover:bg-black/50 transition-all duration-500 hover:scale-105 hover:border-[#C9A84C]/80 shadow-2xl"

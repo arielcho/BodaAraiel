@@ -6,7 +6,6 @@ const GallerySection = () => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    // Configuración inicial
     gsap.set('.gallery-item', {
       opacity: 0,
       scale: 0.7,
@@ -25,7 +24,6 @@ const GallerySection = () => {
       y: 50
     });
 
-    // Animación con scroll
     gsap.to('.gallery-item', {
       opacity: 1,
       scale: 1,
@@ -47,7 +45,6 @@ const GallerySection = () => {
       }
     });
 
-    // Animación de títulos
     gsap.to('.gallery-title', {
       opacity: 1,
       y: 0,
@@ -73,7 +70,6 @@ const GallerySection = () => {
       }
     });
 
-    // Efecto de hover
     document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('mouseenter', () => {
         gsap.to(item, {
@@ -95,30 +91,26 @@ const GallerySection = () => {
 
   }, []);
 
-  // ✅ RUTAS CORREGIDAS con /BodaAraiel/
   const images = [
-    { src: '/BodaAraiel/BodaAraiel/images/1 (1).jpg', title: 'El Inicio', icon: '💕' },
-    { src: '/BodaAraiel/BodaAraiel/images/1 (2).jpg', title: 'El Amor', icon: '❤️' },
-    { src: '/BodaAraiel/BodaAraiel/images/1 (3).jpg', title: 'La Promesa', icon: '💍' },
-    { src: '/BodaAraiel/BodaAraiel/images/1 (4).jpg', title: 'La Felicidad', icon: '✨' },
-    { src: '/BodaAraiel/BodaAraiel/images/1 (5).jpg', title: 'El Día', icon: '🎊' },
-    { src: '/BodaAraiel/BodaAraiel/images/1 (6).jpg', title: 'El Futuro', icon: '🌟' },
+    { src: '/BodaAraiel/images/1 (1).jpg', title: 'El Inicio', icon: '💕' },
+    { src: '/BodaAraiel/images/1 (2).jpg', title: 'El Amor', icon: '❤️' },
+    { src: '/BodaAraiel/images/1 (3).jpg', title: 'La Promesa', icon: '💍' },
+    { src: '/BodaAraiel/images/1 (4).jpg', title: 'La Felicidad', icon: '✨' },
+    { src: '/BodaAraiel/images/1 (5).jpg', title: 'El Dia', icon: '🎊' },
+    { src: '/BodaAraiel/images/1 (6).jpg', title: 'El Futuro', icon: '🌟' },
   ];
 
   return (
     <section id="galeria" ref={containerRef} className="section-container bg-[#1A0F0A] py-20 overflow-hidden">
-      {/* Fondo con efecto GTA */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A0F0A] via-[#2C1810] to-[#1A0F0A]" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/30 to-transparent" />
       </div>
 
-      {/* Contenido */}
       <div className="relative z-10 max-w-6xl mx-auto px-4">
-        {/* Títulos */}
         <div className="text-center mb-16">
           <h2 className="gallery-title font-script text-5xl md:text-7xl text-[#FDF7F0] mb-4">
-            Nuestra <span className="text-[#C9A84C]">Galería</span>
+            Nuestra <span className="text-[#C9A84C]">Galeria</span>
           </h2>
           <p className="gallery-subtitle text-[#E8D5A3]/40 text-sm md:text-base tracking-widest uppercase">
             Momentos que capturan nuestra historia
@@ -126,7 +118,6 @@ const GallerySection = () => {
           <div className="gallery-subtitle w-24 h-px bg-[#C9A84C]/30 mx-auto mt-6" />
         </div>
 
-        {/* Grid de imágenes */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {images.map((img, index) => (
             <div
@@ -142,7 +133,6 @@ const GallerySection = () => {
                 }}
               />
               
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F0A]/80 via-[#1A0F0A]/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4">
                 <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   <p className="text-[#FDF7F0] text-sm md:text-base font-light tracking-wider">
@@ -154,7 +144,6 @@ const GallerySection = () => {
                 </div>
               </div>
 
-              {/* Borde decorativo */}
               <div className="absolute inset-0 border-2 border-[#C9A84C]/0 group-hover:border-[#C9A84C]/50 transition-all duration-500 rounded-xl" />
             </div>
           ))}
@@ -165,4 +154,3 @@ const GallerySection = () => {
 };
 
 export default GallerySection;
-

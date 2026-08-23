@@ -19,12 +19,11 @@ const FinalSection = () => {
       filter: 'blur(8px)'
     });
 
-    // âš¡ Timeline para video de 19 SEGUNDOS
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top top',
-        end: '+=250%',  // â† 250% del viewport para 19 segundos
+        end: '+=250%',
         scrub: 2.0,
         pin: true,
         anticipatePin: 1
@@ -47,13 +46,12 @@ const FinalSection = () => {
         ease: 'power2.out'
       }, '-=1');
 
-    // ðŸŽ¬ SCRUB DEL VIDEO - Para 19 segundos
     const video = videoRef.current;
     if (video) {
       video.onloadedmetadata = () => {
         tl.to(video, {
-          currentTime: video.duration, // 19 segundos
-          duration: 6,  // â† 6 segundos de scroll para avanzar el video COMPLETO
+          currentTime: video.duration,
+          duration: 6,
           ease: 'none'
         }, 0);
       };
@@ -69,7 +67,7 @@ const FinalSection = () => {
           muted
           playsInline
           preload="auto"
-          src="/BodaAraiel/BodaAraiel/videos/4.mp4"
+          src="/BodaAraiel/videos/4.mp4"
           className="w-full h-full object-cover"
         />
         
@@ -77,12 +75,12 @@ const FinalSection = () => {
         
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="final-title text-center px-4">
-            <span className="text-[#C9A84C] text-sm tracking-[0.3em] uppercase">â™¥ El Gran Final â™¥</span>
+            <span className="text-[#C9A84C] text-sm tracking-[0.3em] uppercase">♥ El Gran Final ♥</span>
             <h2 className="font-script text-5xl md:text-7xl text-[#FDF7F0] mt-3">
               Para <span className="text-[#C9A84C]">Siempre</span>
             </h2>
             <p className="text-[#E8D5A3]/60 text-lg mt-4 max-w-2xl mx-auto font-light">
-              Y asÃ­ comienza nuestra historia para siempre
+              Y asi comienza nuestra historia para siempre
             </p>
             <div className="mt-6 inline-block px-6 py-2 border border-[#C9A84C]/30 rounded-full bg-black/30 backdrop-blur-sm">
               <span className="text-[#E8D5A3]/40 text-xs tracking-widest">⏱ 19s</span>
@@ -99,6 +97,3 @@ const FinalSection = () => {
 };
 
 export default FinalSection;
-
-
-

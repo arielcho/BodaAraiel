@@ -81,7 +81,7 @@ const VideoVertical = () => {
             Nuestros <span className="text-[#C9A84C]">Momentos</span>
           </h2>
           <p className="vertical-subtitle text-[#E8D5A3]/40 text-xs md:text-sm tracking-widest uppercase">
-            Capturados desde el corazÃ³n
+            Capturados desde el corazon
           </p>
         </div>
 
@@ -95,7 +95,7 @@ const VideoVertical = () => {
                 muted
                 playsInline
                 preload="metadata"
-                src="/BodaAraiel/BodaAraiel/videos/1 (1).mp4"
+                src="/BodaAraiel/videos/1 (1).mp4"
                 className="w-full h-full object-cover"
               />
               
@@ -105,7 +105,7 @@ const VideoVertical = () => {
 
               <div className="absolute bottom-4 left-0 right-0 text-center">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-black/40 backdrop-blur-sm rounded-full border border-white/10">
-                  <span className="text-white/60 text-[10px] md:text-xs tracking-widest">â–¶ REPRODUCIR</span>
+                  <span className="text-white/60 text-[10px] md:text-xs tracking-widest">▶ REPRODUCIR</span>
                   <span className="text-[#C9A84C]/60 text-[10px] md:text-xs">|</span>
                   <span className="text-white/40 text-[10px] md:text-xs">10s</span>
                 </div>
@@ -119,7 +119,7 @@ const VideoVertical = () => {
         </div>
 
         <p className="text-center text-[#E8D5A3]/20 text-xs md:text-sm mt-6 max-w-2xl mx-auto font-light tracking-wider">
-          "Cada instante es Ãºnico, cada mirada cuenta una historia"
+          "Cada instante es unico, cada mirada cuenta una historia"
         </p>
       </div>
     </section>
@@ -127,5 +127,3 @@ const VideoVertical = () => {
 };
 
 export default VideoVertical;
-
-
