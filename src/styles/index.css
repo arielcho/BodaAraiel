@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #D4AF37, #FFB6C1, #D4AF37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply w-full min-h-screen relative overflow-hidden;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, #FFF5F5 0%, #F8E8E8 50%, #FFF5F5 100%);
+  }
+}
+
+/* OPTIMIZACIÓN DE RENDIMIENTO */
+.hero-title-3d,
+.hero-subtitle-3d,
+.hero-date-3d,
+.hero-floating-text,
+.hero-bg,
+.hero-glow,
+.sparkle-particle,
+.heart-3d,
+.vertical-video-wrapper,
+.story-card,
+.gallery-item {
+  will-change: transform, opacity, filter;
+}
+
+/* Efecto de brillo en el texto 3D */
+@keyframes textShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.hero-title-3d {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #D4AF37 20%,
+    #ffffff 40%,
+    #D4AF37 60%,
+    #ffffff 80%,
+    #D4AF37 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 8s linear infinite;
+}
+
+/* Animaciones suaves */
+@keyframes floatVertical {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.vertical-video-wrapper {
+  animation: floatVertical 6s ease-in-out infinite;
+}
+
+.vertical-video-wrapper .relative:hover {
+  transform: scale(1.02);
+  transition: transform 0.5s ease;
+}
+
+/* RESPONSIVE - MÓVIL */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 70px !important;
+  }
+  
+  .hero-title-3d {
+    font-size: 3.5rem !important;
+    animation: none !important;
+    background: none !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+  }
+  
+  .hero-subtitle-3d {
+    font-size: 1.5rem !important;
+  }
+  
+  .hero-date-3d span {
+    font-size: 1rem !important;
+  }
+  
+  .sparkle-particle,
+  .heart-3d {
+    display: none !important;
+  }
+  
+  .vertical-video-wrapper {
+    max-width: 100%;
+  }
+  
+  .aspect-\[9\/16\] {
+    aspect-ratio: 9 / 16;
+  }
+}
+
+/* RESPONSIVE - TABLET */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-title-3d {
+    font-size: 5rem !important;
+  }
+  
+  .hero-subtitle-3d {
+    font-size: 2.5rem !important;
+  }
+}
+
+/* SCROLLBAR PERSONALIZADA */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #FFB6C1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFB6C1, #D4AF37);
+}
+
+/* Video de fondo */
+.video-fondo-wrapper {
+  will-change: transform, opacity, filter;
+}
+
+.video-fondo-wrapper video {
+  filter: brightness(0.8) saturate(1.1);
+}
+
+.video-fondo-title,
+.video-fondo-subtitle,
+.video-fondo-overlay {
+  will-change: transform, opacity, filter;
+}
+
+.fondo-particle {
+  will-change: transform, opacity;
+}
+
+/* Efecto de parallax en el video de fondo */
+@keyframes videoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.video-fondo-wrapper {
+  animation: videoPulse 20s ease-in-out infinite;
+}
+
+
+/* 🎨 NUEVA PALETA DE COLORES */
+:root {
+  --color-oro: #C9A84C;
+  --color-oro-claro: #E8D5A3;
+  --color-rosa-polvo: #F5D6D6;
+  --color-vino: #6B2D3B;
+  --color-marfil: #FDF7F0;
+  --color-champagne: #F7E7CE;
+  --color-coral: #E8837A;
+  --color-salvia: #A8B5A0;
+  --color-crema: #FFF8F0;
+  --color-oscuro: #1A0F0A;
+}
+
+/* Fondo con degradado romántico */
+.hero-gradient {
+  background: linear-gradient(135deg, #6B2D3B 0%, #1A0F0A 50%, #6B2D3B 100%);
+}
+
+/* Texto con brillo ORO */
+.oro-glow {
+  text-shadow: 0 0 30px rgba(201, 168, 76, 0.3), 0 0 60px rgba(201, 168, 76, 0.1);
+}
+
+/* Efecto de vidrio */
+.glass-effect {
+  background: rgba(253, 247, 240, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+/* Efecto de luz cálida */
+.warm-glow {
+  box-shadow: 0 0 80px rgba(201, 168, 76, 0.1), inset 0 0 80px rgba(201, 168, 76, 0.05);
+}
+
+/* Animación de brillo */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #FDF7F0 0%,
+    #C9A84C 25%,
+    #FDF7F0 50%,
+    #C9A84C 75%,
+    #FDF7F0 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
+}
