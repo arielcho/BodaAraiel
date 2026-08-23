@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -7,7 +7,7 @@ const StorySection = () => {
   const textRef = useRef(null);
 
   useGSAP(() => {
-    // Configuración inicial
+    // ConfiguraciÃ³n inicial
     gsap.set('.story-text', {
       opacity: 0,
       y: 80,
@@ -25,7 +25,7 @@ const StorySection = () => {
       scale: 0
     });
 
-    // Animación del texto principal
+    // AnimaciÃ³n del texto principal
     gsap.to('.story-text', {
       opacity: 1,
       y: 0,
@@ -39,7 +39,7 @@ const StorySection = () => {
       }
     });
 
-    // Animación de las tarjetas (efecto cascada)
+    // AnimaciÃ³n de las tarjetas (efecto cascada)
     gsap.to('.story-card', {
       opacity: 1,
       scale: 1,
@@ -54,7 +54,7 @@ const StorySection = () => {
       }
     });
 
-    // Animación de los iconos
+    // AnimaciÃ³n de los iconos
     gsap.to('.story-icon', {
       opacity: 1,
       scale: 1,
@@ -87,9 +87,9 @@ const StorySection = () => {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4">
-        {/* Título con efecto GTA */}
+        {/* TÃ­tulo con efecto GTA */}
         <div className="text-center mb-16">
-          <div className="story-icon text-5xl md:text-6xl mb-4">📖</div>
+          <div className="story-icon text-5xl md:text-6xl mb-4">ðŸ“–</div>
           <h2 className="story-text font-script text-5xl md:text-7xl text-white mb-4">
             Nuestra <span className="text-boda-oro">Historia</span>
           </h2>
@@ -100,12 +100,12 @@ const StorySection = () => {
         <div className="space-y-8">
           <div className="story-card bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-boda-oro/30 transition-all duration-500 group">
             <div className="flex items-start gap-4">
-              <div className="story-icon text-3xl flex-shrink-0">💕</div>
+              <div className="story-icon text-3xl flex-shrink-0">ðŸ’•</div>
               <div>
                 <h3 className="text-boda-oro text-xl md:text-2xl font-script mb-2">El Encuentro</h3>
                 <p className="text-white/70 text-base md:text-lg leading-relaxed">
                   En el momento menos esperado, nuestros caminos se cruzaron. 
-                  Fue como si el destino hubiera escrito nuestra historia mucho antes de que nos conociéramos.
+                  Fue como si el destino hubiera escrito nuestra historia mucho antes de que nos conociÃ©ramos.
                 </p>
               </div>
             </div>
@@ -113,11 +113,11 @@ const StorySection = () => {
 
           <div className="story-card bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-boda-oro/30 transition-all duration-500 group">
             <div className="flex items-start gap-4">
-              <div className="story-icon text-3xl flex-shrink-0">❤️</div>
+              <div className="story-icon text-3xl flex-shrink-0">â¤ï¸</div>
               <div>
                 <h3 className="text-boda-oro text-xl md:text-2xl font-script mb-2">El Amor</h3>
                 <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                  Cada día a tu lado es un capítulo nuevo en nuestra historia. 
+                  Cada dÃ­a a tu lado es un capÃ­tulo nuevo en nuestra historia. 
                   Juntos hemos construido un amor que trasciende el tiempo y el espacio.
                 </p>
               </div>
@@ -126,11 +126,11 @@ const StorySection = () => {
 
           <div className="story-card bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-boda-oro/30 transition-all duration-500 group">
             <div className="flex items-start gap-4">
-              <div className="story-icon text-3xl flex-shrink-0">💍</div>
+              <div className="story-icon text-3xl flex-shrink-0">ðŸ’</div>
               <div>
                 <h3 className="text-boda-oro text-xl md:text-2xl font-script mb-2">La Promesa</h3>
                 <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                  El 07 de Noviembre de 2026, frente a quienes más queremos, 
+                  El 07 de Noviembre de 2026, frente a quienes mÃ¡s queremos, 
                   sellaremos nuestro amor con la promesa de amarnos para siempre.
                 </p>
               </div>
@@ -148,3 +148,4 @@ const StorySection = () => {
 };
 
 export default StorySection;
+

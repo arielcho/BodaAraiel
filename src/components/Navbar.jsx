@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,7 +23,7 @@ const Navbar = () => {
           <span className={`font-script text-xl md:text-2xl transition-colors duration-500 ${
             isScrolled ? 'text-boda-vino' : 'text-white'
           }`}>
-            A ✦ A
+            A âœ¦ A
           </span>
         </div>
 
@@ -36,7 +36,7 @@ const Navbar = () => {
           <a href="#galeria" className={`text-sm tracking-wider transition-colors duration-500 ${
             isScrolled ? 'text-gray-600 hover:text-boda-oro' : 'text-white/80 hover:text-white'
           }`}>
-            GALERÍA
+            GALERÃA
           </a>
           <a href="#evento" className={`text-sm tracking-wider transition-colors duration-500 ${
             isScrolled ? 'text-gray-600 hover:text-boda-oro' : 'text-white/80 hover:text-white'
@@ -48,14 +48,14 @@ const Navbar = () => {
               ? 'bg-boda-oro text-white hover:bg-boda-oro/80 shadow-md' 
               : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30'
           }`}>
-            💍 CONFIRMAR
+            ðŸ’ CONFIRMAR
           </a>
         </div>
 
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
-          aria-label="Menú"
+          aria-label="MenÃº"
         >
           <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isMenuOpen ? (
@@ -74,13 +74,13 @@ const Navbar = () => {
               Historia
             </a>
             <a href="#galeria" className="block text-white text-2xl hover:text-boda-oro transition-colors" onClick={() => setIsMenuOpen(false)}>
-              Galería
+              GalerÃ­a
             </a>
             <a href="#evento" className="block text-white text-2xl hover:text-boda-oro transition-colors" onClick={() => setIsMenuOpen(false)}>
               Evento
             </a>
             <a href="#confirmar" className="block px-8 py-3 bg-boda-oro text-white rounded-full text-xl hover:bg-boda-oro/80 transition-colors" onClick={() => setIsMenuOpen(false)}>
-              💍 Confirmar
+              ðŸ’ Confirmar
             </a>
           </div>
         </div>
@@ -90,3 +90,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

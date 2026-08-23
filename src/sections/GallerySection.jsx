@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -6,7 +6,7 @@ const GallerySection = () => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    // Configuración inicial - Efecto GTA
+    // ConfiguraciÃ³n inicial - Efecto GTA
     gsap.set('.gallery-item', {
       opacity: 0,
       scale: 0.7,
@@ -25,7 +25,7 @@ const GallerySection = () => {
       y: 50
     });
 
-    // Animación con scroll
+    // AnimaciÃ³n con scroll
     gsap.to('.gallery-item', {
       opacity: 1,
       scale: 1,
@@ -47,7 +47,7 @@ const GallerySection = () => {
       }
     });
 
-    // Animación de títulos
+    // AnimaciÃ³n de tÃ­tulos
     gsap.to('.gallery-title', {
       opacity: 1,
       y: 0,
@@ -73,7 +73,7 @@ const GallerySection = () => {
       }
     });
 
-    // Efecto de hover con GSAP (para imágenes)
+    // Efecto de hover con GSAP (para imÃ¡genes)
     document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('mouseenter', () => {
         gsap.to(item, {
@@ -96,12 +96,12 @@ const GallerySection = () => {
   }, []);
 
   const images = [
-    { src: '/images/1 (1).jpg', title: 'El Inicio', icon: '💕' },
-    { src: '/images/1 (2).jpg', title: 'El Amor', icon: '❤️' },
-    { src: '/images/1 (3).jpg', title: 'La Promesa', icon: '💍' },
-    { src: '/images/1 (4).jpg', title: 'La Felicidad', icon: '✨' },
-    { src: '/images/1 (5).jpg', title: 'El Día', icon: '🎊' },
-    { src: '/images/1 (6).jpg', title: 'El Futuro', icon: '🌟' },
+    { src: '/images/1 (1).jpg', title: 'El Inicio', icon: 'ðŸ’•' },
+    { src: '/images/1 (2).jpg', title: 'El Amor', icon: 'â¤ï¸' },
+    { src: '/images/1 (3).jpg', title: 'La Promesa', icon: 'ðŸ’' },
+    { src: '/images/1 (4).jpg', title: 'La Felicidad', icon: 'âœ¨' },
+    { src: '/images/1 (5).jpg', title: 'El DÃ­a', icon: 'ðŸŽŠ' },
+    { src: '/images/1 (6).jpg', title: 'El Futuro', icon: 'ðŸŒŸ' },
   ];
 
   return (
@@ -114,10 +114,10 @@ const GallerySection = () => {
 
       {/* Contenido */}
       <div className="relative z-10 max-w-6xl mx-auto px-4">
-        {/* Títulos estilo GTA */}
+        {/* TÃ­tulos estilo GTA */}
         <div className="text-center mb-16">
           <h2 className="gallery-title font-script text-5xl md:text-7xl text-white mb-4">
-            Nuestra <span className="text-boda-oro">Galería</span>
+            Nuestra <span className="text-boda-oro">GalerÃ­a</span>
           </h2>
           <p className="gallery-subtitle text-white/60 text-sm md:text-base tracking-widest uppercase">
             Momentos que capturan nuestra historia de amor
@@ -125,7 +125,7 @@ const GallerySection = () => {
           <div className="gallery-subtitle w-24 h-0.5 bg-boda-oro/30 mx-auto mt-6" />
         </div>
 
-        {/* Grid de imágenes estilo GTA */}
+        {/* Grid de imÃ¡genes estilo GTA */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {images.map((img, index) => (
             <div
@@ -164,3 +164,4 @@ const GallerySection = () => {
 };
 
 export default GallerySection;
+

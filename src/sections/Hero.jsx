@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+﻿import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -7,7 +7,7 @@ const Hero = () => {
   const titleRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // 🎨 Efecto de lluvia de pétalos/imágenes con Canvas
+  // ðŸŽ¨ Efecto de lluvia de pÃ©talos/imÃ¡genes con Canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -25,7 +25,7 @@ const Hero = () => {
     resize();
     window.addEventListener('resize', resize);
 
-    // Crear partículas (pétalos/imágenes)
+    // Crear partÃ­culas (pÃ©talos/imÃ¡genes)
     class Particle {
       constructor() {
         this.reset();
@@ -40,7 +40,7 @@ const Hero = () => {
         this.rotation = Math.random() * 360;
         this.rotationSpeed = (Math.random() - 0.5) * 3;
         this.opacity = 0.3 + Math.random() * 0.6;
-        this.type = Math.floor(Math.random() * 4); // 0: pétalo, 1: corazón, 2: estrella, 3: círculo
+        this.type = Math.floor(Math.random() * 4); // 0: pÃ©talo, 1: corazÃ³n, 2: estrella, 3: cÃ­rculo
         this.color = ['#C9A84C', '#F5D6D6', '#E8837A', '#E8D5A3', '#FDF7F0', '#6B2D3B'][Math.floor(Math.random() * 6)];
         this.wobble = Math.random() * Math.PI * 2;
         this.wobbleSpeed = 0.02 + Math.random() * 0.03;
@@ -70,7 +70,7 @@ const Hero = () => {
 
         // Dibujar diferentes formas
         switch(this.type) {
-          case 0: // Pétalo
+          case 0: // PÃ©talo
             ctx.beginPath();
             ctx.ellipse(0, 0, this.size * 0.6, this.size * 0.4, 0, 0, Math.PI * 2);
             ctx.fillStyle = this.color;
@@ -78,7 +78,7 @@ const Hero = () => {
             ctx.shadowColor = this.color;
             ctx.shadowBlur = 20;
             break;
-          case 1: // Corazón
+          case 1: // CorazÃ³n
             ctx.fillStyle = this.color;
             ctx.shadowColor = this.color;
             ctx.shadowBlur = 20;
@@ -107,7 +107,7 @@ const Hero = () => {
             ctx.closePath();
             ctx.fill();
             break;
-          case 3: // Círculo con brillo
+          case 3: // CÃ­rculo con brillo
             const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.size * 0.6);
             gradient.addColorStop(0, this.color);
             gradient.addColorStop(0.5, this.color + '80');
@@ -123,18 +123,18 @@ const Hero = () => {
       }
     }
 
-    // Inicializar partículas
+    // Inicializar partÃ­culas
     for (let i = 0; i < PARTICLES_COUNT; i++) {
       const p = new Particle();
       p.y = Math.random() * canvas.height;
       particles.push(p);
     }
 
-    // Animación
+    // AnimaciÃ³n
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Dibujar partículas
+      // Dibujar partÃ­culas
       particles.forEach(p => {
         p.update();
         p.draw(ctx);
@@ -302,7 +302,7 @@ const Hero = () => {
 
   return (
     <section ref={containerRef} className="hero-section section-container overflow-hidden">
-      {/* 🎨 Canvas para lluvia de imágenes/pétalos */}
+      {/* ðŸŽ¨ Canvas para lluvia de imÃ¡genes/pÃ©talos */}
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full pointer-events-none z-5"
@@ -312,12 +312,12 @@ const Hero = () => {
       {/* Fondo con gradiente mejorado */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
-          src="./images/hero-bg.jpg" 
+          src="/BodaAraiel/images/hero-bg.jpg" 
           alt="Fondo Boda" 
           className="hero-bg w-full h-full object-cover"
           loading="eager"
         />
-        {/* Gradiente más cálido y romántico */}
+        {/* Gradiente mÃ¡s cÃ¡lido y romÃ¡ntico */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#6B2D3B]/80 via-[#2C1810]/60 to-[#1A0F0A]/90" />
         <div className="hero-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#C9A84C]/20 blur-3xl" />
         <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#C9A84C]/10 to-transparent" />
@@ -325,10 +325,10 @@ const Hero = () => {
 
       {/* Contenido principal */}
       <div ref={titleRef} className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-        {/* Línea decorativa ORO */}
+        {/* LÃ­nea decorativa ORO */}
         <div className="hero-floating-text w-32 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-6" />
 
-        {/* Título principal - ORO */}
+        {/* TÃ­tulo principal - ORO */}
         <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#FDF7F0] mb-2 leading-none tracking-wide" 
             style={{ 
               textShadow: '0 0 40px rgba(201,168,76,0.3), 0 20px 60px rgba(0,0,0,0.5)',
@@ -337,13 +337,13 @@ const Hero = () => {
           Ariel
         </h1>
         
-        {/* Símbolo - ORO */}
+        {/* SÃ­mbolo - ORO */}
         <div className="hero-subtitle-3d text-4xl md:text-6xl lg:text-7xl text-[#C9A84C] font-light mb-2"
              style={{
                textShadow: '0 0 50px rgba(201,168,76,0.3), 0 10px 30px rgba(0,0,0,0.3)',
                transformStyle: 'preserve-3d'
              }}>
-          ✦
+          âœ¦
         </div>
 
         {/* Segundo nombre */}
@@ -355,14 +355,14 @@ const Hero = () => {
           Aracely
         </h1>
 
-        {/* Subtítulo - CORAL */}
+        {/* SubtÃ­tulo - CORAL */}
         <p className="hero-subtitle-3d text-xl md:text-3xl lg:text-4xl text-[#E8837A] font-light tracking-[0.3em] uppercase mb-4"
            style={{
              textShadow: '0 0 30px rgba(232,131,122,0.2), 0 5px 15px rgba(0,0,0,0.3)',
              transformStyle: 'preserve-3d',
              letterSpacing: '0.3em'
            }}>
-          El Amor No Tiene Límites
+          El Amor No Tiene LÃ­mites
         </p>
         
         {/* Fecha - ORO */}
@@ -372,7 +372,7 @@ const Hero = () => {
                boxShadow: '0 0 40px rgba(201,168,76,0.1)'
              }}>
           <span className="text-[#E8D5A3] text-lg md:text-2xl tracking-[0.2em] font-light">
-            07 · NOVIEMBRE · 2026
+            07 Â· NOVIEMBRE Â· 2026
           </span>
         </div>
 
@@ -381,11 +381,11 @@ const Hero = () => {
           "El amor verdadero trasciende el tiempo y el espacio"
         </p>
 
-        {/* Botón - ORO */}
+        {/* BotÃ³n - ORO */}
         <button className="hero-floating-text mt-8 px-8 py-3 md:px-10 md:py-4 bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-[#1A0F0A] rounded-full hover:scale-105 transition-all duration-500 shadow-2xl text-sm md:text-lg font-semibold tracking-wider group relative overflow-hidden">
           <span className="relative z-10 flex items-center gap-3">
             DESCUBRE NUESTRA HISTORIA
-            <span className="text-lg md:text-xl group-hover:translate-x-2 transition-transform duration-300">▶</span>
+            <span className="text-lg md:text-xl group-hover:translate-x-2 transition-transform duration-300">â–¶</span>
           </span>
           <div className="absolute inset-0 bg-gradient-to-r from-[#E8D5A3] to-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </button>
@@ -401,7 +401,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Efecto de viñeta */}
+      {/* Efecto de viÃ±eta */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F0A]/40 via-transparent to-[#6B2D3B]/10" />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1A0F0A]/70 to-transparent" />
@@ -411,3 +411,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

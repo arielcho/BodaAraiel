@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
 import VideoSection from './sections/VideoSection';
 import VideoVertical from './sections/VideoVertical';
-import VideoFondo from './sections/VideoFondo';  // ← NUEVO
+import VideoFondo from './sections/VideoFondo';  // â† NUEVO
 import StorySection from './sections/StorySection';
 import GallerySection from './sections/GallerySection';
 import FinalSection from './sections/FinalSection';
@@ -26,7 +26,7 @@ const App = () => {
       <Hero />
       <VideoSection />
       <VideoVertical />
-      <VideoFondo />         {/* ← NUEVA SECCIÓN */}
+      <VideoFondo />         {/* â† NUEVA SECCIÃ“N */}
       <StorySection />
       <GallerySection />
       <FinalSection />

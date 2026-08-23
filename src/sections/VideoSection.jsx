@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -7,7 +7,7 @@ const VideoSection = () => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    // Configuración inicial
+    // ConfiguraciÃ³n inicial
     gsap.set('.video-wrapper', {
       opacity: 0,
       scale: 0.9,
@@ -26,19 +26,19 @@ const VideoSection = () => {
       y: 40
     });
 
-    // ⚡ Timeline con scrub ajustado PARA 10 SEGUNDOS
+    // âš¡ Timeline con scrub ajustado PARA 10 SEGUNDOS
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top top',
-        end: '+=200%',  // ← 200% del viewport para 10 segundos
-        scrub: 1.8,     // ← Suave pero no lento
+        end: '+=200%',  // â† 200% del viewport para 10 segundos
+        scrub: 1.8,     // â† Suave pero no lento
         pin: true,
         anticipatePin: 1
       }
     });
 
-    // Animación de entrada
+    // AnimaciÃ³n de entrada
     tl
       .to('.video-wrapper', {
         opacity: 1,
@@ -62,14 +62,14 @@ const VideoSection = () => {
         ease: 'power2.out'
       }, '-=0.5');
 
-    // 🎬 SCRUB DEL VIDEO - Para 10 segundos
+    // ðŸŽ¬ SCRUB DEL VIDEO - Para 10 segundos
     const video = videoRef.current;
     if (video) {
       video.onloadedmetadata = () => {
         // Ajuste: El video avanza suavemente en 3 segundos de scroll
         tl.to(video, {
           currentTime: video.duration, // 10 segundos
-          duration: 4,  // ← 4 segundos de scroll para avanzar el video COMPLETO
+          duration: 4,  // â† 4 segundos de scroll para avanzar el video COMPLETO
           ease: 'none'
         }, 0);
       };
@@ -91,13 +91,13 @@ const VideoSection = () => {
       {/* Fondo oscuro */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1A0F0A] via-[#2C1810] to-[#1A0F0A]" />
       
-      {/* Efecto de luz cálida */}
+      {/* Efecto de luz cÃ¡lida */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#C9A84C]/10 blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 w-full">
-        {/* Títulos */}
+        {/* TÃ­tulos */}
         <div className="video-title text-center mb-6 md:mb-8">
           <h2 className="font-script text-4xl md:text-6xl text-[#FDF7F0] mb-2">
             Nuestra <span className="text-[#C9A84C]">Historia</span>
@@ -117,7 +117,7 @@ const VideoSection = () => {
               muted
               playsInline
               preload="auto"
-              src="./videos/4.mp4"
+              src="/BodaAraiel/videos/4.mp4"
               className="w-full h-full object-cover"
             />
             
@@ -125,7 +125,7 @@ const VideoSection = () => {
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/50 transition-all duration-500 group cursor-pointer">
               <div className="text-center">
                 <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#C9A84C]/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border border-[#C9A84C]/30">
-                  <span className="text-3xl md:text-5xl text-white">▶</span>
+                  <span className="text-3xl md:text-5xl text-white">â–¶</span>
                 </div>
                 <p className="text-white/60 text-xs md:text-sm mt-3 tracking-widest uppercase">
                   Reproducir historia
@@ -143,7 +143,7 @@ const VideoSection = () => {
           </div>
 
           <p className="video-subtitle text-[#E8D5A3]/30 text-center mt-6 text-sm md:text-base tracking-wider font-light italic">
-            "Cada momento es una escena perfecta en nuestra película de amor"
+            "Cada momento es una escena perfecta en nuestra pelÃ­cula de amor"
           </p>
         </div>
       </div>
@@ -152,3 +152,4 @@ const VideoSection = () => {
 };
 
 export default VideoSection;
+
