@@ -95,7 +95,7 @@ const VideoVertical = () => {
                 muted
                 playsInline
                 preload="metadata"
-                src="/BodaAraiel/videos/1 (1).mp4"
+                src="/BodaAraiel/BodaAraiel/videos/1 (1).mp4"
                 className="w-full h-full object-cover"
               />
               
@@ -127,4 +127,5 @@ const VideoVertical = () => {
 };
 
 export default VideoVertical;
+
 

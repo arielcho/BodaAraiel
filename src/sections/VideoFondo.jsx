@@ -108,7 +108,7 @@ const VideoFondo = () => {
           playsInline
           preload="auto"
           loop
-          src="/BodaAraiel/videos/3.mp4"
+          src="/BodaAraiel/BodaAraiel/videos/3.mp4"
           className="w-full h-full object-cover"
         />
         
@@ -154,7 +154,7 @@ const VideoFondo = () => {
 
         <div className="video-fondo-subtitle mt-6 flex items-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-[#C9A84C]/20">
-            <span className="text-[#E8D5A3]/50 text-xs tracking-widest">â–¶ REPRODUCIENDO</span>
+            <span className="text-[#E8D5A3]/50 text-xs tracking-widest">â–¶ ▶ REPRODUCIENDO</span>
             <span className="w-1.5 h-1.5 bg-[#C9A84C] rounded-full animate-pulse" />
             <span className="text-[#E8D5A3]/30 text-[10px]">7s</span>
           </div>
@@ -169,4 +169,6 @@ const VideoFondo = () => {
 };
 
 export default VideoFondo;
+
+
 

@@ -43,7 +43,7 @@ const Navbar = () => {
           }`}>
             EVENTO
           </a>
-          <a href="#confirmar" className={`px-5 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-500 ${
+          <a href="#CONFIRMAR" className={`px-5 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-500 ${
             isScrolled 
               ? 'bg-boda-oro text-white hover:bg-boda-oro/80 shadow-md' 
               : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30'
@@ -79,8 +79,8 @@ const Navbar = () => {
             <a href="#evento" className="block text-white text-2xl hover:text-boda-oro transition-colors" onClick={() => setIsMenuOpen(false)}>
               Evento
             </a>
-            <a href="#confirmar" className="block px-8 py-3 bg-boda-oro text-white rounded-full text-xl hover:bg-boda-oro/80 transition-colors" onClick={() => setIsMenuOpen(false)}>
-              ðŸ’ Confirmar
+            <a href="#CONFIRMAR" className="block px-8 py-3 bg-boda-oro text-white rounded-full text-xl hover:bg-boda-oro/80 transition-colors" onClick={() => setIsMenuOpen(false)}>
+              ðŸ’ CONFIRMAR
             </a>
           </div>
         </div>
@@ -90,4 +90,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 

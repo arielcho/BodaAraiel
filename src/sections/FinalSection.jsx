@@ -69,7 +69,7 @@ const FinalSection = () => {
           muted
           playsInline
           preload="auto"
-          src="/BodaAraiel/videos/4.mp4"
+          src="/BodaAraiel/BodaAraiel/videos/4.mp4"
           className="w-full h-full object-cover"
         />
         
@@ -85,7 +85,7 @@ const FinalSection = () => {
               Y asÃ­ comienza nuestra historia para siempre
             </p>
             <div className="mt-6 inline-block px-6 py-2 border border-[#C9A84C]/30 rounded-full bg-black/30 backdrop-blur-sm">
-              <span className="text-[#E8D5A3]/40 text-xs tracking-widest">19 segundos de amor eterno</span>
+              <span className="text-[#E8D5A3]/40 text-xs tracking-widest">⏱ 19s</span>
             </div>
           </div>
         </div>
@@ -99,4 +99,6 @@ const FinalSection = () => {
 };
 
 export default FinalSection;
+
+
 

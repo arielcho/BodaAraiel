@@ -117,7 +117,7 @@ const VideoSection = () => {
               muted
               playsInline
               preload="auto"
-              src="/BodaAraiel/videos/4.mp4"
+              src="/BodaAraiel/BodaAraiel/videos/4.mp4"
               className="w-full h-full object-cover"
             />
             
@@ -128,10 +128,10 @@ const VideoSection = () => {
                   <span className="text-3xl md:text-5xl text-white">â–¶</span>
                 </div>
                 <p className="text-white/60 text-xs md:text-sm mt-3 tracking-widest uppercase">
-                  Reproducir historia
+                  ▶ REPRODUCIR
                 </p>
                 <p className="text-white/30 text-[10px] md:text-xs mt-1 tracking-wider">
-                  10 segundos de amor
+                  ⏱ 10s
                 </p>
               </div>
             </div>
@@ -152,4 +152,6 @@ const VideoSection = () => {
 };
 
 export default VideoSection;
+
+
 

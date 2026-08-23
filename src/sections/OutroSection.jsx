@@ -29,10 +29,10 @@ const OutroSection = () => {
           ðŸ’• 
         </h2> 
         <p className="text-2xl md:text-3xl text-gray-700 mb-4"> 
-          Â¡Nos vemos el 07 de Noviembre! 
+          Â¡¡Nos vemos el 07 de Noviembre! 
         </p> 
         <p className="text-lg text-gray-500"> 
-          "El amor es la fuerza mÃ¡s hermosa del universo" 
+          "El amor es la fuerza más hermosa del universo" 
         </p> 
         <div className="mt-8 flex justify-center gap-4"> 
           <span className="px-6 py-3 bg-boda-oro/10 rounded-full text-boda-oro"> 
@@ -45,4 +45,6 @@ const OutroSection = () => {
 }; 
  
 export default OutroSection; 
+
+
 
