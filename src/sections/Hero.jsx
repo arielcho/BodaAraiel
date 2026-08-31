@@ -41,7 +41,7 @@ const Hero = () => {
 
     gsap.set('.hero-bg', {
       scale: 1.2,
-      filter: 'brightness(0.5)'
+      filter: 'brightness(0.7)'
     });
 
     gsap.set('.hero-glow', {
@@ -98,7 +98,7 @@ const Hero = () => {
       }, '-=0.8')
       .to('.hero-bg', {
         scale: 1,
-        filter: 'brightness(0.7)',
+        filter: 'brightness(0.8)',
         duration: 3,
         ease: 'none'
       }, 0)
@@ -190,7 +190,7 @@ const Hero = () => {
           className="hero-bg w-full h-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FFF8F0]/70 via-[#F7E7CE]/30 to-[#FFF8F0]/80" />
         <div className="hero-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#C9A84C]/20 blur-3xl" />
       </div>
 
@@ -204,7 +204,7 @@ const Hero = () => {
               top: Math.random() * 100 + '%',
               width: 2 + Math.random() * 3 + 'px',
               height: 2 + Math.random() * 3 + 'px',
-              background: ['#D4AF37', '#FFB6C1', '#FFFFFF', '#FFD700'][Math.floor(Math.random() * 4)],
+              background: ['#C9A84C', '#E8D5A3', '#FFFFFF', '#FFD700'][Math.floor(Math.random() * 4)],
               borderRadius: '50%',
               boxShadow: '0 0 8px currentColor',
               opacity: 0,
@@ -223,7 +223,7 @@ const Hero = () => {
               left: 10 + Math.random() * 80 + '%',
               top: 80 + Math.random() * 20 + '%',
               fontSize: 30 + Math.random() * 50 + 'px',
-              color: ['#FF6B6B', '#FFB6C1', '#D4AF37', '#FF4757'][Math.floor(Math.random() * 4)],
+              color: ['#F5D6D6', '#FFB6C1', '#C9A84C', '#E8D5A3'][Math.floor(Math.random() * 4)],
               textShadow: '0 0 25px currentColor, 0 0 50px currentColor',
               opacity: 0.2,
               transform: 'scale(0)'
@@ -234,12 +234,12 @@ const Hero = () => {
         ))}
       </div>
 
-      <div ref={titleRef} className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+      <div ref={titleRef} className="relative z-10 text-center px-4 max-w-6xl mx-auto" style={{ cursor: "default" }}>
         <div className="hero-floating-text w-24 h-1 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-6" />
 
-        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-white mb-2 leading-none tracking-wide" 
+        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-2 leading-none tracking-wide" 
             style={{ 
-              textShadow: '0 0 30px rgba(212,175,55,0.3), 0 20px 50px rgba(0,0,0,0.5)',
+              textShadow: '0 0 30px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'
             }}>
           Ariel
@@ -247,15 +247,15 @@ const Hero = () => {
         
         <div className="hero-subtitle-3d text-4xl md:text-6xl lg:text-7xl text-[#C9A84C] font-light mb-2"
              style={{
-               textShadow: '0 0 40px rgba(212,175,55,0.3), 0 10px 30px rgba(0,0,0,0.3)',
+               textShadow: '0 0 40px rgba(201,168,76,0.3), 0 10px 30px rgba(0,0,0,0.05)',
                transformStyle: 'preserve-3d'
              }}>
           ✦
         </div>
 
-        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-white mb-4 leading-none"
+        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-4 leading-none"
             style={{ 
-              textShadow: '0 0 30px rgba(212,175,55,0.3), 0 20px 50px rgba(0,0,0,0.5)',
+              textShadow: '0 0 30px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'
             }}>
           Aracely
@@ -263,28 +263,28 @@ const Hero = () => {
 
         <p className="hero-subtitle-3d text-xl md:text-3xl lg:text-4xl text-[#C9A84C]/90 font-light tracking-[0.3em] uppercase mb-4"
            style={{
-             textShadow: '0 0 30px rgba(212,175,55,0.2), 0 5px 15px rgba(0,0,0,0.3)',
+             textShadow: '0 0 30px rgba(201,168,76,0.2), 0 5px 15px rgba(0,0,0,0.05)',
              transformStyle: 'preserve-3d',
              letterSpacing: '0.3em'
            }}>
-          El Amor No Tiene Limites
+          El Amor No Tiene Límites
         </p>
         
-        <div className="hero-date-3d inline-block px-8 py-3 md:px-10 md:py-4 border-2 border-[#C9A84C]/40 rounded-full backdrop-blur-sm bg-black/30 hover:bg-black/50 transition-all duration-500 hover:scale-105 hover:border-[#C9A84C]/80 shadow-2xl"
+        <div className="hero-date-3d inline-block px-8 py-3 md:px-10 md:py-4 border-2 border-[#C9A84C]/40 rounded-full backdrop-blur-sm bg-white/30 hover:bg-white/50 transition-all duration-500 hover:scale-105 hover:border-[#C9A84C]/80 shadow-2xl"
              style={{
                transformStyle: 'preserve-3d',
-               boxShadow: '0 0 40px rgba(212,175,55,0.1)'
+               boxShadow: '0 0 40px rgba(201,168,76,0.1)'
              }}>
-          <span className="text-white/90 text-lg md:text-2xl tracking-[0.2em] font-light">
+          <span className="text-[#3D2B1F]/90 text-lg md:text-2xl tracking-[0.2em] font-light">
             07 · NOVIEMBRE · 2026
           </span>
         </div>
 
-        <p className="hero-floating-text text-white/40 text-xs md:text-sm mt-8 max-w-2xl mx-auto font-light tracking-[0.2em] uppercase">
+        <p className="hero-floating-text text-[#3D2B1F]/40 text-xs md:text-sm mt-8 max-w-2xl mx-auto font-light tracking-[0.2em] uppercase">
           "El amor verdadero trasciende el tiempo y el espacio"
         </p>
 
-        <button className="hero-floating-text mt-8 px-8 py-3 md:px-10 md:py-4 bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-[#1A0F0A] rounded-full hover:scale-105 transition-all duration-500 shadow-2xl text-sm md:text-lg font-semibold tracking-wider group relative overflow-hidden">
+        <button className="hero-floating-text mt-8 px-8 py-3 md:px-10 md:py-4 bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-white rounded-full hover:scale-105 transition-all duration-500 shadow-2xl text-sm md:text-lg font-semibold tracking-wider group relative overflow-hidden">
           <span className="relative z-10 flex items-center gap-3">
             DESCUBRE NUESTRA HISTORIA
             <span className="text-lg md:text-xl group-hover:translate-x-2 transition-transform duration-300">▶</span>
@@ -295,16 +295,16 @@ const Hero = () => {
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
         <div className="flex flex-col items-center gap-2">
-          <span className="text-white/30 text-xs tracking-[0.3em] uppercase">Scroll</span>
-          <div className="w-7 h-11 border-2 border-white/20 rounded-full flex justify-center backdrop-blur-sm bg-black/20">
+          <span className="text-[#3D2B1F]/30 text-xs tracking-[0.3em] uppercase">Scroll</span>
+          <div className="w-7 h-11 border-2 border-[#C9A84C]/30 rounded-full flex justify-center backdrop-blur-sm bg-white/20">
             <div className="w-1.5 h-3.5 bg-[#C9A84C]/60 rounded-full mt-2 animate-pulse" />
           </div>
         </div>
       </div>
 
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#FFF8F0]/40 via-transparent to-[#FFF8F0]/20" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FFF8F0]/60 to-transparent" />
       </div>
     </section>
   );

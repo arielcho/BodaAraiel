@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+﻿/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     './index.html',
@@ -11,16 +11,17 @@ export default {
         'sans': ['"Inter"', 'sans-serif'],
       },
       colors: {
-        'oro': '#C9A84C',
-        'oro-claro': '#E8D5A3',
-        'rosa-polvo': '#F5D6D6',
-        'vino': '#6B2D3B',
-        'marfil': '#FDF7F0',
         'champagne': '#F7E7CE',
-        'coral': '#E8837A',
-        'salvia': '#A8B5A0',
-        'crema': '#FFF8F0',
-        'oscuro': '#1A0F0A',
+        'champagne-light': '#FFF8F0',
+        'champagne-dark': '#EDD9B5',
+        'gold': '#C9A84C',
+        'gold-light': '#E8D5A3',
+        'gold-dark': '#A8873A',
+        'rose': '#F5D6D6',
+        'rose-light': '#FDF0F0',
+        'dark': '#3D2B1F',
+        'cream': '#FFFFF0',
+        'white': '#FFFFFF',
       }
     },
   },

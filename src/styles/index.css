@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -15,11 +15,26 @@ html {
 body {
   width: 100dvw;
   overflow-x: hidden;
-  background-color: #ffffff;
-  color: #1a1a1a;
+  background-color: #FFF8F0;
+  color: #3D2B1F;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: default !important;
+}
+
+:root {
+  --champagne: #F7E7CE;
+  --champagne-light: #FFF8F0;
+  --champagne-dark: #EDD9B5;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --gold-dark: #A8873A;
+  --rose: #F5D6D6;
+  --rose-light: #FDF0F0;
+  --dark: #3D2B1F;
+  --cream: #FFFFF0;
+  --white: #FFFFFF;
 }
 
 @layer utilities {
@@ -27,25 +42,88 @@ body {
     @apply flex justify-center items-center;
   }
   
+  .col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+  
+  .abs-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
   .gradient-text {
-    background: linear-gradient(135deg, #D4AF37, #FFB6C1, #D4AF37);
+    background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+  
+  .gold-text {
+    color: var(--gold);
+  }
+  
+  .gold-glow {
+    text-shadow: 0 0 30px rgba(201, 168, 76, 0.3), 0 0 60px rgba(201, 168, 76, 0.1);
+  }
+  
+  .champagne-bg {
+    background: linear-gradient(135deg, var(--champagne), var(--champagne-light));
   }
 }
 
 @layer components {
   .section-container {
     @apply w-full min-h-screen relative overflow-hidden;
+    background-color: var(--champagne-light);
   }
   
   .hero-gradient {
-    background: linear-gradient(135deg, #FFF5F5 0%, #F8E8E8 50%, #FFF5F5 100%);
+    background: linear-gradient(135deg, var(--champagne-light) 0%, var(--champagne) 50%, var(--champagne-light) 100%);
   }
 }
 
-/* OPTIMIZACIÓN DE RENDIMIENTO */
+/* Cursor */
+a, button, [role="button"], .clickable {
+  cursor: pointer !important;
+}
+
+video {
+  cursor: pointer !important;
+}
+
+.hero-section,
+.hero-section * {
+  cursor: default !important;
+}
+
+.hero-title-3d,
+.hero-subtitle-3d,
+.hero-date-3d {
+  cursor: default !important;
+}
+
+nav a {
+  cursor: pointer !important;
+}
+
+.animate-bounce {
+  cursor: default !important;
+}
+
+.video-wrapper,
+.video-fondo-wrapper,
+.final-content,
+.vertical-video-wrapper {
+  cursor: default !important;
+}
+
+.video-wrapper .absolute.inset-0,
+.video-fondo-wrapper .absolute.inset-0,
+.final-content .absolute.inset-0,
+.vertical-video-wrapper .absolute.inset-0 {
+  cursor: pointer !important;
+}
+
+/* Optimización */
 .hero-title-3d,
 .hero-subtitle-3d,
 .hero-date-3d,
@@ -56,11 +134,16 @@ body {
 .heart-3d,
 .vertical-video-wrapper,
 .story-card,
-.gallery-item {
+.gallery-item,
+.video-fondo-wrapper,
+.video-fondo-title,
+.video-fondo-subtitle,
+.video-fondo-overlay,
+.fondo-particle {
   will-change: transform, opacity, filter;
 }
 
-/* Efecto de brillo en el texto 3D */
+/* Shimmer */
 @keyframes textShimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
@@ -69,12 +152,12 @@ body {
 .hero-title-3d {
   background: linear-gradient(
     90deg,
-    #ffffff 0%,
-    #D4AF37 20%,
-    #ffffff 40%,
-    #D4AF37 60%,
-    #ffffff 80%,
-    #D4AF37 100%
+    #3D2B1F 0%,
+    var(--gold) 20%,
+    #3D2B1F 40%,
+    var(--gold) 60%,
+    #3D2B1F 80%,
+    var(--gold) 100%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
@@ -83,7 +166,7 @@ body {
   animation: textShimmer 8s linear infinite;
 }
 
-/* Animaciones suaves */
+/* Animaciones */
 @keyframes floatVertical {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -98,7 +181,103 @@ body {
   transition: transform 0.5s ease;
 }
 
-/* RESPONSIVE - MÓVIL */
+@keyframes videoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.video-fondo-wrapper {
+  animation: videoPulse 20s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--champagne-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gold), var(--gold-light));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+}
+
+/* Perspectiva para el sobre */
+.perspective-1000 {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.animate-bounce {
+  transform: translateX(-50%) !important;
+  left: 50% !important;
+}
+
+/* Navbar */
+nav {
+  background: rgba(255, 248, 240, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid var(--gold-light) !important;
+}
+
+nav .text-white {
+  color: var(--dark) !important;
+}
+
+nav a {
+  color: var(--dark) !important;
+}
+
+nav a:hover {
+  color: var(--gold) !important;
+}
+
+nav a[href="#confirmar"] {
+  background: var(--gold) !important;
+  color: white !important;
+}
+
+nav a[href="#confirmar"]:hover {
+  background: var(--gold-dark) !important;
+}
+
+/* Story */
+.story-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: var(--gold-light) !important;
+}
+
+.story-card h3 {
+  color: var(--gold) !important;
+}
+
+.story-card p {
+  color: var(--dark) !important;
+}
+
+/* Galería */
+.gallery-item {
+  background: var(--white) !important;
+  border: 1px solid var(--gold-light) !important;
+}
+
+.gallery-item .absolute.inset-0 {
+  background: linear-gradient(135deg, rgba(247, 231, 206, 0.3), rgba(255, 248, 240, 0.5)) !important;
+}
+
+/* Outro */
+.outro-content .text-gray-700,
+.outro-content .text-gray-500 {
+  color: var(--dark) !important;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .hero-section {
     padding-top: 70px !important;
@@ -108,8 +287,8 @@ body {
     font-size: 3.5rem !important;
     animation: none !important;
     background: none !important;
-    -webkit-text-fill-color: white !important;
-    color: white !important;
+    -webkit-text-fill-color: var(--dark) !important;
+    color: var(--dark) !important;
   }
   
   .hero-subtitle-3d {
@@ -134,7 +313,6 @@ body {
   }
 }
 
-/* RESPONSIVE - TABLET */
 @media (min-width: 769px) and (max-width: 1024px) {
   .hero-title-3d {
     font-size: 5rem !important;
@@ -143,110 +321,4 @@ body {
   .hero-subtitle-3d {
     font-size: 2.5rem !important;
   }
-}
-
-/* SCROLLBAR PERSONALIZADA */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0a0f;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #D4AF37, #FFB6C1);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FFB6C1, #D4AF37);
-}
-
-/* Video de fondo */
-.video-fondo-wrapper {
-  will-change: transform, opacity, filter;
-}
-
-.video-fondo-wrapper video {
-  filter: brightness(0.8) saturate(1.1);
-}
-
-.video-fondo-title,
-.video-fondo-subtitle,
-.video-fondo-overlay {
-  will-change: transform, opacity, filter;
-}
-
-.fondo-particle {
-  will-change: transform, opacity;
-}
-
-/* Efecto de parallax en el video de fondo */
-@keyframes videoPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-
-.video-fondo-wrapper {
-  animation: videoPulse 20s ease-in-out infinite;
-}
-
-
-/* 🎨 NUEVA PALETA DE COLORES */
-:root {
-  --color-oro: #C9A84C;
-  --color-oro-claro: #E8D5A3;
-  --color-rosa-polvo: #F5D6D6;
-  --color-vino: #6B2D3B;
-  --color-marfil: #FDF7F0;
-  --color-champagne: #F7E7CE;
-  --color-coral: #E8837A;
-  --color-salvia: #A8B5A0;
-  --color-crema: #FFF8F0;
-  --color-oscuro: #1A0F0A;
-}
-
-/* Fondo con degradado romántico */
-.hero-gradient {
-  background: linear-gradient(135deg, #6B2D3B 0%, #1A0F0A 50%, #6B2D3B 100%);
-}
-
-/* Texto con brillo ORO */
-.oro-glow {
-  text-shadow: 0 0 30px rgba(201, 168, 76, 0.3), 0 0 60px rgba(201, 168, 76, 0.1);
-}
-
-/* Efecto de vidrio */
-.glass-effect {
-  background: rgba(253, 247, 240, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(201, 168, 76, 0.15);
-}
-
-/* Efecto de luz cálida */
-.warm-glow {
-  box-shadow: 0 0 80px rgba(201, 168, 76, 0.1), inset 0 0 80px rgba(201, 168, 76, 0.05);
-}
-
-/* Animación de brillo */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.shimmer-text {
-  background: linear-gradient(
-    90deg,
-    #FDF7F0 0%,
-    #C9A84C 25%,
-    #FDF7F0 50%,
-    #C9A84C 75%,
-    #FDF7F0 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 6s linear infinite;
 }
