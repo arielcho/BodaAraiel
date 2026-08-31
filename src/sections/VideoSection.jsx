@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
@@ -7,80 +7,17 @@ const VideoSection = () => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const sweepRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
 
   useGSAP(() => {
-    // Set initial states
-    gsap.set('.video-wrapper', {
-      opacity: 0,
-      scale: 0.94,
-      y: 60,
-      filter: 'blur(8px)'
-    });
-    
-    gsap.set('.video-subtitle', {
-      opacity: 0,
-      y: 20
-    });
+    const video = videoRef.current;
+    if (!video) return;
 
-    // Entrance animation
-    gsap.to('.video-wrapper', {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 75%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 1.2,
-      ease: 'back.out(1.2)'
-    });
+    // Configure video attributes for manual scrub
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
 
-    gsap.to('.video-subtitle', {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 70%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power2.out'
-    });
-
-    // 3D Parallax effect on the video element itself
-    gsap.fromTo(videoRef.current,
-      { yPercent: -12, scale: 1.25 },
-      {
-        yPercent: 12,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.video-wrapper',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
-
-    // Scroll-driven golden scanning beam sweep (GTA VI scanline vibe)
-    gsap.fromTo(sweepRef.current,
-      { yPercent: -120 },
-      {
-        yPercent: 220,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.video-wrapper',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
-
-    // Aura soft pulse
+    // Aura soft pulse background animation
     gsap.to('.video-glow', {
       opacity: 0.5,
       scale: 1.05,
@@ -90,19 +27,47 @@ const VideoSection = () => {
       ease: 'sine.inOut'
     });
 
-  }, []);
+    const initScrub = () => {
+      // Scroll scrubbing timeline with Pinning
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: '+=250%', // Scroll depth to scrub the video
+          scrub: 1.2,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          toggleActions: 'play none none reverse'
+        }
+      });
 
-  const handlePlayPause = () => {
-    const video = videoRef.current;
-    if (!video) return;
+      // Scrub the video currentTime
+      tl.to(video, {
+        currentTime: video.duration || 10,
+        ease: 'none',
+        duration: 4
+      }, 0);
 
-    if (isPlaying) {
-      video.pause();
+      // Scrub the scanline sweep in sync with the video
+      tl.fromTo(sweepRef.current,
+        { yPercent: -120 },
+        { yPercent: 240, ease: 'none', duration: 4 },
+        0
+      );
+    };
+
+    if (video.readyState >= 1) {
+      initScrub();
     } else {
-      video.play().catch(() => {});
+      video.addEventListener('loadedmetadata', initScrub);
     }
-    setIsPlaying(!isPlaying);
-  };
+
+    return () => {
+      video.removeEventListener('loadedmetadata', initScrub);
+    };
+
+  }, []);
 
   return (
     <section ref={containerRef} className="section-container flex items-center justify-center bg-[#FFF8F0] relative overflow-hidden border-b border-[#C9A84C]/25 py-20">
@@ -131,50 +96,37 @@ const VideoSection = () => {
           {/* Glowing Aura Border */}
           <div className="video-glow absolute -inset-1.5 bg-gradient-to-r from-[#C9A84C]/25 via-transparent to-[#C9A84C]/25 rounded-2xl blur-xl" />
           
-          <div 
-            onClick={handlePlayPause}
-            className="relative aspect-video rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(61,43,31,0.12)] border border-[#C9A84C]/30 bg-[#FFF8F0] cursor-pointer group"
-          >
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(61,43,31,0.12)] border border-[#C9A84C]/30 bg-[#FFF8F0]">
             <video
               ref={videoRef}
-              autoPlay
-              loop
               muted
               playsInline
               preload="auto"
               src="/BodaAraiel/videos/4.mp4"
-              className="absolute inset-0 w-full h-[125%] object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
 
-            {/* Glowing Scanline sweep beam (reactive to scroll) */}
+            {/* Glowing Scanline sweep (reactive to scroll) */}
             <div 
               ref={sweepRef}
-              className="absolute left-0 right-0 h-20 bg-gradient-to-b from-transparent via-[#C9A84C]/25 to-transparent pointer-events-none mix-blend-screen blur-[2px]" 
+              className="absolute left-0 right-0 h-20 bg-gradient-to-b from-transparent via-[#C9A84C]/25 to-transparent pointer-events-none mix-blend-screen blur-[2px] z-10" 
             />
-            
-            {/* Play/Pause Overlay Toggle */}
-            <div className={`absolute inset-0 flex items-center justify-center bg-[#3D2B1F]/20 hover:bg-[#3D2B1F]/35 transition-all duration-500 z-20 ${!isPlaying ? 'opacity-100 bg-[#3D2B1F]/45' : 'opacity-0 group-hover:opacity-100'}`}>
-              <div className="text-center transform transition-transform duration-500 scale-95 group-hover:scale-100">
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#FFF8F0]/95 backdrop-blur-sm flex items-center justify-center shadow-[0_8px_30px_rgba(201,168,76,0.35)] border border-[#C9A84C]/50">
-                  {isPlaying ? (
-                    <svg className="w-8 h-8 md:w-10 md:h-10 text-[#3D2B1F]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                    </svg>
-                  ) : (
-                    <svg className="w-8 h-8 md:w-10 md:h-10 text-[#3D2B1F] translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  )}
-                </div>
-                <p className="text-[#FFF8F0] text-xs mt-4 tracking-widest uppercase font-sans font-black drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                  {isPlaying ? 'PAUSAR VIDEO' : 'REPRODUCIR'}
-                </p>
-              </div>
-            </div>
 
-            {/* Subtle Progress Bar */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20">
-              <div className="h-full bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] transition-all duration-300" style={{ width: isPlaying ? '100%' : '0%', transitionDuration: isPlaying ? '19s' : '0.5s' }} />
+            {/* Overlay Indicator (GTA VI style interact tag) */}
+            <div className="absolute top-4 left-4 z-20 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-lg border border-[#C9A84C]/30 shadow-sm flex items-center gap-2">
+              <span className="w-2 h-2 bg-[#C9A84C] rounded-full animate-ping" />
+              <span className="text-[#3D2B1F] text-[9px] sm:text-[10px] tracking-widest font-sans font-black uppercase">INTERACTIVO CON SCROLL</span>
+            </div>
+            
+            {/* Play/Pause Overlay Indicator (Large interactive button) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <div className="text-center">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[#FFF8F0]/95 backdrop-blur-sm flex items-center justify-center shadow-[0_8px_30px_rgba(201,168,76,0.35)] border border-[#C9A84C]/50">
+                  <svg className="w-8 h-8 md:w-10 md:h-10 text-[#3D2B1F]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
 

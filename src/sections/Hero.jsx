@@ -240,7 +240,7 @@ const Hero = () => {
       <div ref={titleRef} className="relative z-10 text-center px-4 max-w-6xl mx-auto pt-28 pb-12 sm:pt-32" style={{ cursor: "default" }}>
         <div className="hero-floating-text w-24 h-0.5 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-6" />
 
-        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-2 leading-[1.1] pb-3 tracking-wide" 
+        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-2 leading-[1.4] py-4 tracking-wide" 
             style={{ 
               textShadow: '0 0 35px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'
@@ -256,7 +256,7 @@ const Hero = () => {
           ✦
         </div>
 
-        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-4 leading-[1.1] pb-3"
+        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-4 leading-[1.4] py-4"
             style={{ 
               textShadow: '0 0 35px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'

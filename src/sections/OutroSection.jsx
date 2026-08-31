@@ -29,13 +29,13 @@ const OutroSection = () => {
       <div className="absolute inset-0 gta-grid-bg pointer-events-none opacity-20" />
       <div className="absolute -bottom-16 w-[400px] h-[400px] bg-[#E8D5A3]/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="outro-content text-center max-w-2xl mx-auto px-4 relative z-10"> 
+      <div className="outro-content text-center max-w-4xl mx-auto px-4 relative z-10"> 
         <h2 className="font-script text-5xl md:text-7xl text-[#C9A84C] mb-6 drop-shadow-[0_0_10px_rgba(201,168,76,0.3)]"> 
           💕 
         </h2> 
-        <p className="font-sans font-black text-2xl md:text-4xl text-[#3D2B1F] tracking-wide mb-6 uppercase"> 
+        <h2 className="font-script text-5xl md:text-7xl lg:text-[5.5rem] text-[#3D2B1F] leading-snug mb-8"> 
           <AnimatedText text="¡Nos vemos el 07 de Noviembre!" />
-        </p> 
+        </h2> 
         <p className="text-base md:text-lg text-gray-500 font-sans tracking-wide leading-relaxed italic max-w-lg mx-auto"> 
           "El amor es la fuerza más hermosa del universo, el inicio de una aventura eterna." 
         </p> 

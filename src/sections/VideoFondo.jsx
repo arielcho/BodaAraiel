@@ -9,56 +9,12 @@ const VideoFondo = () => {
   const sweepRef = useRef(null);
 
   useGSAP(() => {
-    // Set initial states
-    gsap.set('.video-fondo-wrapper', {
-      opacity: 0,
-      scale: 1.05,
-      filter: 'blur(10px)'
-    });
+    const video = videoRef.current;
+    if (!video) return;
 
-    // Background reveal
-    gsap.to('.video-fondo-wrapper', {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      },
-      opacity: 1,
-      scale: 1,
-      filter: 'blur(0px)',
-      duration: 1.5,
-      ease: 'power3.out'
-    });
-
-    // 3D Parallax scroll on the background video itself
-    gsap.fromTo(videoRef.current,
-      { yPercent: -10, scale: 1.2 },
-      {
-        yPercent: 10,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
-
-    // Scroll-driven golden scanning beam sweep
-    gsap.fromTo(sweepRef.current,
-      { yPercent: -120 },
-      {
-        yPercent: 220,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      }
-    );
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
 
     // Float particles animation
     const particles = document.querySelectorAll('.fondo-particle');
@@ -74,22 +30,59 @@ const VideoFondo = () => {
       });
     });
 
+    const initScrub = () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: '+=200%',
+          scrub: 1.2,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      // Scrub background video frame
+      tl.to(video, {
+        currentTime: video.duration || 7,
+        ease: 'none',
+        duration: 4
+      }, 0);
+
+      // Scrub scanning sweep line
+      tl.fromTo(sweepRef.current,
+        { yPercent: -120 },
+        { yPercent: 240, ease: 'none', duration: 4 },
+        0
+      );
+    };
+
+    if (video.readyState >= 1) {
+      initScrub();
+    } else {
+      video.addEventListener('loadedmetadata', initScrub);
+    }
+
+    return () => {
+      video.removeEventListener('loadedmetadata', initScrub);
+    };
+
   }, []);
 
   return (
-    <section ref={containerRef} className="section-container overflow-hidden h-[70vh] min-h-[500px] border-b border-[#C9A84C]/25">
+    <section ref={containerRef} className="section-container overflow-hidden h-screen border-b border-[#C9A84C]/25">
       
       {/* Background looping video with light gold overlays */}
       <div className="video-fondo-wrapper absolute inset-0">
         <video
           ref={videoRef}
-          autoPlay
-          loop
           muted
           playsInline
           preload="auto"
           src="/BodaAraiel/videos/3.mp4"
-          className="absolute inset-0 w-full h-[120%] object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
         {/* Glowing Scanline sweep (reactive to scroll) */}
@@ -141,7 +134,7 @@ const VideoFondo = () => {
 
         <div className="video-fondo-subtitle mt-6 flex items-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-[#C9A84C]/30 shadow-md">
-            <span className="text-[#3D2B1F] text-[10px] sm:text-xs tracking-widest font-sans font-bold">▶ REPRODUCIENDO</span>
+            <span className="text-[#3D2B1F] text-[10px] sm:text-xs tracking-widest font-sans font-bold">⏱ SCROLL INTERACTIVO</span>
             <span className="w-1.5 h-1.5 bg-[#C9A84C] rounded-full animate-pulse" />
             <span className="text-gray-500 text-[10px] sm:text-xs font-sans font-semibold">7s</span>
           </div>
