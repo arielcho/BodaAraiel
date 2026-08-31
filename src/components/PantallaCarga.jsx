@@ -126,7 +126,10 @@ const PantallaCarga = ({ onComplete }) => {
   };
 
   return (
-    <div className="loader-container fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#FFF8F0] overflow-hidden gta-grid-bg">
+    <div 
+      className={`loader-container fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#FFF8F0] overflow-hidden gta-grid-bg ${!isOpen ? 'cursor-pointer' : ''}`}
+      onClick={!isOpen ? handleOpenEnvelope : undefined}
+    >
       {/* Background Palm Silhouettes & Gold Glows */}
       <div className="absolute inset-0 pointer-events-none opacity-25">
         <div className="absolute -left-20 -bottom-20 w-[300px] h-[500px] bg-gradient-to-t from-[#E8D5A3] to-transparent rounded-full blur-[120px]" />
@@ -143,7 +146,7 @@ const PantallaCarga = ({ onComplete }) => {
               Tienes una invitación privada
             </h3>
             <p className="text-gray-500 text-[10px] sm:text-xs mt-1 tracking-wider font-semibold">
-              Haz clic en el sobre para abrir la invitación
+              Haz clic en cualquier parte de la pantalla para abrir la invitación
             </p>
           </div>
         )}
@@ -152,9 +155,8 @@ const PantallaCarga = ({ onComplete }) => {
         <div className="envelope-wrapper relative perspective-1000 w-[340px] h-[240px] sm:w-[440px] sm:h-[300px] transition-transform duration-500 hover:scale-[1.03]">
           <div
             ref={envelopeRef}
-            className="relative w-full h-full cursor-pointer"
+            className="relative w-full h-full"
             style={{ transformStyle: isOpen ? 'flat' : 'preserve-3d' }}
-            onClick={!isOpen ? handleOpenEnvelope : undefined}
           >
             
             {/* 1. Envelope Back Cover */}
