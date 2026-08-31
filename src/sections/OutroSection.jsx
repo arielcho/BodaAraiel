@@ -1,6 +1,7 @@
-﻿import { useRef } from 'react'; 
+import { useRef } from 'react'; 
 import gsap from 'gsap'; 
 import { useGSAP } from '@gsap/react'; 
+import AnimatedText from '../components/AnimatedText';
  
 const OutroSection = () => { 
   const containerRef = useRef(null); 
@@ -23,20 +24,24 @@ const OutroSection = () => {
   }, []); 
  
   return ( 
-    <section id="confirmar" ref={containerRef} className="section-container flex items-center justify-center hero-gradient py-20"> 
-      <div className="outro-content text-center max-w-2xl mx-auto px-4"> 
-        <h2 className="font-script text-5xl md:text-6xl text-boda-vino mb-6"> 
-          ðŸ’• 
+    <section id="confirmar" ref={containerRef} className="section-container flex items-center justify-center bg-gradient-to-b from-[#FFF8F0] via-[#F7E7CE]/20 to-[#FFF8F0] py-28 relative overflow-hidden"> 
+      {/* Decorative grids */}
+      <div className="absolute inset-0 gta-grid-bg pointer-events-none opacity-20" />
+      <div className="absolute -bottom-16 w-[400px] h-[400px] bg-[#E8D5A3]/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="outro-content text-center max-w-2xl mx-auto px-4 relative z-10"> 
+        <h2 className="font-script text-5xl md:text-7xl text-[#C9A84C] mb-6 drop-shadow-[0_0_10px_rgba(201,168,76,0.3)]"> 
+          💕 
         </h2> 
-        <p className="text-2xl md:text-3xl text-gray-700 mb-4"> 
-          Â¡¡Nos vemos el 07 de Noviembre! 
+        <p className="font-sans font-black text-2xl md:text-4xl text-[#3D2B1F] tracking-wide mb-6 uppercase"> 
+          <AnimatedText text="¡Nos vemos el 07 de Noviembre!" />
         </p> 
-        <p className="text-lg text-gray-500"> 
-          "El amor es la fuerza más hermosa del universo" 
+        <p className="text-base md:text-lg text-gray-500 font-sans tracking-wide leading-relaxed italic max-w-lg mx-auto"> 
+          "El amor es la fuerza más hermosa del universo, el inicio de una aventura eterna." 
         </p> 
-        <div className="mt-8 flex justify-center gap-4"> 
-          <span className="px-6 py-3 bg-boda-oro/10 rounded-full text-boda-oro"> 
-            ðŸ’ Ariel y Aracely 
+        <div className="mt-10 flex justify-center"> 
+          <span className="px-8 py-3 bg-[#C9A84C]/10 rounded-xl text-[#C9A84C] border border-[#C9A84C]/20 font-sans font-bold tracking-widest text-sm uppercase shadow-[0_4px_15px_rgba(201,168,76,0.08)] hover:border-[#C9A84C]/50 transition-all duration-500"> 
+            💍 Ariel & Aracely 
           </span> 
         </div> 
       </div> 

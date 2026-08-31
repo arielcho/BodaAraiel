@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const FloresYAdornos = () => {
   const canvasRef = useRef(null);
@@ -41,7 +41,7 @@ const FloresYAdornos = () => {
       }
 
       getColor() {
-        const colores = ['#F5D6D6', '#FFB6C1', '#FF69B4', '#C9A84C', '#E8D5A3', '#F7E7CE', '#FFF8F0', '#FFFFF0'];
+        const colores = ['#FF2A85', '#FF8533', '#9200FF', '#00F0FF', '#FDF7F0', '#FF70B2'];
         return colores[Math.floor(Math.random() * colores.length)];
       }
 
@@ -84,8 +84,8 @@ const FloresYAdornos = () => {
 
         ctx.beginPath();
         ctx.arc(0, 0, s * 0.15, 0, Math.PI * 2);
-        ctx.fillStyle = '#C9A84C';
-        ctx.shadowColor = '#C9A84C';
+        ctx.fillStyle = '#FF8533';
+        ctx.shadowColor = '#FF8533';
         ctx.shadowBlur = 20;
         ctx.fill();
 
@@ -124,8 +124,8 @@ const FloresYAdornos = () => {
         ctx.globalAlpha = this.opacity;
         
         const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.glow);
-        grad.addColorStop(0, '#E8D5A3');
-        grad.addColorStop(0.5, '#C9A84C');
+        grad.addColorStop(0, '#FF8533');
+        grad.addColorStop(0.5, '#FF2A85');
         grad.addColorStop(1, 'transparent');
         
         ctx.fillStyle = grad;

@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
@@ -10,6 +10,7 @@ import VideoVertical from './sections/VideoVertical';
 import VideoFondo from './sections/VideoFondo';
 import StorySection from './sections/StorySection';
 import GallerySection from './sections/GallerySection';
+import EventSection from './sections/EventSection';
 import FinalSection from './sections/FinalSection';
 import OutroSection from './sections/OutroSection';
 
@@ -26,21 +27,20 @@ const App = () => {
 
   return (
     <>
-      <PantallaCarga onComplete={() => setCargaCompleta(true)} />
-      {cargaCompleta && (
-        <main className="relative overflow-x-hidden bg-[#FFF8F0]">
-          <FloresYAdornos />
-          <Navbar />
-          <Hero />
-          <VideoSection />
-          <VideoVertical />
-          <VideoFondo />
-          <StorySection />
-          <GallerySection />
-          <FinalSection />
-          <OutroSection />
-        </main>
-      )}
+      <main className="relative overflow-x-hidden bg-[#FFF8F0]">
+        <FloresYAdornos />
+        <Navbar />
+        <Hero />
+        <VideoSection />
+        <VideoVertical />
+        <VideoFondo />
+        <StorySection />
+        <GallerySection />
+        <EventSection />
+        <FinalSection />
+        <OutroSection />
+      </main>
+      {!cargaCompleta && <PantallaCarga onComplete={() => setCargaCompleta(true)} />}
     </>
   );
 };

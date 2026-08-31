@@ -1,6 +1,7 @@
-﻿import { useRef } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import AnimatedText from '../components/AnimatedText';
 
 const GallerySection = () => {
   const containerRef = useRef(null);
@@ -101,19 +102,19 @@ const GallerySection = () => {
   ];
 
   return (
-    <section id="galeria" ref={containerRef} className="section-container bg-[#1A0F0A] py-20 overflow-hidden">
+    <section id="galeria" ref={containerRef} className="section-container bg-[#FFF8F0] py-20 overflow-hidden border-b border-[#C9A84C]/25">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1A0F0A] via-[#2C1810] to-[#1A0F0A]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FFF8F0] via-[#F7E7CE]/20 to-[#FFF8F0]" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/30 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="gallery-title font-script text-5xl md:text-7xl text-[#FDF7F0] mb-4">
-            Nuestra <span className="text-[#C9A84C]">Galeria</span>
+          <h2 className="gallery-title font-script text-5xl md:text-7xl text-[#3D2B1F] mb-4">
+            <AnimatedText text="Nuestra Galería" />
           </h2>
-          <p className="gallery-subtitle text-[#E8D5A3]/40 text-sm md:text-base tracking-widest uppercase">
-            Momentos que capturan nuestra historia
+          <p className="gallery-subtitle text-gray-500 text-xs sm:text-sm tracking-widest uppercase font-sans font-black">
+            <AnimatedText text="Momentos que capturan nuestra historia" type="words" />
           </p>
           <div className="gallery-subtitle w-24 h-px bg-[#C9A84C]/30 mx-auto mt-6" />
         </div>
@@ -122,29 +123,29 @@ const GallerySection = () => {
           {images.map((img, index) => (
             <div
               key={index}
-              className="gallery-item group relative overflow-hidden rounded-xl aspect-square"
+              className="gallery-item group relative overflow-hidden rounded-xl aspect-square border border-white/5 shadow-2xl"
             >
               <img
                 src={img.src}
                 alt={img.title}
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 onError={(e) => {
-                  e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%231A0F0A'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23C9A84C' font-size='40' font-family='Arial'%3E${img.icon}%3C/text%3E%3C/svg%3E`;
+                  e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%230B0612'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23FF2A85' font-size='40' font-family='Arial'%3E${img.icon}%3C/text%3E%3C/svg%3E`;
                 }}
               />
               
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F0A]/80 via-[#1A0F0A]/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0612]/95 via-[#0B0612]/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4">
                 <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                  <p className="text-[#FDF7F0] text-sm md:text-base font-light tracking-wider">
+                  <p className="text-[#FDF7F0] text-xs sm:text-sm font-sans font-bold tracking-wider uppercase">
                     {img.title}
                   </p>
-                  <p className="text-[#C9A84C] text-2xl md:text-3xl mt-1">
+                  <p className="text-[#FF2A85] text-2xl md:text-3xl mt-1 drop-shadow-[0_0_8px_rgba(255,42,133,0.6)]">
                     {img.icon}
                   </p>
                 </div>
               </div>
 
-              <div className="absolute inset-0 border-2 border-[#C9A84C]/0 group-hover:border-[#C9A84C]/50 transition-all duration-500 rounded-xl" />
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FF2A85]/60 transition-all duration-500 rounded-xl pointer-events-none" />
             </div>
           ))}
         </div>
