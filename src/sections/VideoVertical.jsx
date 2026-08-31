@@ -15,56 +15,52 @@ const VideoVertical = () => {
     video.preload = "auto";
     video.muted = true;
     video.playsInline = true;
+    video.loop = true;
+    video.autoplay = true;
 
-    const initScrub = () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=200%', // Scroll depth
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          toggleActions: 'play none none reverse'
-        }
-      });
+    video.play().catch(() => {});
 
-      // Scrub vertical video timeline
-      tl.to(video, {
-        currentTime: video.duration || 8,
-        ease: 'none',
-        duration: 4
-      }, 0);
+    // Scroll scrubbing card dynamics
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    });
 
-      // Scrub scanning sweep
-      tl.fromTo(sweepRef.current,
-        { yPercent: -120 },
-        { yPercent: 260, ease: 'none', duration: 4 },
-        0
-      );
-    };
+    // Zoom the vertical card container from 0.88 to 1.04 as you scroll
+    tl.fromTo('.vertical-video-wrapper',
+      { scale: 0.88, y: 40, rotationX: 6, filter: 'blur(3px)' },
+      { scale: 1.03, y: -40, rotationX: 0, filter: 'blur(0px)', ease: 'none', duration: 4 }
+    );
 
-    if (video.readyState >= 1) {
-      initScrub();
-    } else {
-      video.addEventListener('loadedmetadata', initScrub);
-    }
+    // Parallax scroll on the video itself inside the portrait card
+    tl.fromTo(video,
+      { yPercent: -15, scale: 1.3 },
+      { yPercent: 15, ease: 'none', duration: 4 },
+      0
+    );
 
-    return () => {
-      video.removeEventListener('loadedmetadata', initScrub);
-    };
+    // Scanline reflection sweep controlled by scroll
+    tl.fromTo(sweepRef.current,
+      { yPercent: -120 },
+      { yPercent: 240, ease: 'none', duration: 4 },
+      0
+    );
 
   }, []);
 
   return (
-    <section ref={containerRef} className="section-container bg-gradient-to-b from-[#FFF8F0] via-[#FDFBF7] to-[#FFF8F0] py-20 overflow-hidden border-b border-[#C9A84C]/25 flex items-center justify-center">
+    <section ref={containerRef} className="section-container bg-gradient-to-b from-[#FFF8F0] via-[#FDFBF7] to-[#FFF8F0] py-24 overflow-hidden border-b border-[#C9A84C]/25 flex items-center justify-center">
       {/* Background Soft Grids */}
       <div className="absolute inset-0 gta-grid-bg pointer-events-none opacity-25" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 w-full">
         {/* Section Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-12">
           <h2 className="vertical-title font-script text-4xl md:text-6xl text-[#3D2B1F] mb-3 drop-shadow-[0_2px_4px_rgba(61,43,31,0.05)]">
             <AnimatedText text="Nuestros Momentos" />
           </h2>
@@ -83,11 +79,13 @@ const VideoVertical = () => {
             <div className="relative aspect-[9/16] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(61,43,31,0.15)] border border-[#C9A84C]/30 bg-black">
               <video
                 ref={videoRef}
+                autoPlay
+                loop
                 muted
                 playsInline
                 preload="metadata"
                 src="/BodaAraiel/videos/1 (1).mp4"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-[130%] object-cover"
               />
 
               {/* Glowing Scanline sweep (reactive to scroll) */}
@@ -102,7 +100,7 @@ const VideoVertical = () => {
 
               {/* Dynamic tag overlay */}
               <div className="absolute top-3 left-3 z-20 px-2 py-1 bg-white/70 backdrop-blur-sm rounded border border-[#C9A84C]/35">
-                <span className="text-[#3D2B1F] text-[8px] tracking-widest font-sans font-extrabold uppercase">SCROLL INTERACTIVE</span>
+                <span className="text-[#3D2B1F] text-[8px] tracking-widest font-sans font-extrabold uppercase">PERSPECTIVA ACTIVA</span>
               </div>
             </div>
           </div>

@@ -15,8 +15,8 @@ const PantallaCarga = ({ onComplete }) => {
     );
 
     // Subtle floating animation
-    gsap.to('.envelope-wrapper', {
-      y: -10,
+    const floatAnim = gsap.to('.envelope-wrapper', {
+      y: -8,
       duration: 3,
       repeat: -1,
       yoyo: true,
@@ -34,8 +34,8 @@ const PantallaCarga = ({ onComplete }) => {
       const y = (e.clientY - rect.top) / rect.height - 0.5;
 
       gsap.to(el, {
-        rotationY: x * 20,
-        rotationX: -y * 20,
+        rotationY: x * 22,
+        rotationX: -y * 22,
         duration: 0.5,
         ease: 'power2.out',
       });
@@ -55,13 +55,26 @@ const PantallaCarga = ({ onComplete }) => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      floatAnim.kill();
     };
   }, [isOpen]);
 
-  const handleOpenEnvelope = () => {
+  const handleOpenEnvelope = (e) => {
     if (isOpen) return;
     setIsOpen(true);
 
+    // Tactile bounce click feedback animation
+    gsap.timeline()
+      .to('.envelope-wrapper', { scale: 0.95, duration: 0.15, ease: 'power2.out' })
+      .to('.envelope-wrapper', { 
+        scale: 1, 
+        duration: 0.4, 
+        ease: 'back.out(2)',
+        onComplete: startOpeningSequence 
+      });
+  };
+
+  const startOpeningSequence = () => {
     const tl = gsap.timeline({
       onComplete: () => {
         setIsLetterActive(true);
@@ -130,13 +143,13 @@ const PantallaCarga = ({ onComplete }) => {
               Tienes una invitación privada
             </h3>
             <p className="text-gray-500 text-[10px] sm:text-xs mt-1 tracking-wider font-semibold">
-              Haz clic en el sello para abrir la carta
+              Haz clic en el sobre para abrir la invitación
             </p>
           </div>
         )}
 
-        {/* 3D Envelope Wrapper (Larger dimensions to prevent overflow) */}
-        <div className="envelope-wrapper relative perspective-1000 w-[340px] h-[240px] sm:w-[440px] sm:h-[300px]">
+        {/* 3D Envelope Wrapper (Enlarged and interactive hover) */}
+        <div className="envelope-wrapper relative perspective-1000 w-[340px] h-[240px] sm:w-[440px] sm:h-[300px] transition-transform duration-500 hover:scale-[1.03]">
           <div
             ref={envelopeRef}
             className="relative w-full h-full cursor-pointer"
@@ -211,13 +224,13 @@ const PantallaCarga = ({ onComplete }) => {
             />
 
             {/* 5. Glowing Wax Seal (attaches in the center top crease) */}
-            <div className="envelope-seal absolute left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 z-40 transform-style-3d transition-transform duration-300 hover:scale-110">
-              <div className="relative w-14 h-14 sm:w-18 sm:h-18 flex items-center justify-center">
+            <div className="envelope-seal absolute left-1/2 top-[50%] -translate-x-1/2 -translate-y-1/2 z-40 transform-style-3d transition-transform duration-300">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
                 {/* Glowing Aura */}
                 <div className="absolute inset-0 bg-[#C9A84C] rounded-full blur-md opacity-45 animate-pulse" />
                 {/* Seal Body */}
                 <div className="relative w-full h-full rounded-full bg-gradient-to-br from-[#C9A84C] via-[#E8D5A3] to-[#A8873A] border-2 border-white shadow-[0_4px_10px_rgba(61,43,31,0.2)] flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl text-white transform hover:rotate-12 transition-transform duration-300 select-none">
+                  <span className="text-xl sm:text-2xl text-white select-none">
                     💖
                   </span>
                 </div>

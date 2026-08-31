@@ -15,6 +15,10 @@ const VideoFondo = () => {
     video.preload = "auto";
     video.muted = true;
     video.playsInline = true;
+    video.loop = true;
+    video.autoplay = true;
+
+    video.play().catch(() => {});
 
     // Float particles animation
     const particles = document.querySelectorAll('.fondo-particle');
@@ -30,59 +34,60 @@ const VideoFondo = () => {
       });
     });
 
-    const initScrub = () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=200%',
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          toggleActions: 'play none none reverse'
-        }
-      });
+    // Scroll scrub timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    });
 
-      // Scrub background video frame
-      tl.to(video, {
-        currentTime: video.duration || 7,
-        ease: 'none',
-        duration: 4
-      }, 0);
+    // Zoom and shift background on scroll
+    tl.fromTo('.video-fondo-wrapper',
+      { scale: 1.08, filter: 'blur(2px)' },
+      { scale: 0.98, filter: 'blur(0px)', ease: 'none', duration: 4 }
+    );
 
-      // Scrub scanning sweep line
-      tl.fromTo(sweepRef.current,
-        { yPercent: -120 },
-        { yPercent: 240, ease: 'none', duration: 4 },
-        0
-      );
-    };
+    // Parallax background video movement
+    tl.fromTo(video,
+      { yPercent: -10, scale: 1.2 },
+      { yPercent: 10, ease: 'none', duration: 4 },
+      0
+    );
 
-    if (video.readyState >= 1) {
-      initScrub();
-    } else {
-      video.addEventListener('loadedmetadata', initScrub);
-    }
+    // Scanning line sweep
+    tl.fromTo(sweepRef.current,
+      { yPercent: -120 },
+      { yPercent: 220, ease: 'none', duration: 4 },
+      0
+    );
 
-    return () => {
-      video.removeEventListener('loadedmetadata', initScrub);
-    };
+    // Animate text reveal slightly on scroll
+    tl.fromTo('.video-fondo-title',
+      { y: 30, opacity: 0.7 },
+      { y: -30, opacity: 1, ease: 'none', duration: 4 },
+      0
+    );
 
   }, []);
 
   return (
-    <section ref={containerRef} className="section-container overflow-hidden h-screen border-b border-[#C9A84C]/25">
+    <section ref={containerRef} className="section-container overflow-hidden h-[75vh] min-h-[500px] border-b border-[#C9A84C]/25">
       
       {/* Background looping video with light gold overlays */}
       <div className="video-fondo-wrapper absolute inset-0">
         <video
           ref={videoRef}
+          autoPlay
+          loop
           muted
           playsInline
           preload="auto"
           src="/BodaAraiel/videos/3.mp4"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-[120%] object-cover"
         />
 
         {/* Glowing Scanline sweep (reactive to scroll) */}
@@ -134,7 +139,7 @@ const VideoFondo = () => {
 
         <div className="video-fondo-subtitle mt-6 flex items-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-[#C9A84C]/30 shadow-md">
-            <span className="text-[#3D2B1F] text-[10px] sm:text-xs tracking-widest font-sans font-bold">⏱ SCROLL INTERACTIVO</span>
+            <span className="text-[#3D2B1F] text-[10px] sm:text-xs tracking-widest font-sans font-bold">⏱ COMPOSICIÓN DINÁMICA</span>
             <span className="w-1.5 h-1.5 bg-[#C9A84C] rounded-full animate-pulse" />
             <span className="text-gray-500 text-[10px] sm:text-xs font-sans font-semibold">7s</span>
           </div>

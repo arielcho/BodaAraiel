@@ -9,20 +9,19 @@ const AnimatedText = ({ text, className = '', type = 'chars' }) => {
     const targets = containerRef.current.querySelectorAll('.anim-element');
     if (!targets.length) return;
 
+    // Handwriting/typing pen reveal effect (sequential left-to-right fade & ink bleed reveal)
     gsap.to(targets, {
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 88%',
+        start: 'top 90%',
         toggleActions: 'play none none reverse',
       },
       opacity: 1,
-      y: 0,
-      rotationX: 0,
-      rotationY: 0,
+      filter: 'blur(0px)',
       scale: 1,
-      stagger: type === 'chars' ? 0.03 : 0.08,
-      duration: 0.8,
-      ease: 'back.out(1.3)',
+      stagger: type === 'chars' ? 0.04 : 0.08,
+      duration: 0.5,
+      ease: 'power1.out',
     });
   }, { scope: containerRef });
 
@@ -33,8 +32,7 @@ const AnimatedText = ({ text, className = '', type = 'chars' }) => {
         {words.map((word, idx) => (
           <span
             key={idx}
-            className="anim-element inline-block mr-2 opacity-0 translate-y-6 scale-95"
-            style={{ transformStyle: 'preserve-3d' }}
+            className="anim-element inline-block mr-2 opacity-0 filter blur-[4px] scale-95"
           >
             {word}
           </span>
@@ -43,7 +41,7 @@ const AnimatedText = ({ text, className = '', type = 'chars' }) => {
     );
   }
 
-  // Default: animate character-by-character
+  // Cursive Pen Writing/Typewriter character reveal
   const words = text.split(' ');
   return (
     <span ref={containerRef} className={`inline-block ${className}`}>
@@ -52,8 +50,7 @@ const AnimatedText = ({ text, className = '', type = 'chars' }) => {
           {word.split('').map((char, cIdx) => (
             <span
               key={cIdx}
-              className="anim-element inline-block opacity-0 translate-y-8 rotate-[15deg] origin-bottom-left"
-              style={{ transformStyle: 'preserve-3d' }}
+              className="anim-element inline-block opacity-0 filter blur-[3px] scale-90"
             >
               {char}
             </span>

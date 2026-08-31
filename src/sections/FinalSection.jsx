@@ -15,58 +15,63 @@ const FinalSection = () => {
     video.preload = "auto";
     video.muted = true;
     video.playsInline = true;
+    video.loop = true;
+    video.autoplay = true;
 
-    const initScrub = () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=200%',
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          toggleActions: 'play none none reverse'
-        }
-      });
+    video.play().catch(() => {});
 
-      // Scrub video frame
-      tl.to(video, {
-        currentTime: video.duration || 19,
-        ease: 'none',
-        duration: 4
-      }, 0);
+    // Scroll scrub timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    });
 
-      // Scrub scanning sweep
-      tl.fromTo(sweepRef.current,
-        { yPercent: -120 },
-        { yPercent: 240, ease: 'none', duration: 4 },
-        0
-      );
-    };
+    // Zoom the final wrapper on scroll
+    tl.fromTo('.final-content',
+      { scale: 1.06, filter: 'blur(2px)' },
+      { scale: 0.96, filter: 'blur(0px)', ease: 'none', duration: 4 }
+    );
 
-    if (video.readyState >= 1) {
-      initScrub();
-    } else {
-      video.addEventListener('loadedmetadata', initScrub);
-    }
+    // Parallax background video movement
+    tl.fromTo(video,
+      { yPercent: -12, scale: 1.25 },
+      { yPercent: 12, ease: 'none', duration: 4 },
+      0
+    );
 
-    return () => {
-      video.removeEventListener('loadedmetadata', initScrub);
-    };
+    // Scanning sweep line
+    tl.fromTo(sweepRef.current,
+      { yPercent: -120 },
+      { yPercent: 240, ease: 'none', duration: 4 },
+      0
+    );
+
+    // Fade final text slightly on scroll
+    tl.fromTo('.final-title',
+      { y: 40, opacity: 0.8 },
+      { y: -40, opacity: 1, ease: 'none', duration: 4 },
+      0
+    );
 
   }, []);
 
   return (
-    <section ref={containerRef} className="section-container overflow-hidden h-screen border-b border-[#C9A84C]/25 bg-[#FFF8F0] flex items-center justify-center">
+    <section ref={containerRef} className="section-container overflow-hidden h-[75vh] min-h-[500px] border-b border-[#C9A84C]/25 bg-[#FFF8F0] flex items-center justify-center">
       <div className="final-content w-full h-full relative">
         <video
           ref={videoRef}
+          autoPlay
+          loop
           muted
           playsInline
           preload="auto"
           src="/BodaAraiel/videos/4.mp4"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-[125%] object-cover"
         />
 
         {/* Glowing Scanline sweep (reactive to scroll) */}
@@ -92,7 +97,7 @@ const FinalSection = () => {
             </p>
             
             <div className="mt-6 inline-block px-4 py-2 bg-white/70 backdrop-blur-sm rounded-lg border border-[#C9A84C]/35">
-              <span className="text-[#3D2B1F] text-[9px] tracking-widest font-sans font-extrabold uppercase">⏱ SCROLL INTERACTIVO · 19s</span>
+              <span className="text-[#3D2B1F] text-[9px] tracking-widest font-sans font-extrabold uppercase">⏱ TRANSICIÓN ACTIVA · 19s</span>
             </div>
           </div>
         </div>
