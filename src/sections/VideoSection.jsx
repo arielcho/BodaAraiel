@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
+import { setupScrollVideo } from '../utils/scrollVideo';
 
 const VideoSection = () => {
   const videoRef = useRef(null);
@@ -12,15 +13,10 @@ const VideoSection = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Set attributes for autoplay loop
-    video.preload = "auto";
-    video.muted = true;
-    video.playsInline = true;
-    video.loop = true;
-    video.autoplay = true;
-
-    // Force autoplay if blocked by browser
-    video.play().catch(() => {});
+    const cleanupScrollVideo = setupScrollVideo({
+      video,
+      trigger: containerRef.current,
+    });
 
     // Soft border pulse
     gsap.to('.video-glow', {
@@ -63,6 +59,7 @@ const VideoSection = () => {
       0
     );
 
+    return cleanupScrollVideo;
   }, []);
 
   return (
@@ -95,8 +92,6 @@ const VideoSection = () => {
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(61,43,31,0.12)] border border-[#C9A84C]/30 bg-[#FFF8F0]">
             <video
               ref={videoRef}
-              autoPlay
-              loop
               muted
               playsInline
               preload="auto"

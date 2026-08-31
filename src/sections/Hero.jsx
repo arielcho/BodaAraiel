@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import MinimalIcon from '../components/MinimalIcon';
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -179,6 +180,23 @@ const Hero = () => {
       });
     });
 
+    // GTA VI style background flying birds silhouette path animations
+    const birds = document.querySelectorAll('.flying-bird');
+    birds.forEach((bird, i) => {
+      gsap.fromTo(bird,
+        { x: '-15vw', y: 80 + Math.random() * 260, scale: 0.35 + Math.random() * 0.45, opacity: 0 },
+        {
+          x: '115vw',
+          y: 40 + Math.random() * 130,
+          opacity: 0.7,
+          duration: 16 + Math.random() * 8,
+          delay: i * 4.5,
+          repeat: -1,
+          ease: 'none'
+        }
+      );
+    });
+
   }, []);
 
   return (
@@ -196,6 +214,25 @@ const Hero = () => {
 
       {/* Floating gold light grids */}
       <div className="absolute inset-0 gta-grid-bg pointer-events-none opacity-25" />
+
+      {/* GTA VI Beach/Sky silhouette flying birds background effect */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[5]">
+        {[...Array(4)].map((_, i) => (
+          <svg
+            key={i}
+            className="flying-bird absolute w-7 h-7 text-[#C9A84C]/35 opacity-0"
+            viewBox="0 0 50 50"
+            style={{
+              animation: `flap-wing 0.55s infinite ease-in-out`
+            }}
+          >
+            <path
+              fill="currentColor"
+              d="M 0 20 Q 20 0 25 15 Q 30 0 50 20 Q 25 35 0 20 Z"
+            />
+          </svg>
+        ))}
+      </div>
 
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {[...Array(12)].map((_, i) => (
@@ -221,18 +258,19 @@ const Hero = () => {
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="heart-3d absolute text-5xl"
+            className="heart-3d absolute"
             style={{
               left: 10 + Math.random() * 80 + '%',
               top: 80 + Math.random() * 20 + '%',
-              fontSize: 25 + Math.random() * 40 + 'px',
+              width: 25 + Math.random() * 40 + 'px',
+              height: 25 + Math.random() * 40 + 'px',
               color: ['#F5D6D6', '#FFB6C1', '#C9A84C', '#E8D5A3'][Math.floor(Math.random() * 4)],
               textShadow: '0 0 20px currentColor, 0 0 40px currentColor',
               opacity: 0.35,
               transform: 'scale(0)'
             }}
           >
-            ❤️
+            <MinimalIcon name="heart" className="w-full h-full" />
           </div>
         ))}
       </div>
@@ -289,7 +327,7 @@ const Hero = () => {
         <a href="#historia" className="hero-floating-text mt-8 inline-block px-10 py-4 md:px-12 md:py-5 bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-[#3D2B1F] rounded-xl hover:scale-105 transition-all duration-500 shadow-[0_4px_20px_rgba(201,168,76,0.35)] text-sm md:text-lg font-sans font-black tracking-widest group relative overflow-hidden uppercase">
           <span className="relative z-10 flex items-center gap-3">
             Descubre nuestra historia
-            <span className="text-lg md:text-xl group-hover:translate-x-2 transition-transform duration-300">▶</span>
+            <MinimalIcon name="arrow" className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
           </span>
           <div className="absolute inset-0 bg-gradient-to-r from-[#E8D5A3] to-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </a>

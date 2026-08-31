@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
+import MinimalIcon from '../components/MinimalIcon';
 
 const GallerySection = () => {
   const containerRef = useRef(null);
@@ -11,18 +12,18 @@ const GallerySection = () => {
       opacity: 0,
       scale: 0.7,
       rotation: 5,
-      filter: 'blur(5px)'
+      filter: 'blur(5px)',
     });
-    
+
     gsap.set('.gallery-title', {
       opacity: 0,
       y: 80,
-      filter: 'blur(10px)'
+      filter: 'blur(10px)',
     });
 
     gsap.set('.gallery-subtitle', {
       opacity: 0,
-      y: 50
+      y: 50,
     });
 
     gsap.to('.gallery-item', {
@@ -34,7 +35,7 @@ const GallerySection = () => {
       stagger: {
         amount: 0.8,
         from: 'center',
-        grid: 'auto'
+        grid: 'auto',
       },
       ease: 'power3.out',
       scrollTrigger: {
@@ -42,8 +43,8 @@ const GallerySection = () => {
         start: 'top 70%',
         end: 'bottom 20%',
         toggleActions: 'play none none reverse',
-        scrub: 1
-      }
+        scrub: 1,
+      },
     });
 
     gsap.to('.gallery-title', {
@@ -55,8 +56,8 @@ const GallerySection = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      }
+        toggleActions: 'play none none reverse',
+      },
     });
 
     gsap.to('.gallery-subtitle', {
@@ -67,17 +68,17 @@ const GallerySection = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 75%',
-        toggleActions: 'play none none reverse'
-      }
+        toggleActions: 'play none none reverse',
+      },
     });
 
-    document.querySelectorAll('.gallery-item').forEach(item => {
+    document.querySelectorAll('.gallery-item').forEach((item) => {
       item.addEventListener('mouseenter', () => {
         gsap.to(item, {
           scale: 1.05,
           zIndex: 10,
           duration: 0.3,
-          ease: 'power2.out'
+          ease: 'power2.out',
         });
       });
       item.addEventListener('mouseleave', () => {
@@ -85,20 +86,19 @@ const GallerySection = () => {
           scale: 1,
           zIndex: 1,
           duration: 0.3,
-          ease: 'power2.in'
+          ease: 'power2.in',
         });
       });
     });
-
   }, []);
 
   const images = [
-    { src: '/BodaAraiel/images/1 (1).jpg', title: 'El Inicio', icon: '💕' },
-    { src: '/BodaAraiel/images/1 (2).jpg', title: 'El Amor', icon: '❤️' },
-    { src: '/BodaAraiel/images/1 (3).jpg', title: 'La Promesa', icon: '💍' },
-    { src: '/BodaAraiel/images/1 (4).jpg', title: 'La Felicidad', icon: '✨' },
-    { src: '/BodaAraiel/images/1 (5).jpg', title: 'El Dia', icon: '🎊' },
-    { src: '/BodaAraiel/images/1 (6).jpg', title: 'El Futuro', icon: '🌟' },
+    { src: '/BodaAraiel/images/1 (1).jpg', title: 'El Inicio', icon: 'heart' },
+    { src: '/BodaAraiel/images/1 (2).jpg', title: 'El Amor', icon: 'sparkle' },
+    { src: '/BodaAraiel/images/1 (3).jpg', title: 'La Promesa', icon: 'rings' },
+    { src: '/BodaAraiel/images/1 (4).jpg', title: 'La Felicidad', icon: 'sparkle' },
+    { src: '/BodaAraiel/images/1 (5).jpg', title: 'El Dia', icon: 'calendar' },
+    { src: '/BodaAraiel/images/1 (6).jpg', title: 'El Futuro', icon: 'heart' },
   ];
 
   return (
@@ -111,7 +111,7 @@ const GallerySection = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="gallery-title font-script text-5xl md:text-7xl text-[#3D2B1F] mb-4">
-            <AnimatedText text="Nuestra Galería" />
+            <AnimatedText text="Nuestra Galeria" />
           </h2>
           <p className="gallery-subtitle text-gray-500 text-xs sm:text-sm tracking-widest uppercase font-sans font-black">
             <AnimatedText text="Momentos que capturan nuestra historia" type="words" />
@@ -130,22 +130,20 @@ const GallerySection = () => {
                 alt={img.title}
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 onError={(e) => {
-                  e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%230B0612'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23FF2A85' font-size='40' font-family='Arial'%3E${img.icon}%3C/text%3E%3C/svg%3E`;
+                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%23FFF8F0'/%3E%3Cpath d='M200 120l20 60 60 20-60 20-20 60-20-60-60-20 60-20 20-60z' fill='none' stroke='%23C9A84C' stroke-width='8'/%3E%3C/svg%3E";
                 }}
               />
-              
+
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0612]/95 via-[#0B0612]/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-4">
                 <div className="text-center transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   <p className="text-[#FDF7F0] text-xs sm:text-sm font-sans font-bold tracking-wider uppercase">
                     {img.title}
                   </p>
-                  <p className="text-[#FF2A85] text-2xl md:text-3xl mt-1 drop-shadow-[0_0_8px_rgba(255,42,133,0.6)]">
-                    {img.icon}
-                  </p>
+                  <MinimalIcon name={img.icon} className="w-7 h-7 md:w-8 md:h-8 mt-2 mx-auto text-[#C9A84C]" />
                 </div>
               </div>
 
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FF2A85]/60 transition-all duration-500 rounded-xl pointer-events-none" />
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#C9A84C]/60 transition-all duration-500 rounded-xl pointer-events-none" />
             </div>
           ))}
         </div>

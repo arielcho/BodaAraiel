@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
+import { setupScrollVideo } from '../utils/scrollVideo';
 
 const VideoVertical = () => {
   const videoRef = useRef(null);
@@ -12,13 +13,10 @@ const VideoVertical = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    video.preload = "auto";
-    video.muted = true;
-    video.playsInline = true;
-    video.loop = true;
-    video.autoplay = true;
-
-    video.play().catch(() => {});
+    const cleanupScrollVideo = setupScrollVideo({
+      video,
+      trigger: containerRef.current,
+    });
 
     // Scroll scrubbing card dynamics
     const tl = gsap.timeline({
@@ -51,6 +49,7 @@ const VideoVertical = () => {
       0
     );
 
+    return cleanupScrollVideo;
   }, []);
 
   return (
@@ -79,8 +78,6 @@ const VideoVertical = () => {
             <div className="relative aspect-[9/16] rounded-2xl overflow-hidden shadow-[0_15px_40px_rgba(61,43,31,0.15)] border border-[#C9A84C]/30 bg-black">
               <video
                 ref={videoRef}
-                autoPlay
-                loop
                 muted
                 playsInline
                 preload="metadata"

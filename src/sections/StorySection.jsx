@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
+import MinimalIcon from '../components/MinimalIcon';
 
 const StorySection = () => {
   const containerRef = useRef(null);
@@ -82,7 +83,9 @@ const StorySection = () => {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="story-icon text-5xl md:text-6xl mb-4">📖</div>
+          <div className="story-icon flex justify-center text-[#C9A84C] mb-4">
+            <MinimalIcon name="book" className="w-12 h-12 md:w-14 md:h-14" />
+          </div>
           <h2 className="story-text font-script text-5xl md:text-7xl text-[#3D2B1F] mb-4">
             <AnimatedText text="Nuestra Historia" />
           </h2>
@@ -92,7 +95,9 @@ const StorySection = () => {
         <div className="space-y-8">
           <div className="story-card gta-panel rounded-2xl p-6 sm:p-8 border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-all duration-500 group shadow-md bg-white/80">
             <div className="flex items-start gap-4">
-              <div className="story-icon text-3xl flex-shrink-0">💕</div>
+              <div className="story-icon text-[#C9A84C] flex-shrink-0">
+                <MinimalIcon name="heart" className="w-8 h-8" />
+              </div>
               <div>
                 <h3 className="text-[#C9A84C] text-xl md:text-2xl font-sans font-black tracking-wide mb-2 uppercase">El Encuentro</h3>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-sans font-semibold">
@@ -105,7 +110,9 @@ const StorySection = () => {
 
           <div className="story-card gta-panel rounded-2xl p-6 sm:p-8 border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-all duration-500 group shadow-md bg-white/80">
             <div className="flex items-start gap-4">
-              <div className="story-icon text-3xl flex-shrink-0">❤️</div>
+              <div className="story-icon text-[#C9A84C] flex-shrink-0">
+                <MinimalIcon name="sparkle" className="w-8 h-8" />
+              </div>
               <div>
                 <h3 className="text-[#C9A84C] text-xl md:text-2xl font-sans font-black tracking-wide mb-2 uppercase">El Amor</h3>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-sans font-semibold">
@@ -118,7 +125,9 @@ const StorySection = () => {
 
           <div className="story-card gta-panel rounded-2xl p-6 sm:p-8 border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-all duration-500 group shadow-md bg-white/80">
             <div className="flex items-start gap-4">
-              <div className="story-icon text-3xl flex-shrink-0">💍</div>
+              <div className="story-icon text-[#C9A84C] flex-shrink-0">
+                <MinimalIcon name="rings" className="w-8 h-8" />
+              </div>
               <div>
                 <h3 className="text-[#C9A84C] text-xl md:text-2xl font-sans font-black tracking-wide mb-2 uppercase">La Promesa</h3>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-sans font-semibold">

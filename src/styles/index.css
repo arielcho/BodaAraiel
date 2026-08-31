@@ -356,3 +356,13 @@ nav a[href="#confirmar"]:hover {
     font-size: 2.5rem !important;
   }
 }
+
+/* Flying Birds Flapping Wings Keyframes */
+@keyframes flap-wing {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.18) skewX(-12deg);
+  }
+}
