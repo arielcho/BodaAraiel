@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
 import MinimalIcon from '../components/MinimalIcon';
+import { assetUrl } from '../utils/assetUrl';
 
 const OutroSection = () => {
   const containerRef = useRef(null);
@@ -41,8 +42,8 @@ const OutroSection = () => {
     <section id="confirmar" ref={containerRef} className="section-container flex items-center justify-center py-28 relative overflow-hidden bg-[#17120f]">
       <video
         ref={videoRef}
-        src="/BodaAraiel/videos/vistaDron-web.mp4"
-        poster="/BodaAraiel/videos/posters/vistaDron.jpg"
+        src={assetUrl('videos/vistaDron-web.mp4')}
+        poster={assetUrl('videos/posters/vistaDron.jpg')}
         className="absolute inset-0 w-full h-full object-cover"
         muted
         loop

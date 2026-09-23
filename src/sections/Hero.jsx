@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import MinimalIcon from '../components/MinimalIcon';
+import { assetUrl } from '../utils/assetUrl';
 
 const Hero = ({ isActive = false }) => {
   const containerRef = useRef(null);
@@ -245,15 +246,15 @@ const Hero = ({ isActive = false }) => {
     <section ref={containerRef} className="hero-section section-container overflow-hidden min-h-screen relative flex flex-col justify-center">
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src="/BodaAraiel/videos/posters/intro.jpg"
+          src={assetUrl('videos/posters/intro.jpg')}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-55"
         />
         <video
           ref={introVideoRef}
-          src="/BodaAraiel/videos/intro-web.mp4"
-          poster="/BodaAraiel/videos/posters/intro.jpg"
+          src={assetUrl('videos/intro-web.mp4')}
+          poster={assetUrl('videos/posters/intro.jpg')}
           aria-label="Video de introduccion de la boda"
           className="hero-bg relative w-full h-full object-contain"
           muted

@@ -1,6 +1,8 @@
 node_modules/
 .tmp-media-tools/
 .vite/
+dist-cpanel/
+dist-cpanel.zip
 
 # Original video masters; the site uses the optimized web versions.
 public/videos/intro.mp4

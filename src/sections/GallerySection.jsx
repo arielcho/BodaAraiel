@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
 import MinimalIcon from '../components/MinimalIcon';
+import { assetUrl } from '../utils/assetUrl';
 
 const GallerySection = () => {
   const containerRef = useRef(null);
@@ -15,8 +16,8 @@ const GallerySection = () => {
 
     const icons = ['heart', 'sparkle', 'rings', 'camera', 'calendar', 'heart', 'sparkle', 'camera', 'rings'];
     return numbers.slice(0, 9).map((number, index) => ({
-      src: `/BodaAraiel/images/gallery/${number}.webp`,
-      fallback: `/BodaAraiel/images/1 (${number}).jpg`,
+      src: assetUrl(`images/gallery/${number}.webp`),
+      fallback: assetUrl(`images/1 (${number}).jpg`),
       title: `Momento ${String(index + 1).padStart(2, '0')}`,
       icon: icons[index],
     }));

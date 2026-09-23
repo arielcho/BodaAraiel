@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
 import MinimalIcon from '../components/MinimalIcon';
 import { setupScrollVideo } from '../utils/scrollVideo';
+import { assetUrl } from '../utils/assetUrl';
 
 const VideoFondo = () => {
   const videoRef = useRef(null);
@@ -80,8 +81,8 @@ const VideoFondo = () => {
           muted
           playsInline
           preload="auto"
-          poster="/BodaAraiel/videos/posters/3.jpg"
-          src="/BodaAraiel/videos/fondo.mp4"
+          poster={assetUrl('videos/posters/3.jpg')}
+          src={assetUrl('videos/fondo.mp4')}
           className="absolute inset-0 w-full h-[120%] object-cover"
         />
 

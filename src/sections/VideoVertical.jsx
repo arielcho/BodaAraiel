@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
 import { setupScrollVideo } from '../utils/scrollVideo';
+import { assetUrl } from '../utils/assetUrl';
 
 const VideoVertical = () => {
   const videoRef = useRef(null);
@@ -81,8 +82,8 @@ const VideoVertical = () => {
                 muted
                 playsInline
                 preload="auto"
-                poster="/BodaAraiel/videos/posters/1-1.jpg"
-                src="/BodaAraiel/videos/1-1-h264.mp4"
+                poster={assetUrl('videos/posters/1-1.jpg')}
+                src={assetUrl('videos/1-1-h264.mp4')}
                 className="absolute inset-0 w-full h-[130%] object-cover"
               />
 
