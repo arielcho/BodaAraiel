@@ -485,6 +485,11 @@ nav a[href="#confirmar"]:hover {
 }
 
 /* Botanical scroll accents */
+.scroll-scrub-video {
+  backface-visibility: hidden;
+  contain: paint;
+}
+
 .botanical-layer {
   position: absolute;
   inset: 0;

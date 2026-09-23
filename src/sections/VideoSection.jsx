@@ -42,8 +42,8 @@ const VideoSection = () => {
 
     // Zoom the video card container from 0.88 up to 1.05 as you scroll down
     tl.fromTo('.video-wrapper',
-      { scale: 0.88, y: 50, filter: 'blur(3px)' },
-      { scale: 1.04, y: -50, filter: 'blur(0px)', ease: 'none', duration: 4 }
+      { scale: 0.92, y: 36 },
+      { scale: 1.01, y: -36, ease: 'none', duration: 4 }
     );
 
     // Parallax shift on the video itself inside the card
@@ -97,8 +97,8 @@ const VideoSection = () => {
               playsInline
               preload="auto"
               poster={assetUrl('videos/posters/4.jpg')}
-              src={assetUrl('videos/4.mp4')}
-              className="absolute inset-0 w-full h-[125%] object-cover"
+              src={assetUrl('videos/4-scroll.mp4')}
+              className="scroll-scrub-video absolute inset-0 w-full h-[125%] object-cover"
             />
 
             {/* Glowing Scanline sweep (reactive to scroll) */}

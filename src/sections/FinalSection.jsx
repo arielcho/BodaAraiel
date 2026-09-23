@@ -32,8 +32,8 @@ const FinalSection = () => {
 
     tl.fromTo(
       '.final-content',
-      { scale: 1.06, filter: 'blur(2px)' },
-      { scale: 0.96, filter: 'blur(0px)', ease: 'none', duration: 4 }
+      { scale: 1.04 },
+      { scale: 1, ease: 'none', duration: 4 }
     );
 
     tl.fromTo(
@@ -69,8 +69,8 @@ const FinalSection = () => {
           playsInline
           preload="auto"
           poster={assetUrl('videos/posters/4.jpg')}
-          src={assetUrl('videos/4.mp4')}
-          className="absolute inset-0 w-full h-[125%] object-cover"
+          src={assetUrl('videos/4-scroll.mp4')}
+          className="scroll-scrub-video absolute inset-0 w-full h-[125%] object-cover"
         />
 
         <div

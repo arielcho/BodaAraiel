@@ -45,8 +45,8 @@ const VideoFondo = () => {
 
     tl.fromTo(
       '.video-fondo-wrapper',
-      { scale: 1.08, filter: 'blur(2px)' },
-      { scale: 0.98, filter: 'blur(0px)', ease: 'none', duration: 4 }
+      { scale: 1.05 },
+      { scale: 1, ease: 'none', duration: 4 }
     );
 
     tl.fromTo(
@@ -82,8 +82,8 @@ const VideoFondo = () => {
           playsInline
           preload="auto"
           poster={assetUrl('videos/posters/3.jpg')}
-          src={assetUrl('videos/fondo.mp4')}
-          className="absolute inset-0 w-full h-[120%] object-cover"
+          src={assetUrl('videos/fondo-scroll.mp4')}
+          className="scroll-scrub-video absolute inset-0 w-full h-[120%] object-cover"
         />
 
         <div

@@ -32,8 +32,8 @@ const VideoVertical = () => {
 
     // Zoom the vertical card container from 0.88 to 1.04 as you scroll
     tl.fromTo('.vertical-video-wrapper',
-      { scale: 0.88, y: 40, rotationX: 6, filter: 'blur(3px)' },
-      { scale: 1.03, y: -40, rotationX: 0, filter: 'blur(0px)', ease: 'none', duration: 4 }
+      { scale: 0.92, y: 32, rotationX: 4 },
+      { scale: 1.01, y: -32, rotationX: 0, ease: 'none', duration: 4 }
     );
 
     // Parallax scroll on the video itself inside the portrait card
@@ -83,8 +83,8 @@ const VideoVertical = () => {
                 playsInline
                 preload="auto"
                 poster={assetUrl('videos/posters/1-1.jpg')}
-                src={assetUrl('videos/1-1-h264.mp4')}
-                className="absolute inset-0 w-full h-[130%] object-cover"
+                src={assetUrl('videos/1-1-scroll.mp4')}
+                className="scroll-scrub-video absolute inset-0 w-full h-[130%] object-cover"
               />
 
               {/* Glowing Scanline sweep (reactive to scroll) */}

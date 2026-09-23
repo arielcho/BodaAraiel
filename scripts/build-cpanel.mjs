@@ -12,7 +12,10 @@ await build({
 const unusedVideos = [
   '1 (1).mp4',
   '1 (2).mp4',
+  '1-1-h264.mp4',
   '3.mp4',
+  '4.mp4',
+  'fondo.mp4',
   'intro.mp4',
   'vistaDron.mp4',
   'vistaDron-web-60.mp4',
