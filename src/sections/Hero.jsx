@@ -1,11 +1,42 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import MinimalIcon from '../components/MinimalIcon';
 
-const Hero = () => {
+const Hero = ({ isActive = false }) => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
+  const introVideoRef = useRef(null);
+
+  useEffect(() => {
+    const video = introVideoRef.current;
+    if (!video) return;
+    if (!isActive) {
+      video.pause();
+      video.currentTime = 0;
+      return;
+    }
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  }, [isActive]);
+
+  // Smoothly fade out scroll indicator on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const indicator = document.querySelector('.hero-scroll-indicator');
+      if (!indicator) return;
+
+      if (scrollY > 20) {
+        gsap.to(indicator, { opacity: 0, y: 15, duration: 0.35, ease: 'power2.out', pointerEvents: 'none' });
+      } else {
+        gsap.to(indicator, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', pointerEvents: 'auto' });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useGSAP(() => {
     gsap.set('.hero-title-3d', {
@@ -48,6 +79,11 @@ const Hero = () => {
     gsap.set('.hero-glow', {
       opacity: 0,
       scale: 0.5
+    });
+
+    gsap.set('.hero-scroll-indicator', {
+      opacity: 1,
+      y: 0
     });
 
     const tl = gsap.timeline({
@@ -108,6 +144,12 @@ const Hero = () => {
         scale: 1,
         duration: 2,
         ease: 'power2.out'
+      }, 0)
+      .to('.hero-scroll-indicator', {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        ease: 'power1.out'
       }, 0);
 
     const title = titleRef.current;
@@ -200,13 +242,24 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="hero-section section-container overflow-hidden">
+    <section ref={containerRef} className="hero-section section-container overflow-hidden min-h-screen relative flex flex-col justify-center">
       <div className="absolute inset-0 overflow-hidden">
-        <img 
-          src="/BodaAraiel/images/hero-bg.jpg" 
-          alt="Fondo Boda" 
-          className="hero-bg w-full h-full object-cover"
-          loading="eager"
+        <img
+          src="/BodaAraiel/videos/posters/intro.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-55"
+        />
+        <video
+          ref={introVideoRef}
+          src="/BodaAraiel/videos/intro-web.mp4"
+          poster="/BodaAraiel/videos/posters/intro.jpg"
+          aria-label="Video de introduccion de la boda"
+          className="hero-bg relative w-full h-full object-contain"
+          muted
+          loop
+          playsInline
+          preload="auto"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#FFF8F0]/30 via-[#F7E7CE]/20 to-[#FFF8F0]" />
         <div className="hero-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#E8D5A3]/25 blur-3xl animate-pulse" />
@@ -275,10 +328,11 @@ const Hero = () => {
         ))}
       </div>
 
-      <div ref={titleRef} className="relative z-10 text-center px-4 max-w-6xl mx-auto pt-28 pb-12 sm:pt-32" style={{ cursor: "default" }}>
-        <div className="hero-floating-text w-24 h-0.5 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-6" />
+      {/* Main Hero Content (pb-28 ensures button never overlaps with bottom scroll indicator) */}
+      <div ref={titleRef} className="relative z-10 text-center px-4 max-w-6xl mx-auto pt-20 pb-24 sm:pt-24 sm:pb-28" style={{ cursor: "default" }}>
+        <div className="hero-floating-text w-24 h-0.5 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-4 sm:mb-6" />
 
-        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-2 leading-[1.4] py-4 tracking-wide" 
+        <h1 className="hero-title-3d font-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#3D2B1F] mb-1 sm:mb-2 leading-[1.3] py-2 sm:py-3 tracking-wide" 
             style={{ 
               textShadow: '0 0 35px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'
@@ -286,15 +340,15 @@ const Hero = () => {
           Ariel
         </h1>
         
-        <div className="hero-subtitle-3d text-4xl md:text-6xl lg:text-7xl text-[#C9A84C] font-light mb-2"
+        <div className="hero-subtitle-3d flex justify-center text-[#C9A84C] my-1 sm:my-2"
              style={{
                textShadow: '0 0 40px rgba(201,168,76,0.3), 0 10px 30px rgba(0,0,0,0.05)',
                transformStyle: 'preserve-3d'
              }}>
-          ✦
+          <MinimalIcon name="sparkle" className="w-8 h-8 sm:w-10 sm:h-10 text-[#C9A84C] drop-shadow-[0_0_12px_rgba(201,168,76,0.35)]" />
         </div>
 
-        <h1 className="hero-title-3d font-script text-6xl md:text-7xl lg:text-8xl xl:text-[8rem] text-[#3D2B1F] mb-4 leading-[1.4] py-4"
+        <h1 className="hero-title-3d font-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#3D2B1F] mb-3 sm:mb-4 leading-[1.3] py-2 sm:py-3" 
             style={{ 
               textShadow: '0 0 35px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'
@@ -302,42 +356,46 @@ const Hero = () => {
           Aracely
         </h1>
 
-        <p className="hero-subtitle-3d text-sm md:text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-[#C9A84C] via-[#E8D5A3] to-[#A8873A] font-sans font-black tracking-[0.4em] uppercase mb-4"
+        <p className="hero-subtitle-3d text-xs sm:text-base md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-[#C9A84C] via-[#E8D5A3] to-[#A8873A] font-sans font-black tracking-[0.3em] uppercase mb-3 sm:mb-4"
            style={{
              textShadow: '0 0 30px rgba(201,168,76,0.15)',
              transformStyle: 'preserve-3d',
-             letterSpacing: '0.4em'
+             letterSpacing: '0.3em'
            }}>
           El Amor No Tiene Límites
         </p>
         
-        <div className="hero-date-3d inline-block px-8 py-3 md:px-10 md:py-4 border-2 border-[#C9A84C]/45 rounded-xl backdrop-blur-md bg-white/40 hover:bg-white/70 transition-all duration-500 hover:scale-105 hover:border-[#C9A84C]/80 shadow-[0_4px_25px_rgba(201,168,76,0.12)]"
+        <div className="hero-date-3d inline-block px-6 py-2.5 sm:px-8 sm:py-3 border-2 border-[#C9A84C]/45 rounded-xl backdrop-blur-md bg-white/40 hover:bg-white/70 transition-all duration-500 hover:scale-105 hover:border-[#C9A84C]/80 shadow-[0_4px_25px_rgba(201,168,76,0.12)]"
              style={{
                transformStyle: 'preserve-3d',
              }}>
-          <span className="text-[#3D2B1F]/90 text-sm md:text-xl tracking-[0.25em] font-sans font-extrabold uppercase">
+          <span className="text-[#3D2B1F]/90 text-xs sm:text-base md:text-lg tracking-[0.2em] font-sans font-extrabold uppercase">
             07 · NOVIEMBRE · 2026
           </span>
         </div>
 
-        <p className="hero-floating-text text-[#3D2B1F]/50 text-[10px] md:text-xs mt-8 max-w-2xl mx-auto font-sans font-semibold tracking-[0.2em] uppercase">
+        <p className="hero-floating-text text-[#3D2B1F]/55 text-[10px] sm:text-xs mt-5 sm:mt-7 max-w-xl mx-auto font-sans font-semibold tracking-[0.18em] uppercase">
           "El amor verdadero trasciende el tiempo y el espacio"
         </p>
 
-        <a href="#historia" className="hero-floating-text mt-8 inline-block px-10 py-4 md:px-12 md:py-5 bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-[#3D2B1F] rounded-xl hover:scale-105 transition-all duration-500 shadow-[0_4px_20px_rgba(201,168,76,0.35)] text-sm md:text-lg font-sans font-black tracking-widest group relative overflow-hidden uppercase">
-          <span className="relative z-10 flex items-center gap-3">
-            Descubre nuestra historia
-            <MinimalIcon name="arrow" className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
-          </span>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#E8D5A3] to-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </a>
+        {/* Action Button */}
+        <div className="hero-floating-text mt-6 sm:mt-8">
+          <a href="#historia" className="inline-block px-8 py-3.5 sm:px-10 sm:py-4 bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-[#3D2B1F] rounded-xl hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:shadow-[0_6px_25px_rgba(201,168,76,0.5)] text-xs sm:text-base font-sans font-black tracking-widest group relative overflow-hidden uppercase">
+            <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+              Descubre nuestra historia
+              <MinimalIcon name="arrow" className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#E8D5A3] to-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </a>
+        </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-[#3D2B1F]/40 text-[10px] tracking-[0.3em] uppercase font-bold">Desplazar</span>
-          <div className="w-7 h-11 border-2 border-[#C9A84C]/35 rounded-full flex justify-center backdrop-blur-sm bg-white/20">
-            <div className="w-1.5 h-3.5 bg-[#C9A84C]/80 rounded-full mt-2 animate-pulse" />
+      {/* Scroll indicator: clearly separated at the bottom, fades out smoothly on scroll */}
+      <div className="hero-scroll-indicator absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-300">
+        <div className="flex flex-col items-center gap-1.5">
+          <span className="text-[#3D2B1F]/45 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase font-black">Desplazar</span>
+          <div className="w-6 h-10 sm:w-7 sm:h-11 border-2 border-[#C9A84C]/45 rounded-full flex justify-center backdrop-blur-sm bg-white/30 shadow-sm">
+            <div className="w-1.5 h-3 bg-[#C9A84C] rounded-full mt-2 animate-bounce" />
           </div>
         </div>
       </div>

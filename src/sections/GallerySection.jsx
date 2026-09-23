@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
@@ -6,6 +6,21 @@ import MinimalIcon from '../components/MinimalIcon';
 
 const GallerySection = () => {
   const containerRef = useRef(null);
+  const images = useMemo(() => {
+    const numbers = Array.from({ length: 100 }, (_, index) => index + 1);
+    for (let index = numbers.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [numbers[index], numbers[randomIndex]] = [numbers[randomIndex], numbers[index]];
+    }
+
+    const icons = ['heart', 'sparkle', 'rings', 'camera', 'calendar', 'heart', 'sparkle', 'camera', 'rings'];
+    return numbers.slice(0, 9).map((number, index) => ({
+      src: `/BodaAraiel/images/gallery/${number}.webp`,
+      fallback: `/BodaAraiel/images/1 (${number}).jpg`,
+      title: `Momento ${String(index + 1).padStart(2, '0')}`,
+      icon: icons[index],
+    }));
+  }, []);
 
   useGSAP(() => {
     gsap.set('.gallery-item', {
@@ -92,15 +107,6 @@ const GallerySection = () => {
     });
   }, []);
 
-  const images = [
-    { src: '/BodaAraiel/images/1 (1).jpg', title: 'El Inicio', icon: 'heart' },
-    { src: '/BodaAraiel/images/1 (2).jpg', title: 'El Amor', icon: 'sparkle' },
-    { src: '/BodaAraiel/images/1 (3).jpg', title: 'La Promesa', icon: 'rings' },
-    { src: '/BodaAraiel/images/1 (4).jpg', title: 'La Felicidad', icon: 'sparkle' },
-    { src: '/BodaAraiel/images/1 (5).jpg', title: 'El Dia', icon: 'calendar' },
-    { src: '/BodaAraiel/images/1 (6).jpg', title: 'El Futuro', icon: 'heart' },
-  ];
-
   return (
     <section id="galeria" ref={containerRef} className="section-container bg-[#FFF8F0] py-20 overflow-hidden border-b border-[#C9A84C]/25">
       <div className="absolute inset-0">
@@ -122,15 +128,19 @@ const GallerySection = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {images.map((img, index) => (
             <div
-              key={index}
+              key={img.src}
               className="gallery-item group relative overflow-hidden rounded-xl aspect-square border border-white/5 shadow-2xl"
             >
               <img
                 src={img.src}
                 alt={img.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 onError={(e) => {
-                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='400' height='400' fill='%23FFF8F0'/%3E%3Cpath d='M200 120l20 60 60 20-60 20-20 60-20-60-60-20 60-20 20-60z' fill='none' stroke='%23C9A84C' stroke-width='8'/%3E%3C/svg%3E";
+                  if (e.currentTarget.src !== new URL(img.fallback, window.location.origin).href) {
+                    e.currentTarget.src = img.fallback;
+                  }
                 }}
               />
 

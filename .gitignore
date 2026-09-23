@@ -1,0 +1,11 @@
+node_modules/
+.tmp-media-tools/
+.vite/
+
+# Original video masters; the site uses the optimized web versions.
+public/videos/intro.mp4
+public/videos/vistaDron.mp4
+public/videos/vistaDron-web-60.mp4
+dist/videos/intro.mp4
+dist/videos/vistaDron.mp4
+dist/videos/vistaDron-web-60.mp4

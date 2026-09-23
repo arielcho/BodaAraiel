@@ -67,6 +67,7 @@ const FinalSection = () => {
           muted
           playsInline
           preload="auto"
+          poster="/BodaAraiel/videos/posters/4.jpg"
           src="/BodaAraiel/videos/4.mp4"
           className="absolute inset-0 w-full h-[125%] object-cover"
         />

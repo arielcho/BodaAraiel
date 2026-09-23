@@ -80,7 +80,8 @@ const VideoFondo = () => {
           muted
           playsInline
           preload="auto"
-          src="/BodaAraiel/videos/3.mp4"
+          poster="/BodaAraiel/videos/posters/3.jpg"
+          src="/BodaAraiel/videos/fondo.mp4"
           className="absolute inset-0 w-full h-[120%] object-cover"
         />
 

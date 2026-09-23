@@ -21,6 +21,23 @@ const paths = {
       <circle cx="12" cy="13" r="3.5" />
     </>
   ),
+  guests: (
+    <>
+      <circle cx="9" cy="8" r="3" />
+      <circle cx="17" cy="9" r="2.5" />
+      <path d="M3 20c.5-4 2.5-6 6-6s5.5 2 6 6" />
+      <path d="M15 15c3 0 5 1.8 5.5 5" />
+    </>
+  ),
+  cake: (
+    <>
+      <path d="M5 11h14v9H5z" />
+      <path d="M7 11V7h10v4" />
+      <path d="M12 7V3" />
+      <path d="M10.5 4.5 12 3l1.5 1.5" />
+      <path d="M5 15c2 1.5 4 1.5 7 0 3 1.5 5 1.5 7 0" />
+    </>
+  ),
   glass: (
     <>
       <path d="M7 3h10l-1 8a4 4 0 0 1-8 0L7 3Z" />

@@ -80,8 +80,9 @@ const VideoVertical = () => {
                 ref={videoRef}
                 muted
                 playsInline
-                preload="metadata"
-                src="/BodaAraiel/videos/1 (1).mp4"
+                preload="auto"
+                poster="/BodaAraiel/videos/posters/1-1.jpg"
+                src="/BodaAraiel/videos/1-1-h264.mp4"
                 className="absolute inset-0 w-full h-[130%] object-cover"
               />
 
