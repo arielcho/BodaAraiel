@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 import AnimatedText from '../components/AnimatedText';
 import MinimalIcon from '../components/MinimalIcon';
 import { assetUrl } from '../utils/assetUrl';
+import { WHATSAPP_CONFIRM_URL } from '../utils/whatsapp';
 
 const OutroSection = () => {
   const containerRef = useRef(null);
@@ -67,7 +68,17 @@ const OutroSection = () => {
           "El amor es la fuerza mas hermosa del universo, el inicio de una aventura eterna."
         </p>
 
-        <div className="mt-10 flex justify-center">
+        <a
+          href={WHATSAPP_CONFIRM_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="outro-confirm-button mt-9 inline-flex items-center gap-3 rounded-lg border border-[#E8D5A3]/55 bg-[#C9A84C] px-7 py-3.5 font-sans text-xs font-black uppercase tracking-widest text-white shadow-[0_10px_30px_rgba(0,0,0,0.28)] transition duration-300 hover:bg-[#A8873A] hover:-translate-y-0.5"
+        >
+          <MinimalIcon name="heart" className="h-5 w-5" />
+          Confirmar asistencia
+        </a>
+
+        <div className="mt-6 flex justify-center">
           <span className="inline-flex items-center gap-3 px-8 py-3 bg-black/25 backdrop-blur-md rounded-xl text-[#E8D5A3] border border-[#E8D5A3]/35 font-sans font-bold tracking-widest text-sm uppercase shadow-[0_4px_15px_rgba(0,0,0,0.18)]">
             <MinimalIcon name="rings" className="w-5 h-5" />
             Ariel & Aracely

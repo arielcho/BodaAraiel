@@ -106,14 +106,21 @@ const BotanicalArt = ({ variant }) => {
 };
 
 const accents = [
-  { top: '7%', side: 'left', variant: 0 },
-  { top: '18%', side: 'right', variant: 1 },
-  { top: '30%', side: 'left', variant: 2 },
-  { top: '42%', side: 'right', variant: 3 },
-  { top: '55%', side: 'left', variant: 4 },
-  { top: '67%', side: 'right', variant: 5 },
-  { top: '79%', side: 'left', variant: 6 },
-  { top: '91%', side: 'right', variant: 7 },
+  { top: '4%', side: 'left', variant: 0, size: 'large' },
+  { top: '10%', side: 'right', variant: 1, size: 'small' },
+  { top: '17%', side: 'left', variant: 5, size: 'small' },
+  { top: '23%', side: 'right', variant: 2, size: 'large' },
+  { top: '30%', side: 'left', variant: 6, size: 'medium' },
+  { top: '36%', side: 'right', variant: 3, size: 'small' },
+  { top: '43%', side: 'left', variant: 1, size: 'large' },
+  { top: '49%', side: 'right', variant: 7, size: 'medium' },
+  { top: '56%', side: 'left', variant: 4, size: 'small' },
+  { top: '62%', side: 'right', variant: 5, size: 'large' },
+  { top: '69%', side: 'left', variant: 2, size: 'medium' },
+  { top: '75%', side: 'right', variant: 0, size: 'small' },
+  { top: '82%', side: 'left', variant: 3, size: 'large' },
+  { top: '88%', side: 'right', variant: 6, size: 'medium' },
+  { top: '94%', side: 'left', variant: 7, size: 'small' },
 ];
 
 const FloresYAdornos = () => {
@@ -128,17 +135,20 @@ const FloresYAdornos = () => {
           opacity: 0,
           x: reducedMotion ? 0 : (entersFromLeft ? -120 : 120),
           y: reducedMotion ? 0 : 32,
-          scale: reducedMotion ? 1 : 0.82,
+          scaleX: reducedMotion ? 1 : 0.7,
+          scaleY: reducedMotion ? 1 : 0.08,
+          transformOrigin: '50% 100%',
           rotation: reducedMotion ? 0 : (entersFromLeft ? -6 : 6),
         },
         {
-          opacity: 0.58,
+          opacity: 0.64,
           x: 0,
           y: 0,
-          scale: 1,
+          scaleX: 1,
+          scaleY: 1,
           rotation: 0,
-          duration: reducedMotion ? 0.01 : 1.6,
-          ease: 'power3.out',
+          duration: reducedMotion ? 0.01 : 1.8,
+          ease: 'back.out(1.25)',
           scrollTrigger: {
             trigger: accent,
             start: 'top 90%',
@@ -154,7 +164,7 @@ const FloresYAdornos = () => {
       {accents.map((accent) => (
         <div
           key={`${accent.side}-${accent.top}`}
-          className={`botanical-accent from-${accent.side}`}
+          className={`botanical-accent botanical-${accent.size} from-${accent.side}`}
           style={{ top: accent.top }}
         >
           <BotanicalArt variant={accent.variant} />

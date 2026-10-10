@@ -131,14 +131,6 @@ const VideoFondo = () => {
           Cada fotograma cuenta una historia de amor
         </p>
 
-        <div className="video-fondo-subtitle mt-6 flex items-center gap-4">
-          <div className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-[#C9A84C]/30 shadow-md">
-            <MinimalIcon name="clock" className="w-3.5 h-3.5 text-[#C9A84C]" />
-            <span className="text-[#3D2B1F] text-[10px] sm:text-xs tracking-widest font-sans font-bold">COMPOSICION DINAMICA</span>
-            <span className="w-1.5 h-1.5 bg-[#C9A84C] rounded-full animate-pulse" />
-            <span className="text-gray-500 text-[10px] sm:text-xs font-sans font-semibold">scroll</span>
-          </div>
-        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 z-10">

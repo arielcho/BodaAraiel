@@ -21,24 +21,6 @@ const Hero = ({ isActive = false }) => {
     video.play().catch(() => {});
   }, [isActive]);
 
-  // Smoothly fade out scroll indicator on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const indicator = document.querySelector('.hero-scroll-indicator');
-      if (!indicator) return;
-
-      if (scrollY > 20) {
-        gsap.to(indicator, { opacity: 0, y: 15, duration: 0.35, ease: 'power2.out', pointerEvents: 'none' });
-      } else {
-        gsap.to(indicator, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', pointerEvents: 'auto' });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   useGSAP(() => {
     gsap.set('.hero-title-3d', {
       opacity: 0,
@@ -72,11 +54,6 @@ const Hero = ({ isActive = false }) => {
     gsap.set('.hero-glow', {
       opacity: 0,
       scale: 0.5
-    });
-
-    gsap.set('.hero-scroll-indicator', {
-      opacity: 1,
-      y: 0
     });
 
     const tl = gsap.timeline({
@@ -128,12 +105,6 @@ const Hero = ({ isActive = false }) => {
         scale: 1,
         duration: 2,
         ease: 'power2.out'
-      }, 0)
-      .to('.hero-scroll-indicator', {
-        opacity: 0,
-        y: 20,
-        duration: 0.5,
-        ease: 'power1.out'
       }, 0);
 
     const title = titleRef.current;
@@ -351,16 +322,6 @@ const Hero = ({ isActive = false }) => {
         <p className="hero-floating-text text-[#7E642E] text-[10px] sm:text-xs mt-2 font-sans font-black tracking-[0.24em] uppercase">
           1 Corintios 13:7
         </p>
-      </div>
-
-      {/* Scroll indicator: clearly separated at the bottom, fades out smoothly on scroll */}
-      <div className="hero-scroll-indicator absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-300">
-        <div className="flex flex-col items-center gap-1.5">
-          <span className="text-[#3D2B1F]/45 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase font-black">Desplazar</span>
-          <div className="w-6 h-10 sm:w-7 sm:h-11 border-2 border-[#C9A84C]/45 rounded-full flex justify-center backdrop-blur-sm bg-white/30 shadow-sm">
-            <div className="w-1.5 h-3 bg-[#C9A84C] rounded-full mt-2 animate-bounce" />
-          </div>
-        </div>
       </div>
 
       <div className="absolute inset-0 pointer-events-none">

@@ -94,10 +94,6 @@ const FinalSection = () => {
               Y asi comienza nuestra historia para siempre
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-white/70 backdrop-blur-sm rounded-lg border border-[#C9A84C]/35">
-              <MinimalIcon name="clock" className="w-3.5 h-3.5 text-[#C9A84C]" />
-              <span className="text-[#3D2B1F] text-[9px] tracking-widest font-sans font-extrabold uppercase">TRANSICION ACTIVA EN SCROLL</span>
-            </div>
           </div>
         </div>
 

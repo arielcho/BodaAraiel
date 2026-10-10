@@ -7,11 +7,9 @@ import FloresYAdornos from './components/FloresYAdornos';
 import Hero from './sections/Hero';
 import VideoSection from './sections/VideoSection';
 import VideoVertical from './sections/VideoVertical';
-import VideoFondo from './sections/VideoFondo';
 import StorySection from './sections/StorySection';
 import GallerySection from './sections/GallerySection';
 import EventSection from './sections/EventSection';
-import FinalSection from './sections/FinalSection';
 import OutroSection from './sections/OutroSection';
 import MusicPlayer from './components/MusicPlayer';
 
@@ -97,8 +95,6 @@ const App = () => {
         <VideoVertical />
         <EventSection />
         <GallerySection />
-        <VideoFondo />
-        <FinalSection />
         <OutroSection />
       </main>
       {!cargaCompleta && <PantallaCarga onComplete={handleInvitationComplete} />}

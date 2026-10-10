@@ -108,10 +108,6 @@ const VideoSection = () => {
             />
 
             {/* Overlay Indicator (GTA VI style interact tag) */}
-            <div className="absolute top-4 left-4 z-20 px-3 py-1.5 bg-white/70 backdrop-blur-sm rounded-lg border border-[#C9A84C]/30 shadow-sm flex items-center gap-2">
-              <span className="w-2 h-2 bg-[#C9A84C] rounded-full animate-ping" />
-              <span className="text-[#3D2B1F] text-[9px] sm:text-[10px] tracking-widest font-sans font-black uppercase">FOTOGRAMAS ACTIVOS EN SCROLL</span>
-            </div>
           </div>
 
           <p className="video-subtitle text-[#3D2B1F]/60 text-center mt-8 text-xs sm:text-sm tracking-wider font-sans font-medium italic">

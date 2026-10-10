@@ -97,10 +97,6 @@ const VideoVertical = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35" />
               </div>
 
-              {/* Dynamic tag overlay */}
-              <div className="absolute top-3 left-3 z-20 px-2 py-1 bg-white/70 backdrop-blur-sm rounded border border-[#C9A84C]/35">
-                <span className="text-[#3D2B1F] text-[8px] tracking-widest font-sans font-extrabold uppercase">PERSPECTIVA ACTIVA</span>
-              </div>
             </div>
           </div>
         </div>

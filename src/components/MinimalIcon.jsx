@@ -102,6 +102,10 @@ const paths = {
     </>
   ),
   arrow: <path d="M8 5l8 7-8 7V5Z" />,
+  chevronLeft: <path d="m15 18-6-6 6-6" />,
+  chevronRight: <path d="m9 18 6-6-6-6" />,
+  pause: <><path d="M9 5v14" /><path d="M15 5v14" /></>,
+  play: <path d="m8 5 11 7-11 7Z" />,
 };
 
 const MinimalIcon = ({ name = 'heart', className = 'w-5 h-5', strokeWidth = 1.8 }) => (

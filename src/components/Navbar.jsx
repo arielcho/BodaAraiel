@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import MinimalIcon from './MinimalIcon';
+import { WHATSAPP_CONFIRM_URL } from '../utils/whatsapp';
 
 const links = [
   { href: '#familias', label: 'Familias' },
@@ -76,7 +77,7 @@ const Navbar = () => {
               <MinimalIcon name="arrow" className="w-4 h-4" />
             </a>
           ))}
-          <a className="mobile-drawer-confirm" href="#confirmar" onClick={closeMenu} tabIndex={isMenuOpen ? 0 : -1}>
+          <a className="mobile-drawer-confirm" href={WHATSAPP_CONFIRM_URL} target="_blank" rel="noreferrer" onClick={closeMenu} tabIndex={isMenuOpen ? 0 : -1}>
             Confirmar asistencia
             <MinimalIcon name="heart" className="w-4 h-4" />
           </a>
@@ -109,7 +110,7 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <a href="#confirmar" className="px-6 py-2.5 rounded-lg text-xs font-black bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-white shadow-[0_4px_15px_rgba(201,168,76,0.2)] hover:shadow-[0_4px_25px_rgba(201,168,76,0.35)] hover:scale-[1.03] transition-all duration-300 uppercase">
+          <a href={WHATSAPP_CONFIRM_URL} target="_blank" rel="noreferrer" className="nav-confirm-link px-6 py-2.5 rounded-lg text-xs font-black bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-white shadow-[0_4px_15px_rgba(201,168,76,0.2)] hover:shadow-[0_4px_25px_rgba(201,168,76,0.35)] hover:scale-[1.03] transition-all duration-300 uppercase">
             Confirmar
           </a>
         </div>
