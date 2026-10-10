@@ -4,16 +4,16 @@ import { useGSAP } from '@gsap/react';
 import MinimalIcon from '../components/MinimalIcon';
 
 const activities = [
-  { time: '10:00 - 10:30', title: 'Llegada de invitados', description: 'Recepcion en el lugar de la ceremonia.', icon: 'guests' },
+  { time: '10:00 - 10:30', title: 'Llegada de invitados', description: 'Recepción en el lugar de la ceremonia.', icon: 'guests' },
   { time: '10:30 - 12:00', title: 'Ceremonia', description: 'Desarrollo de la ceremonia y votos.', icon: 'rings' },
-  { time: '12:00 - 15:00', title: 'Almuerzo & Sesion de fotos', description: 'Tiempo libre de los novios para almorzar y fotos de pareja.', icon: 'camera' },
-  { time: '15:00 - 15:30', title: 'Recepcion de invitados', description: 'Apertura del salon, acomodo en mesas y bocaditos con refrescos.', icon: 'glass' },
-  { time: '16:55 - 17:25', title: 'Baile de Honor & Brindis', description: 'Baile de novios, baile con los papas y brindis de bendicion.', icon: 'music' },
-  { time: '17:25 - 17:55', title: 'Tercer bloque: Avance', description: 'Fotos por mesas e interaccion con los invitados.', icon: 'camera' },
+  { time: '12:00 - 15:00', title: 'Almuerzo & Sesión de fotos', description: 'Tiempo libre de los novios para almorzar y fotos de pareja.', icon: 'camera' },
+  { time: '15:00 - 15:30', title: 'Recepción de invitados', description: 'Apertura del salón, acomodo en mesas y bocaditos con refrescos.', icon: 'glass' },
+  { time: '16:55 - 17:25', title: 'Baile de Honor & Brindis', description: 'Baile de novios, baile con los papás y brindis de bendición.', icon: 'music' },
+  { time: '17:25 - 17:55', title: 'Tercer bloque: Avance', description: 'Fotos por mesas e interacción con los invitados.', icon: 'camera' },
   { time: '17:55 - 18:55', title: 'Cena', description: 'Servicio del banquete.', icon: 'dinner' },
   { time: '18:55 - 19:40', title: 'Tradiciones & Torta', description: 'Corte de pastel, lanzamiento del ramo y flor de azahar, y reparto de la torta.', icon: 'cake' },
-  { time: '19:40 - 20:55', title: 'Tiempo de Gozo & Celebracion', description: 'Musica cristiana alegre, jubilo, baile y fraternidad.', icon: 'music' },
-  { time: '20:55 - 21:00', title: 'Cierre y despedida', description: 'Oracion.', icon: 'heart' },
+  { time: '19:40 - 20:55', title: 'Tiempo de Gozo & Celebración', description: 'Música cristiana alegre, júbilo, baile y fraternidad.', icon: 'music' },
+  { time: '20:55 - 21:00', title: 'Cierre y despedida', description: 'Oración.', icon: 'heart' },
 ];
 
 const EventSection = () => {
@@ -62,6 +62,32 @@ const EventSection = () => {
       scrollTrigger: { trigger: '.schedule-heading', start: 'top 88%', once: true },
     });
 
+    gsap.from('.locations-heading', {
+      opacity: 0,
+      y: 32,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.locations-heading', start: 'top 88%', once: true },
+    });
+
+    gsap.from('.venue-card', {
+      opacity: 0,
+      y: 36,
+      duration: 1,
+      stagger: 0.18,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.venue-grid', start: 'top 86%', once: true },
+    });
+
+    gsap.from('.family-note', {
+      opacity: 0,
+      y: 38,
+      scale: 0.97,
+      duration: 1.1,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.family-note', start: 'top 88%', once: true },
+    });
+
     gsap.fromTo('.schedule-progress',
       { scaleY: 0 },
       {
@@ -97,7 +123,7 @@ const EventSection = () => {
   }, { scope: containerRef });
 
   const counters = [
-    ['days', 'Dias'],
+    ['days', 'Días'],
     ['hours', 'Horas'],
     ['minutes', 'Minutos'],
     ['seconds', 'Segundos'],
@@ -111,10 +137,10 @@ const EventSection = () => {
         <header className="event-heading text-center max-w-3xl mx-auto">
           <span className="inline-flex items-center gap-3 text-[#A8873A] text-[10px] sm:text-xs font-black tracking-[0.3em] uppercase">
             <MinimalIcon name="calendar" className="w-4 h-4" />
-            Sabado 7 de noviembre
+            Nuestra boda
             <MinimalIcon name="calendar" className="w-4 h-4" />
           </span>
-          <h2 className="font-script text-5xl md:text-7xl text-[#3D2B1F] mt-4">El dia esperado</h2>
+          <h2 className="event-date-title font-script text-5xl md:text-7xl text-[#3D2B1F] mt-4">Sábado 7 de noviembre</h2>
           <p className="text-[#6C584B]/75 text-sm md:text-base mt-4 leading-relaxed">
             Cada momento fue pensado para compartirlo contigo sin prisas.
           </p>
@@ -156,9 +182,45 @@ const EventSection = () => {
           </div>
         </div>
 
-        <div className="schedule-heading text-center mt-24 md:mt-32 mb-14">
+        <div id="lugares" className="locations-block mt-24 md:mt-32">
+          <header className="locations-heading text-center max-w-3xl mx-auto mb-12">
+            <span className="section-kicker">Ceremonia y recepción</span>
+            <h3>Acompáñanos en este día tan especial</h3>
+            <span className="section-flourish" aria-hidden="true" />
+          </header>
+
+          <div className="venue-grid">
+            <article className="venue-card">
+              <MinimalIcon name="church" className="w-8 h-8 text-[#B8943E]" />
+              <span>Ceremonia religiosa</span>
+              <h4>Iglesia Cristiana Shalom</h4>
+              <p><MinimalIcon name="clock" className="w-4 h-4" /> Inicio de ceremonia: 10:30 a.m.</p>
+              <p><MinimalIcon name="location" className="w-4 h-4" /> Calle Incas</p>
+              <span className="venue-action is-disabled">Ubicación por confirmar</span>
+            </article>
+
+            <article className="venue-card">
+              <MinimalIcon name="dinner" className="w-8 h-8 text-[#B8943E]" />
+              <span>Recepción</span>
+              <h4>Salón Zafiro</h4>
+              <p><MinimalIcon name="clock" className="w-4 h-4" /> Apertura del salón: 13:00</p>
+              <p><MinimalIcon name="clock" className="w-4 h-4" /> Llegada de los novios: 15:30</p>
+              <p><MinimalIcon name="location" className="w-4 h-4" /> Av. Cívica, El Alto - La Paz</p>
+              <a
+                className="venue-action"
+                href="https://www.google.com/maps/search/?api=1&query=Salon+Zafiro+Av.+Civica+El+Alto+La+Paz"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver ubicación <MinimalIcon name="arrow" className="w-4 h-4" />
+              </a>
+            </article>
+          </div>
+        </div>
+
+        <div id="programa" className="schedule-heading text-center mt-24 md:mt-32 mb-14">
           <span className="text-[10px] tracking-[0.28em] uppercase text-[#A8873A] font-black">Cronograma</span>
-          <h3 className="font-script text-5xl md:text-6xl text-[#3D2B1F] mt-3">Momentos del dia</h3>
+          <h3 className="font-script text-5xl md:text-6xl text-[#3D2B1F] mt-3">Momentos del día</h3>
         </div>
 
         <div className="schedule-timeline">
@@ -179,6 +241,15 @@ const EventSection = () => {
             </article>
           ))}
         </div>
+
+        <aside className="family-note mt-24 md:mt-32">
+          <MinimalIcon name="guests" className="w-10 h-10 text-[#B8943E] mx-auto" />
+          <h3>Una celebración para compartir en familia</h3>
+          <p>
+            Los niños son una alegría en nuestra celebración. Para su cuidado y el disfrute de todos,
+            les agradecemos mantenerlos siempre bajo la atenta supervisión de sus padres.
+          </p>
+        </aside>
       </div>
     </section>
   );

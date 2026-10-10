@@ -93,6 +93,14 @@ const paths = {
       <circle cx="12" cy="10" r="2.5" />
     </>
   ),
+  church: (
+    <>
+      <path d="M4 21V10l8-6 8 6v11" />
+      <path d="M8 21v-6h8v6" />
+      <path d="M12 4V1.5M9.5 2.5h5" />
+      <path d="M2 21h20" />
+    </>
+  ),
   arrow: <path d="M8 5l8 7-8 7V5Z" />,
 };
 

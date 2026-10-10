@@ -118,10 +118,10 @@ const GallerySection = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="gallery-title font-script text-5xl md:text-7xl text-[#3D2B1F] mb-4">
-            <AnimatedText text="Nuestra Galeria" />
+            <AnimatedText text="Instantes de nuestra historia" />
           </h2>
           <p className="gallery-subtitle text-gray-500 text-xs sm:text-sm tracking-widest uppercase font-sans font-black">
-            <AnimatedText text="Momentos que capturan nuestra historia" type="words" />
+            <AnimatedText text="Recuerdos que guardamos en el corazón" type="words" />
           </p>
           <div className="gallery-subtitle w-24 h-px bg-[#C9A84C]/30 mx-auto mt-6" />
         </div>

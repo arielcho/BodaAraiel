@@ -58,14 +58,6 @@ const Hero = ({ isActive = false }) => {
       filter: 'blur(10px)'
     });
     
-    gsap.set('.hero-date-3d', {
-      opacity: 0,
-      y: 60,
-      scale: 0.9,
-      rotationX: 15,
-      filter: 'blur(8px)'
-    });
-    
     gsap.set('.hero-floating-text', {
       opacity: 0,
       y: 40,
@@ -118,15 +110,6 @@ const Hero = ({ isActive = false }) => {
         duration: 2,
         ease: 'power3.out'
       }, '-=1.8')
-      .to('.hero-date-3d', {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        rotationX: 0,
-        filter: 'blur(0px)',
-        duration: 1.5,
-        ease: 'power3.out'
-      }, '-=1.2')
       .to('.hero-floating-text', {
         opacity: 1,
         y: 0,
@@ -262,7 +245,8 @@ const Hero = ({ isActive = false }) => {
           playsInline
           preload="auto"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FFF8F0]/30 via-[#F7E7CE]/20 to-[#FFF8F0]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FFF8F0]/55 via-[#FFF8F0]/25 to-[#FFF8F0]/90" />
+        <div className="absolute inset-0 bg-white/10 backdrop-brightness-[0.82]" />
         <div className="hero-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#E8D5A3]/25 blur-3xl animate-pulse" />
       </div>
 
@@ -333,7 +317,7 @@ const Hero = ({ isActive = false }) => {
       <div ref={titleRef} className="relative z-10 text-center px-4 max-w-6xl mx-auto pt-20 pb-24 sm:pt-24 sm:pb-28" style={{ cursor: "default" }}>
         <div className="hero-floating-text w-24 h-0.5 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-4 sm:mb-6" />
 
-        <h1 className="hero-title-3d font-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#3D2B1F] mb-1 sm:mb-2 leading-[1.3] py-2 sm:py-3 tracking-wide" 
+        <h1 className="hero-title-3d font-script text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-[#3D2B1F] mb-1 sm:mb-2 leading-[1.2] py-2 sm:py-3 tracking-wide" 
             style={{ 
               textShadow: '0 0 35px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'
@@ -349,7 +333,7 @@ const Hero = ({ isActive = false }) => {
           <MinimalIcon name="sparkle" className="w-8 h-8 sm:w-10 sm:h-10 text-[#C9A84C] drop-shadow-[0_0_12px_rgba(201,168,76,0.35)]" />
         </div>
 
-        <h1 className="hero-title-3d font-script text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#3D2B1F] mb-3 sm:mb-4 leading-[1.3] py-2 sm:py-3" 
+        <h1 className="hero-title-3d font-script text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-[#3D2B1F] mb-3 sm:mb-5 leading-[1.2] py-2 sm:py-3" 
             style={{ 
               textShadow: '0 0 35px rgba(201,168,76,0.3), 0 20px 50px rgba(0,0,0,0.05)',
               transformStyle: 'preserve-3d'
@@ -357,38 +341,16 @@ const Hero = ({ isActive = false }) => {
           Aracely
         </h1>
 
-        <p className="hero-subtitle-3d text-xs sm:text-base md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-[#C9A84C] via-[#E8D5A3] to-[#A8873A] font-sans font-black tracking-[0.3em] uppercase mb-3 sm:mb-4"
+        <p className="hero-subtitle-3d max-w-2xl mx-auto text-base sm:text-xl md:text-2xl text-[#3D2B1F] font-serif italic font-semibold leading-relaxed mb-4 sm:mb-6"
            style={{
-             textShadow: '0 0 30px rgba(201,168,76,0.15)',
+             textShadow: '0 2px 18px rgba(255,248,240,0.95), 0 1px 2px rgba(255,255,255,0.9)',
              transformStyle: 'preserve-3d',
-             letterSpacing: '0.3em'
            }}>
-          El Amor No Tiene Límites
+          "Todo lo cree, todo lo espera, todo lo soporta."
         </p>
-        
-        <div className="hero-date-3d inline-block px-6 py-2.5 sm:px-8 sm:py-3 border-2 border-[#C9A84C]/45 rounded-xl backdrop-blur-md bg-white/40 hover:bg-white/70 transition-all duration-500 hover:scale-105 hover:border-[#C9A84C]/80 shadow-[0_4px_25px_rgba(201,168,76,0.12)]"
-             style={{
-               transformStyle: 'preserve-3d',
-             }}>
-          <span className="text-[#3D2B1F]/90 text-xs sm:text-base md:text-lg tracking-[0.2em] font-sans font-extrabold uppercase">
-            07 · NOVIEMBRE · 2026
-          </span>
-        </div>
-
-        <p className="hero-floating-text text-[#3D2B1F]/55 text-[10px] sm:text-xs mt-5 sm:mt-7 max-w-xl mx-auto font-sans font-semibold tracking-[0.18em] uppercase">
-          "El amor verdadero trasciende el tiempo y el espacio"
+        <p className="hero-floating-text text-[#7E642E] text-[10px] sm:text-xs mt-2 font-sans font-black tracking-[0.24em] uppercase">
+          1 Corintios 13:7
         </p>
-
-        {/* Action Button */}
-        <div className="hero-floating-text mt-6 sm:mt-8">
-          <a href="#historia" className="inline-block px-8 py-3.5 sm:px-10 sm:py-4 bg-gradient-to-r from-[#C9A84C] to-[#E8D5A3] text-[#3D2B1F] rounded-xl hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:shadow-[0_6px_25px_rgba(201,168,76,0.5)] text-xs sm:text-base font-sans font-black tracking-widest group relative overflow-hidden uppercase">
-            <span className="relative z-10 flex items-center gap-2 sm:gap-3">
-              Descubre nuestra historia
-              <MinimalIcon name="arrow" className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#E8D5A3] to-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </a>
-        </div>
       </div>
 
       {/* Scroll indicator: clearly separated at the bottom, fades out smoothly on scroll */}

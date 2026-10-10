@@ -1,147 +1,103 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import AnimatedText from '../components/AnimatedText';
 import MinimalIcon from '../components/MinimalIcon';
+
+const parents = [
+  {
+    label: 'Padres de Ariel',
+    names: ['Jaime Andrés Rodríguez Sillerico', 'María del Carmen Castro Gutiérrez'],
+  },
+  {
+    label: 'Padres de Aracely',
+    names: ['Rolando Ordóñez Carranza', 'Mariela Luza Santalla'],
+  },
+];
+
+const companions = [
+  {
+    label: 'Consejeros matrimoniales',
+    names: ['Raúl Gabriel López Barrios', 'Ana María Bethzabe Ramos de López'],
+    icon: 'rings',
+  },
+  {
+    label: 'Padrinos de torta',
+    names: ['Fernando Luza Santalla', 'María Luisa Acarapi de Luza'],
+    icon: 'cake',
+  },
+];
 
 const StorySection = () => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    gsap.set('.story-text', {
+    gsap.from('.family-intro', {
       opacity: 0,
-      y: 80,
-      filter: 'blur(10px)'
-    });
-    
-    gsap.set('.story-card', {
-      opacity: 0,
-      scale: 0.8,
-      rotationX: 10
-    });
-
-    gsap.set('.story-icon', {
-      opacity: 0,
-      scale: 0
-    });
-
-    gsap.to('.story-text', {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 2,
+      y: 42,
+      duration: 1.1,
       ease: 'power3.out',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 60%',
-        toggleActions: 'play none none reverse'
-      }
+      scrollTrigger: { trigger: '.family-intro', start: 'top 86%', once: true },
     });
 
-    gsap.to('.story-card', {
-      opacity: 1,
-      scale: 1,
-      rotationX: 0,
-      duration: 1.2,
-      stagger: 0.3,
+    gsap.utils.toArray('.family-card').forEach((card, index) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 34,
+        x: index % 2 === 0 ? -18 : 18,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 90%', once: true },
+      });
+    });
+
+    gsap.from('.companions-intro', {
+      opacity: 0,
+      y: 36,
+      duration: 1,
       ease: 'power3.out',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 50%',
-        toggleActions: 'play none none reverse'
-      }
+      scrollTrigger: { trigger: '.companions-intro', start: 'top 88%', once: true },
     });
-
-    gsap.to('.story-icon', {
-      opacity: 1,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'back.out(1.7)',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 50%',
-        toggleActions: 'play none none reverse'
-      }
-    });
-
-    gsap.to('.story-glow', {
-      opacity: 0.3,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut'
-    });
-
-  }, []);
+  }, { scope: containerRef });
 
   return (
-    <section id="historia" ref={containerRef} className="section-container bg-gradient-to-b from-[#FFF8F0] via-[#F7E7CE]/20 to-[#FFF8F0] py-20 overflow-hidden gta-grid-bg border-b border-[#C9A84C]/25">
-      <div className="absolute inset-0">
-        <div className="story-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#E8D5A3]/10 blur-3xl opacity-0" />
-      </div>
+    <section id="familias" ref={containerRef} className="family-section section-container py-20 md:py-28 border-b border-[#C9A84C]/25">
+      <div className="absolute inset-0 gta-grid-bg pointer-events-none opacity-25" />
+      <div className="relative z-10 max-w-6xl mx-auto px-5">
+        <header className="family-intro text-center max-w-4xl mx-auto">
+          <span className="section-kicker">Con la bendición de Dios</span>
+          <h2>Guiados por la gracia de Dios<br />y acompañados por nuestros padres</h2>
+          <p>
+            Quienes nos otorgaron raíces, amor y ejemplo para este nuevo comienzo,
+            unimos nuestras vidas en matrimonio.
+          </p>
+          <span className="section-flourish" aria-hidden="true" />
+        </header>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="story-icon flex justify-center text-[#C9A84C] mb-4">
-            <MinimalIcon name="book" className="w-12 h-12 md:w-14 md:h-14" />
-          </div>
-          <h2 className="story-text font-script text-5xl md:text-7xl text-[#3D2B1F] mb-4">
-            <AnimatedText text="Nuestra Historia" />
-          </h2>
-          <div className="story-text w-24 h-0.5 bg-[#C9A84C]/30 mx-auto" />
+        <div className="family-grid mt-12 md:mt-16">
+          {parents.map((group) => (
+            <article key={group.label} className="family-card">
+              <span>{group.label}</span>
+              {group.names.map((name) => <h3 key={name}>{name}</h3>)}
+            </article>
+          ))}
         </div>
 
-        <div className="space-y-8">
-          <div className="story-card gta-panel rounded-2xl p-6 sm:p-8 border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-all duration-500 group shadow-md bg-white/80">
-            <div className="flex items-start gap-4">
-              <div className="story-icon text-[#C9A84C] flex-shrink-0">
-                <MinimalIcon name="heart" className="w-8 h-8" />
-              </div>
-              <div>
-                <h3 className="text-[#C9A84C] text-xl md:text-2xl font-sans font-black tracking-wide mb-2 uppercase">El Encuentro</h3>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-sans font-semibold">
-                  En el momento menos esperado, nuestros caminos se cruzaron.
-                  Fue como si el destino hubiera escrito nuestra historia mucho antes de que nos conociéramos.
-                </p>
-              </div>
-            </div>
-          </div>
+        <header className="companions-intro text-center max-w-3xl mx-auto mt-24 md:mt-32">
+          <MinimalIcon name="heart" className="w-8 h-8 mx-auto text-[#C9A84C] mb-5" />
+          <h2>Quienes acompañan nuestro sí</h2>
+          <p>Personas esenciales que caminan a nuestro lado, brindándonos su ejemplo y valioso apoyo en este comienzo.</p>
+          <span className="section-flourish" aria-hidden="true" />
+        </header>
 
-          <div className="story-card gta-panel rounded-2xl p-6 sm:p-8 border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-all duration-500 group shadow-md bg-white/80">
-            <div className="flex items-start gap-4">
-              <div className="story-icon text-[#C9A84C] flex-shrink-0">
-                <MinimalIcon name="sparkle" className="w-8 h-8" />
-              </div>
-              <div>
-                <h3 className="text-[#C9A84C] text-xl md:text-2xl font-sans font-black tracking-wide mb-2 uppercase">El Amor</h3>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-sans font-semibold">
-                  Cada día a tu lado es un capítulo nuevo en nuestra historia.
-                  Juntos hemos construido un amor que trasciende el tiempo y el espacio.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="story-card gta-panel rounded-2xl p-6 sm:p-8 border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-all duration-500 group shadow-md bg-white/80">
-            <div className="flex items-start gap-4">
-              <div className="story-icon text-[#C9A84C] flex-shrink-0">
-                <MinimalIcon name="rings" className="w-8 h-8" />
-              </div>
-              <div>
-                <h3 className="text-[#C9A84C] text-xl md:text-2xl font-sans font-black tracking-wide mb-2 uppercase">La Promesa</h3>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed font-sans font-semibold">
-                  El 07 de Noviembre de 2026, frente a quienes más queremos,
-                  sellaremos nuestro amor con la promesa de amarnos para siempre.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="family-grid mt-12 md:mt-16">
+          {companions.map((group) => (
+            <article key={group.label} className="family-card companion-card">
+              <MinimalIcon name={group.icon} className="w-7 h-7 text-[#B8943E] mb-5" />
+              <span>{group.label}</span>
+              {group.names.map((name) => <h3 key={name}>{name}</h3>)}
+            </article>
+          ))}
         </div>
-
-        <p className="story-text text-center text-gray-500 text-xs sm:text-sm mt-12 tracking-wider font-sans font-semibold italic">
-          "El amor verdadero no tiene final feliz, porque el amor verdadero simplemente no tiene final"
-        </p>
       </div>
     </section>
   );

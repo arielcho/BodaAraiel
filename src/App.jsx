@@ -93,11 +93,11 @@ const App = () => {
         <Navbar />
         <Hero isActive={cargaCompleta} />
         <VideoSection />
-        <VideoVertical />
-        <VideoFondo />
         <StorySection />
-        <GallerySection />
+        <VideoVertical />
         <EventSection />
+        <GallerySection />
+        <VideoFondo />
         <FinalSection />
         <OutroSection />
       </main>

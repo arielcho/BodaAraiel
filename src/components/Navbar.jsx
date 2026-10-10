@@ -3,9 +3,10 @@ import { createPortal } from 'react-dom';
 import MinimalIcon from './MinimalIcon';
 
 const links = [
-  { href: '#historia', label: 'Historia' },
-  { href: '#galeria', label: 'Galeria' },
-  { href: '#evento', label: 'Evento' },
+  { href: '#familias', label: 'Familias' },
+  { href: '#lugares', label: 'Lugares' },
+  { href: '#programa', label: 'Programa' },
+  { href: '#galeria', label: 'Galería' },
 ];
 
 const Navbar = () => {
@@ -58,7 +59,7 @@ const Navbar = () => {
       <aside className="mobile-drawer-panel" aria-label="Menu principal">
         <div className="mobile-drawer-header">
           <span className="inline-flex items-center gap-2 font-script text-3xl text-[#3D2B1F]">
-            Ariel <MinimalIcon name="sparkle" className="w-5 h-5 text-[#C9A84C]" /> Aracely
+            Ariel <MinimalIcon name="heart" className="w-5 h-5 text-[#C9A84C]" /> Aracely
           </span>
           <button type="button" className="mobile-drawer-close" onClick={closeMenu} aria-label="Cerrar menu" tabIndex={isMenuOpen ? 0 : -1}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -95,11 +96,11 @@ const Navbar = () => {
           : 'bg-transparent'
       }`}>
         <a href="#" className="flex items-center gap-2" aria-label="Volver al inicio">
-          <span className="font-sans font-black tracking-widest text-lg md:text-xl text-[#3D2B1F] transition-colors duration-300">
+          <span className="font-serif font-bold text-xl md:text-2xl text-[#3D2B1F] transition-colors duration-300">
             A
           </span>
-          <MinimalIcon name="sparkle" className="w-5 h-5 text-[#C9A84C]" />
-          <span className="font-sans font-black tracking-widest text-lg md:text-xl text-[#3D2B1F]">A</span>
+          <MinimalIcon name="heart" className="w-5 h-5 text-[#C9A84C]" />
+          <span className="font-serif font-bold text-xl md:text-2xl text-[#3D2B1F]">A</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8 font-sans font-extrabold tracking-widest">
