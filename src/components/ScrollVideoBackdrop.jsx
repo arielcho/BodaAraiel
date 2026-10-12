@@ -17,35 +17,36 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
     const cleanupVideo = setupScrollVideo({
       video,
       trigger,
-      start: 'top bottom',
-      end: 'bottom top',
+      start: 'top top',
+      end: 'bottom bottom',
+      frameRate: 24,
     });
 
     const fadeTimeline = gsap.timeline({
       scrollTrigger: {
         trigger,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: 'top top',
+        end: 'bottom bottom',
         scrub: 0.8,
         invalidateOnRefresh: true,
       },
     });
 
     fadeTimeline
-      .fromTo(layer, { opacity: 0, filter: 'blur(14px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.18, ease: 'power2.out' })
-      .to(layer, { opacity: 1, duration: 0.64, ease: 'none' })
-      .to(layer, { opacity: 0, filter: 'blur(14px)', duration: 0.18, ease: 'power2.in' });
+      .fromTo(layer, { opacity: 0, filter: 'blur(3px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.08, ease: 'power2.out' })
+      .to(layer, { opacity: 1, duration: 0.84, ease: 'none' })
+      .to(layer, { opacity: 0, filter: 'blur(3px)', duration: 0.08, ease: 'power2.in' });
 
     const movement = gsap.fromTo(video,
-      { scale: 1.16, yPercent: -4 },
+      { scale: 0.97, yPercent: 1 },
       {
-        scale: 1.04,
-        yPercent: 4,
+        scale: 1,
+        yPercent: -1,
         ease: 'none',
         scrollTrigger: {
           trigger,
-          start: 'top bottom',
-          end: 'bottom top',
+          start: 'top top',
+          end: 'bottom bottom',
           scrub: 1,
           invalidateOnRefresh: true,
         },

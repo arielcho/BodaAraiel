@@ -274,6 +274,8 @@ nav a:hover {
 /* Families and wedding companions */
 .family-section {
   background: #FFF9F2;
+  overflow: visible;
+  overflow-x: clip;
 }
 
 .section-kicker {
@@ -507,7 +509,11 @@ nav a:hover {
 }
 
 /* Event timeline */
-.event-section { background: #FFF9F2; }
+.event-section {
+  background: #FFF9F2;
+  overflow: visible;
+  overflow-x: clip;
+}
 .event-date-title {
   text-wrap: balance;
   text-shadow: 0 3px 18px rgba(201, 168, 76, 0.12);
@@ -642,19 +648,21 @@ nav a:hover {
 .schedule-experience { isolation: isolate; }
 
 .scroll-video-backdrop {
-  position: absolute;
-  inset: 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: -100vh;
   z-index: 0;
-  overflow: clip;
+  overflow: hidden;
   pointer-events: none;
   opacity: 0;
   will-change: opacity, filter;
 }
 
 .scroll-video-backdrop-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: absolute;
+  inset: 0;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -662,19 +670,20 @@ nav a:hover {
 
 .scroll-video-backdrop-frame {
   position: relative;
-  width: min(1180px, 96vw);
-  height: min(78vh, 760px);
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0, 0, 0, 0.88) 62%, transparent 94%);
-  mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0, 0, 0, 0.88) 62%, transparent 94%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 76%, rgba(0, 0, 0, 0.96) 90%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 76%, rgba(0, 0, 0, 0.96) 90%, transparent 100%);
 }
 
 .scroll-video-backdrop-media {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: saturate(0.78) contrast(0.92) blur(2px);
-  opacity: 0.42;
+  object-fit: contain;
+  object-position: center center;
+  filter: saturate(0.82) contrast(0.94) blur(0.6px);
+  opacity: 0.5;
   will-change: transform;
 }
 
@@ -682,8 +691,8 @@ nav a:hover {
   position: absolute;
   inset: -2px;
   background:
-    linear-gradient(180deg, #fff9f2 0%, rgba(255, 249, 242, 0.28) 18%, rgba(255, 249, 242, 0.2) 78%, #fff9f2 100%),
-    linear-gradient(90deg, #fff9f2 0%, transparent 18%, transparent 82%, #fff9f2 100%);
+    linear-gradient(180deg, #fff9f2 0%, transparent 6%, transparent 94%, #fff9f2 100%),
+    linear-gradient(90deg, #fff9f2 0%, transparent 4%, transparent 96%, #fff9f2 100%);
 }
 
 @media (max-width: 767px) {
@@ -704,8 +713,7 @@ nav a:hover {
   .schedule-marker svg { width: 17px; height: 17px; }
   .schedule-card h4 { font-size: 20px; }
   .schedule-experience { padding: 58px 14px 24px; margin-inline: -14px; }
-  .scroll-video-backdrop-frame { width: 120vw; height: 74vh; }
-  .scroll-video-backdrop-media { opacity: 0.32; }
+  .scroll-video-backdrop-media { opacity: 0.42; }
 }
 
 /* Botanical scroll accents */

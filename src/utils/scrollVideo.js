@@ -1,9 +1,9 @@
 import gsap from 'gsap';
 
-export const setupScrollVideo = ({ video, trigger, start = 'top bottom', end = 'bottom top' }) => {
+export const setupScrollVideo = ({ video, trigger, start = 'top bottom', end = 'bottom top', frameRate = 24 }) => {
   if (!video || !trigger) return null;
 
-  const frameStep = 1 / 30;
+  const frameStep = 1 / frameRate;
   let targetTime = 0;
   let seekFrame = null;
 
@@ -18,7 +18,7 @@ export const setupScrollVideo = ({ video, trigger, start = 'top bottom', end = '
 
   const updateVideoTime = (progress) => {
     if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-    const rawTime = Math.min(video.duration - 0.05, video.duration * progress);
+    const rawTime = Math.min(video.duration - frameStep, video.duration * progress);
     targetTime = Math.round(rawTime / frameStep) * frameStep;
     if (seekFrame === null) seekFrame = requestAnimationFrame(flushSeek);
   };
@@ -47,7 +47,7 @@ export const setupScrollVideo = ({ video, trigger, start = 'top bottom', end = '
   };
 
   const continueSeeking = () => {
-    if (Math.abs(video.currentTime - targetTime) >= frameStep && seekFrame === null) {
+    if (Math.abs(video.currentTime - targetTime) >= frameStep * 0.5 && seekFrame === null) {
       seekFrame = requestAnimationFrame(flushSeek);
     }
   };

@@ -222,7 +222,7 @@ const EventSection = () => {
 
         <div id="programa" ref={scheduleRef} className="schedule-experience mt-24 md:mt-32">
           <ScrollVideoBackdrop
-            source="videos/Couple_dancing_in_silhouette_20261012062628.mp4"
+            source="videos/couple-schedule-scroll.mp4"
             triggerRef={scheduleRef}
             label="Pareja bailando durante una celebracion"
           />

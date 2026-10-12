@@ -63,7 +63,7 @@ const StorySection = () => {
   return (
     <section id="familias" ref={containerRef} className="family-section section-container py-20 md:py-28 border-b border-[#C9A84C]/25">
       <ScrollVideoBackdrop
-        source="videos/Couple_dancing_in_silhouette_20261012062626.mp4"
+        source="videos/couple-parents-scroll.mp4"
         triggerRef={containerRef}
         label="Silueta de una pareja bailando"
       />

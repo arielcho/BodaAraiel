@@ -84,7 +84,7 @@ const App = () => {
 
   return (
     <>
-      <main className="relative overflow-x-hidden bg-[#FFF8F0]">
+      <main className="relative overflow-x-clip bg-[#FFF8F0]">
         <FloresYAdornos />
         <Navbar />
         <Hero isActive={cargaCompleta} />
