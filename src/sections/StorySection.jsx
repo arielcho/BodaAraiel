@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import MinimalIcon from '../components/MinimalIcon';
+import ScrollVideoBackdrop from '../components/ScrollVideoBackdrop';
 
 const parents = [
   {
@@ -61,6 +62,11 @@ const StorySection = () => {
 
   return (
     <section id="familias" ref={containerRef} className="family-section section-container py-20 md:py-28 border-b border-[#C9A84C]/25">
+      <ScrollVideoBackdrop
+        source="videos/Couple_dancing_in_silhouette_20261012062626.mp4"
+        triggerRef={containerRef}
+        label="Silueta de una pareja bailando"
+      />
       <div className="absolute inset-0 gta-grid-bg pointer-events-none opacity-25" />
       <div className="relative z-10 max-w-6xl mx-auto px-5">
         <header className="family-intro text-center max-w-4xl mx-auto">

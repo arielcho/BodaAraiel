@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import MinimalIcon from '../components/MinimalIcon';
+import ScrollVideoBackdrop from '../components/ScrollVideoBackdrop';
 
 const activities = [
   { time: '10:00 - 10:30', title: 'Llegada de invitados', description: 'Recepción en el lugar de la ceremonia.', icon: 'guests' },
@@ -18,6 +19,7 @@ const activities = [
 
 const EventSection = () => {
   const containerRef = useRef(null);
+  const scheduleRef = useRef(null);
   const weddingDate = new Date('2026-11-07T10:00:00');
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -218,7 +220,14 @@ const EventSection = () => {
           </div>
         </div>
 
-        <div id="programa" className="schedule-heading text-center mt-24 md:mt-32 mb-14">
+        <div id="programa" ref={scheduleRef} className="schedule-experience mt-24 md:mt-32">
+          <ScrollVideoBackdrop
+            source="videos/Couple_dancing_in_silhouette_20261012062628.mp4"
+            triggerRef={scheduleRef}
+            label="Pareja bailando durante una celebracion"
+          />
+          <div className="schedule-content relative z-10">
+        <div className="schedule-heading text-center mb-14">
           <span className="text-[10px] tracking-[0.28em] uppercase text-[#A8873A] font-black">Cronograma</span>
           <h3 className="font-script text-5xl md:text-6xl text-[#3D2B1F] mt-3">Momentos del día</h3>
         </div>
@@ -240,6 +249,8 @@ const EventSection = () => {
               </div>
             </article>
           ))}
+        </div>
+          </div>
         </div>
 
         <aside className="family-note mt-24 md:mt-32">

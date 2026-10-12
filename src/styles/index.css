@@ -624,6 +624,7 @@ nav a:hover {
   line-height: 1.8;
 }
 
+.schedule-experience { position: relative; isolation: isolate; padding: 76px 28px 42px; margin-inline: -28px; }
 .schedule-timeline { position: relative; max-width: 1020px; margin-inline: auto; }
 .schedule-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: rgba(201, 168, 76, 0.2); transform: translateX(-50%); }
 .schedule-progress { position: absolute; inset: 0; display: block; background: #C9A84C; transform-origin: top; }
@@ -635,6 +636,55 @@ nav a:hover {
 .schedule-card h4 { margin-top: 8px; color: #3D2B1F; font-family: Georgia, serif; font-size: clamp(19px, 2.2vw, 25px); line-height: 1.25; }
 .schedule-card p { margin-top: 9px; color: rgba(93, 73, 60, 0.72); font-size: 13px; line-height: 1.65; }
 .schedule-marker { grid-column: 2; grid-row: 1; z-index: 2; width: 44px; height: 44px; display: grid; place-items: center; justify-self: center; border: 1px solid rgba(201, 168, 76, 0.42); border-radius: 50%; color: #A8873A; background: #FFF9F2; box-shadow: 0 6px 18px rgba(61, 43, 31, 0.08); }
+
+/* Videos de fondo controlados por el recorrido */
+.family-section,
+.schedule-experience { isolation: isolate; }
+
+.scroll-video-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: clip;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity, filter;
+}
+
+.scroll-video-backdrop-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.scroll-video-backdrop-frame {
+  position: relative;
+  width: min(1180px, 96vw);
+  height: min(78vh, 760px);
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0, 0, 0, 0.88) 62%, transparent 94%);
+  mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0, 0, 0, 0.88) 62%, transparent 94%);
+}
+
+.scroll-video-backdrop-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.78) contrast(0.92) blur(2px);
+  opacity: 0.42;
+  will-change: transform;
+}
+
+.scroll-video-backdrop-veil {
+  position: absolute;
+  inset: -2px;
+  background:
+    linear-gradient(180deg, #fff9f2 0%, rgba(255, 249, 242, 0.28) 18%, rgba(255, 249, 242, 0.2) 78%, #fff9f2 100%),
+    linear-gradient(90deg, #fff9f2 0%, transparent 18%, transparent 82%, #fff9f2 100%);
+}
 
 @media (max-width: 767px) {
   .family-grid, .venue-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -653,6 +703,9 @@ nav a:hover {
   .schedule-marker { grid-column: 1; width: 36px; height: 36px; }
   .schedule-marker svg { width: 17px; height: 17px; }
   .schedule-card h4 { font-size: 20px; }
+  .schedule-experience { padding: 58px 14px 24px; margin-inline: -14px; }
+  .scroll-video-backdrop-frame { width: 120vw; height: 74vh; }
+  .scroll-video-backdrop-media { opacity: 0.32; }
 }
 
 /* Botanical scroll accents */

@@ -5,8 +5,6 @@ import Navbar from './components/Navbar';
 import PantallaCarga from './components/PantallaCarga';
 import FloresYAdornos from './components/FloresYAdornos';
 import Hero from './sections/Hero';
-import VideoSection from './sections/VideoSection';
-import VideoVertical from './sections/VideoVertical';
 import StorySection from './sections/StorySection';
 import GallerySection from './sections/GallerySection';
 import EventSection from './sections/EventSection';
@@ -90,9 +88,7 @@ const App = () => {
         <FloresYAdornos />
         <Navbar />
         <Hero isActive={cargaCompleta} />
-        <VideoSection />
         <StorySection />
-        <VideoVertical />
         <EventSection />
         <GallerySection />
         <OutroSection />

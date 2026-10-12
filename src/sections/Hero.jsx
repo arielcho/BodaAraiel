@@ -199,18 +199,12 @@ const Hero = ({ isActive = false }) => {
   return (
     <section ref={containerRef} className="hero-section section-container overflow-hidden min-h-screen relative flex flex-col justify-center">
       <div className="absolute inset-0 overflow-hidden">
-        <img
-          src={assetUrl('videos/posters/intro.jpg')}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-55"
-        />
+        <div className="absolute inset-0 bg-[#2C211B]" aria-hidden="true" />
         <video
           ref={introVideoRef}
-          src={assetUrl('videos/intro-web.mp4')}
-          poster={assetUrl('videos/posters/intro.jpg')}
+          src={assetUrl('videos/INTRO-2.mp4')}
           aria-label="Video de introduccion de la boda"
-          className="hero-bg relative w-full h-full object-contain"
+          className="hero-bg relative w-full h-full object-cover"
           muted
           loop
           playsInline
