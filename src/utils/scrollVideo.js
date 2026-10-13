@@ -59,6 +59,8 @@ export const setupScrollVideo = ({
     onRefresh: syncToScroll,
   });
 
+  syncToScroll(scrollTrigger);
+
   const refresh = () => {
     updateVideoTime(scrollTrigger?.progress || 0);
     scrollTrigger?.refresh();

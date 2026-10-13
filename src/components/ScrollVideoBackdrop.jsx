@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { assetUrl } from '../utils/assetUrl';
 import { setupScrollVideo } from '../utils/scrollVideo';
 
@@ -71,11 +70,26 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
     };
   }, [source, sourceUrl]);
 
-  useGSAP(() => {
-    const trigger = triggerRef.current;
+  useEffect(() => {
     const layer = layerRef.current;
     const video = videoRef.current;
-    if (!trigger || !layer || !video) return undefined;
+    const trigger = triggerRef.current || layer?.parentElement;
+    const prefix = `[Boda video: ${source}]`;
+
+    if (!trigger || !layer || !video) {
+      console.error(prefix, 'No se pudo iniciar el control por scroll.', {
+        trigger: Boolean(trigger),
+        layer: Boolean(layer),
+        video: Boolean(video),
+      });
+      return undefined;
+    }
+
+    console.info(prefix, 'Control por scroll activo.', {
+      trigger: trigger.id || trigger.className,
+      start: 'top bottom',
+      end: 'bottom top',
+    });
 
     const cleanupVideo = setupScrollVideo({
       video,
@@ -143,7 +157,7 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
       movement.scrollTrigger?.kill();
       movement.kill();
     };
-  }, { scope: triggerRef });
+  }, [source, triggerRef]);
 
   return (
     <div ref={layerRef} className="scroll-video-backdrop" aria-hidden="true">
