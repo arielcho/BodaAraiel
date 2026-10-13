@@ -5,7 +5,9 @@ const PantallaCarga = ({ onComplete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLetterActive, setIsLetterActive] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
+  const wrapperRef = useRef(null);
   const envelopeRef = useRef(null);
+  const isOpenRef = useRef(false);
   const floatAnimRef = useRef(null);
   const fallbackTimerRef = useRef(null);
 
@@ -28,7 +30,7 @@ const PantallaCarga = ({ onComplete }) => {
 
     // Handle mouse movement for 3D tilt effect on desktop
     const handleMouseMove = (e) => {
-      if (isOpen) return;
+      if (isOpenRef.current) return;
       const el = envelopeRef.current;
       if (!el) return;
 
@@ -45,7 +47,7 @@ const PantallaCarga = ({ onComplete }) => {
     };
 
     const handleMouseLeave = () => {
-      if (isOpen) return;
+      if (isOpenRef.current) return;
       const el = envelopeRef.current;
       if (!el) return;
       gsap.to(el, {
@@ -58,7 +60,7 @@ const PantallaCarga = ({ onComplete }) => {
 
     // Gyroscope tilt effect for mobile devices
     const handleDeviceOrientation = (e) => {
-      if (isOpen) return;
+      if (isOpenRef.current) return;
       const el = envelopeRef.current;
       if (!el) return;
 
@@ -86,10 +88,11 @@ const PantallaCarga = ({ onComplete }) => {
       clearTimeout(fallbackTimerRef.current);
       if (floatAnimRef.current) floatAnimRef.current.kill();
     };
-  }, [isOpen]);
+  }, []);
 
   const handleOpenEnvelope = () => {
-    if (isOpen) return;
+    if (isOpenRef.current) return;
+    isOpenRef.current = true;
     setIsOpen(true);
     window.dispatchEvent(new CustomEvent('wedding:open'));
 
@@ -148,6 +151,12 @@ const PantallaCarga = ({ onComplete }) => {
 
     // Step 3: Card slides UP and OUT from inside the pocket
     .set('.envelope-card', { opacity: 1, pointerEvents: 'auto' })
+    // Allow the top of the card to emerge while its lower edge stays inside the pocket.
+    .set(wrapperRef.current, {
+      overflow: 'visible',
+      clipPath: 'inset(-100vh 0 0 0)',
+      WebkitClipPath: 'inset(-100vh 0 0 0)',
+    })
     .to('.envelope-card', {
       y: targetY * 0.55,
       duration: 0.55,
@@ -155,6 +164,11 @@ const PantallaCarga = ({ onComplete }) => {
     })
     // Release the crop only after the card has cleared the pocket.
     .call(() => setIsLetterActive(true))
+    .set(wrapperRef.current, {
+      clipPath: 'none',
+      WebkitClipPath: 'none',
+      overflow: 'visible',
+    })
     .set('.envelope-card', { zIndex: 50 })
     // Continue moving card to full elevated presentation
     .to('.envelope-card', {
@@ -228,7 +242,7 @@ const PantallaCarga = ({ onComplete }) => {
         )}
 
         {/* 3D Envelope Wrapper */}
-        <div className={`envelope-wrapper relative w-[310px] h-[215px] sm:w-[420px] sm:h-[280px] ${isLetterActive ? 'overflow-visible' : 'overflow-hidden'} ${!isOpen ? 'perspective-1000 transition-transform duration-500 hover:scale-[1.02]' : 'pointer-events-none'}`}>
+        <div ref={wrapperRef} className={`envelope-wrapper relative w-[310px] h-[215px] sm:w-[420px] sm:h-[280px] ${isLetterActive ? 'overflow-visible' : 'overflow-hidden'} ${!isOpen ? 'perspective-1000 transition-transform duration-500 hover:scale-[1.02]' : 'pointer-events-none'}`}>
           <div
             ref={envelopeRef}
             className="relative w-full h-full"
