@@ -13,8 +13,8 @@ const PantallaCarga = ({ onComplete }) => {
     // Initial entrance animation
     gsap.fromTo(
       '.envelope-wrapper',
-      { scale: 0.85, opacity: 0, y: 40 },
-      { scale: 1, opacity: 1, y: 0, duration: 1, ease: 'back.out(1.5)' }
+      { scale: 0.94, opacity: 0, y: 24 },
+      { scale: 1, opacity: 1, y: 0, duration: 1.15, ease: 'power3.out' }
     );
 
     // Subtle floating animation (killed immediately when opened)
@@ -115,14 +115,10 @@ const PantallaCarga = ({ onComplete }) => {
 
   const startOpeningSequence = () => {
     const isMobile = window.innerWidth < 640;
-    const targetY = isMobile ? -130 : -165;
-    const targetScale = isMobile ? 1.06 : 1.12;
+    const targetY = isMobile ? -118 : -150;
+    const targetScale = isMobile ? 1.02 : 1.06;
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setIsLetterActive(true);
-      }
-    });
+    const tl = gsap.timeline();
 
     // Step 0: Fade out top helper title so opened card has full room
     tl.to('.envelope-helper-title', {
@@ -136,16 +132,16 @@ const PantallaCarga = ({ onComplete }) => {
     .to('.envelope-seal', {
       scale: 0,
       opacity: 0,
-      duration: 0.25,
-      ease: 'back.in(1.7)',
+      duration: 0.35,
+      ease: 'power2.in',
     }, '-=0.15')
     .set('.envelope-seal', { display: 'none', pointerEvents: 'none' })
 
     // Step 2: Open top flap backwards (-180deg)
     .to('.envelope-flap', {
       rotateX: -180,
-      duration: 0.55,
-      ease: 'power2.inOut',
+      duration: 0.75,
+      ease: 'power3.inOut',
     })
     // Move flap behind back cover so it doesn't block the card
     .set('.envelope-flap', { zIndex: 0, pointerEvents: 'none' })
@@ -153,27 +149,28 @@ const PantallaCarga = ({ onComplete }) => {
     // Step 3: Card slides UP and OUT from inside the pocket
     .set('.envelope-card', { opacity: 1, pointerEvents: 'auto' })
     .to('.envelope-card', {
-      y: targetY * 0.5,
-      duration: 0.35,
-      ease: 'power2.out',
+      y: targetY * 0.55,
+      duration: 0.55,
+      ease: 'power3.out',
     })
-    // As soon as the card clears the pocket, lift its z-index above the envelope front
+    // Release the crop only after the card has cleared the pocket.
+    .call(() => setIsLetterActive(true))
     .set('.envelope-card', { zIndex: 50 })
     // Continue moving card to full elevated presentation
     .to('.envelope-card', {
       y: targetY,
       scale: targetScale,
-      duration: 0.5,
-      ease: 'back.out(1.2)',
+      duration: 0.7,
+      ease: 'power3.out',
     })
 
     // Step 4: The entire envelope assembly (back + front + flap) lowers slightly and softens as a background pedestal
     .to('.envelope-outer-box', {
-      y: isMobile ? 30 : 45,
-      opacity: 0.4,
-      duration: 0.6,
+      y: isMobile ? 18 : 28,
+      opacity: 0.28,
+      duration: 0.75,
       ease: 'power2.out',
-    }, '-=0.5');
+    }, '-=0.6');
   };
 
   const handleEnterSite = () => {
@@ -220,7 +217,7 @@ const PantallaCarga = ({ onComplete }) => {
         
         {/* Helper Title */}
         {!isOpen && (
-          <div className="envelope-helper-title mb-6 sm:mb-8 text-center animate-pulse transition-opacity duration-300">
+          <div className="envelope-helper-title mb-6 sm:mb-8 text-center transition-opacity duration-300">
             <h3 className="font-sans font-black tracking-[0.25em] text-[#C9A84C] uppercase text-xs sm:text-sm">
               Tienes una invitación privada
             </h3>
@@ -231,7 +228,7 @@ const PantallaCarga = ({ onComplete }) => {
         )}
 
         {/* 3D Envelope Wrapper */}
-        <div className={`envelope-wrapper relative w-[310px] h-[215px] sm:w-[420px] sm:h-[280px] ${!isOpen ? 'perspective-1000 transition-transform duration-500 hover:scale-[1.02]' : 'pointer-events-none'}`}>
+        <div className={`envelope-wrapper relative w-[310px] h-[215px] sm:w-[420px] sm:h-[280px] ${isLetterActive ? 'overflow-visible' : 'overflow-hidden'} ${!isOpen ? 'perspective-1000 transition-transform duration-500 hover:scale-[1.02]' : 'pointer-events-none'}`}>
           <div
             ref={envelopeRef}
             className="relative w-full h-full"
@@ -296,7 +293,7 @@ const PantallaCarga = ({ onComplete }) => {
             >
               <div className="text-center my-auto flex flex-col items-center justify-center">
                 {/* Minimalist Wedding Ring Icon */}
-                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#C9A84C] mb-1 animate-pulse" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#C9A84C] mb-1" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <circle cx="9" cy="12" r="6" />
                   <circle cx="15" cy="12" r="6" />
                 </svg>

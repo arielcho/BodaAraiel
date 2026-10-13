@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { assetUrl } from '../utils/assetUrl';
@@ -7,6 +7,69 @@ import { setupScrollVideo } from '../utils/scrollVideo';
 const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
   const layerRef = useRef(null);
   const videoRef = useRef(null);
+  const sourceUrl = assetUrl(source);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return undefined;
+
+    const prefix = `[Boda video: ${source}]`;
+    const diagnostics = window.__BODA_VIDEO_DIAGNOSTICS__ ||= {};
+    const snapshot = (event) => ({
+      event,
+      url: video.currentSrc || sourceUrl,
+      duration: Number.isFinite(video.duration) ? video.duration : null,
+      currentTime: video.currentTime,
+      readyState: video.readyState,
+      networkState: video.networkState,
+      errorCode: video.error?.code || null,
+      errorMessage: video.error?.message || null,
+    });
+
+    const report = (event) => {
+      const data = snapshot(event);
+      diagnostics[source] = { ...diagnostics[source], ...data };
+      console.info(prefix, data);
+    };
+    const reportWarning = (event) => console.warn(prefix, snapshot(event));
+    const reportError = () => console.error(prefix, 'No se pudo cargar o decodificar el MP4.', snapshot('error'));
+
+    const listeners = {
+      loadstart: () => report('loadstart'),
+      loadedmetadata: () => report('loadedmetadata'),
+      canplay: () => report('canplay'),
+      stalled: () => reportWarning('stalled'),
+      waiting: () => reportWarning('waiting'),
+      error: reportError,
+    };
+
+    Object.entries(listeners).forEach(([event, handler]) => video.addEventListener(event, handler));
+
+    fetch(sourceUrl, { method: 'HEAD', cache: 'no-store' })
+      .then((response) => {
+        const server = {
+          status: response.status,
+          ok: response.ok,
+          contentType: response.headers.get('content-type'),
+          contentLength: response.headers.get('content-length'),
+          acceptRanges: response.headers.get('accept-ranges'),
+        };
+        diagnostics[source] = { ...diagnostics[source], server };
+        if (response.ok && server.contentType?.includes('video/mp4')) {
+          console.info(prefix, 'Respuesta del servidor:', server);
+        } else {
+          console.error(prefix, 'Respuesta del servidor invalida:', server);
+        }
+      })
+      .catch((error) => console.error(prefix, 'Fallo al consultar el archivo:', error));
+
+    console.info(prefix, 'Inicializando:', sourceUrl);
+    video.load();
+
+    return () => {
+      Object.entries(listeners).forEach(([event, handler]) => video.removeEventListener(event, handler));
+    };
+  }, [source, sourceUrl]);
 
   useGSAP(() => {
     const trigger = triggerRef.current;
@@ -67,13 +130,14 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
         <div className="scroll-video-backdrop-frame">
           <video
             ref={videoRef}
-            src={assetUrl(source)}
             className="scroll-video-backdrop-media scroll-scrub-video"
             aria-label={label}
             muted
             playsInline
             preload="auto"
-          />
+          >
+            <source src={sourceUrl} type="video/mp4" />
+          </video>
           <div className="scroll-video-backdrop-veil" />
         </div>
       </div>
