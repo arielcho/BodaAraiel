@@ -64,7 +64,6 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
       .catch((error) => console.error(prefix, 'Fallo al consultar el archivo:', error));
 
     console.info(prefix, 'Inicializando:', sourceUrl);
-    video.load();
 
     return () => {
       Object.entries(listeners).forEach(([event, handler]) => video.removeEventListener(event, handler));
@@ -80,25 +79,27 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
     const cleanupVideo = setupScrollVideo({
       video,
       trigger,
-      start: 'top top',
-      end: 'bottom bottom',
+      start: 'top bottom',
+      end: 'bottom top',
       frameRate: 24,
     });
+
+    gsap.set(layer, { opacity: 0, filter: 'blur(2px)' });
 
     const fadeTimeline = gsap.timeline({
       scrollTrigger: {
         trigger,
-        start: 'top top',
-        end: 'bottom bottom',
+        start: 'top bottom',
+        end: 'bottom top',
         scrub: 0.8,
         invalidateOnRefresh: true,
       },
     });
 
     fadeTimeline
-      .fromTo(layer, { opacity: 0, filter: 'blur(3px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.08, ease: 'power2.out' })
-      .to(layer, { opacity: 1, duration: 0.84, ease: 'none' })
-      .to(layer, { opacity: 0, filter: 'blur(3px)', duration: 0.08, ease: 'power2.in' });
+      .to(layer, { opacity: 1, filter: 'blur(0px)', duration: 0.12, ease: 'power2.out' })
+      .to(layer, { opacity: 1, duration: 0.76, ease: 'none' })
+      .to(layer, { opacity: 0, filter: 'blur(2px)', duration: 0.12, ease: 'power2.in' });
 
     const movement = gsap.fromTo(video,
       { scale: 0.97, yPercent: 1 },
@@ -108,8 +109,8 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
         ease: 'none',
         scrollTrigger: {
           trigger,
-          start: 'top top',
-          end: 'bottom bottom',
+          start: 'top bottom',
+          end: 'bottom top',
           scrub: 1,
           invalidateOnRefresh: true,
         },

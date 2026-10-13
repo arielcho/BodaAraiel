@@ -656,7 +656,7 @@ nav a:hover {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0;
+  opacity: 1;
   will-change: opacity, filter;
 }
 
@@ -673,8 +673,8 @@ nav a:hover {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 76%, rgba(0, 0, 0, 0.96) 90%, transparent 100%);
-  mask-image: radial-gradient(ellipse at center, #000 76%, rgba(0, 0, 0, 0.96) 90%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 88%, rgba(0, 0, 0, 0.98) 96%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 88%, rgba(0, 0, 0, 0.98) 96%, transparent 100%);
 }
 
 .scroll-video-backdrop-media {
@@ -683,7 +683,7 @@ nav a:hover {
   object-fit: contain;
   object-position: center center;
   filter: saturate(0.82) contrast(0.94) blur(0.6px);
-  opacity: 0.5;
+  opacity: 0.68;
   will-change: transform;
 }
 
@@ -691,8 +691,8 @@ nav a:hover {
   position: absolute;
   inset: -2px;
   background:
-    linear-gradient(180deg, #fff9f2 0%, transparent 6%, transparent 94%, #fff9f2 100%),
-    linear-gradient(90deg, #fff9f2 0%, transparent 4%, transparent 96%, #fff9f2 100%);
+    linear-gradient(180deg, #fff9f2 0%, transparent 2.5%, transparent 97.5%, #fff9f2 100%),
+    linear-gradient(90deg, #fff9f2 0%, transparent 2%, transparent 98%, #fff9f2 100%);
 }
 
 @media (max-width: 767px) {
@@ -713,7 +713,7 @@ nav a:hover {
   .schedule-marker svg { width: 17px; height: 17px; }
   .schedule-card h4 { font-size: 20px; }
   .schedule-experience { padding: 58px 14px 24px; margin-inline: -14px; }
-  .scroll-video-backdrop-media { opacity: 0.42; }
+  .scroll-video-backdrop-media { opacity: 0.6; }
 }
 
 /* Botanical scroll accents */
