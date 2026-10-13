@@ -1,6 +1,16 @@
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export const setupScrollVideo = ({ video, trigger, start = 'top bottom', end = 'bottom top', frameRate = 24 }) => {
+gsap.registerPlugin(ScrollTrigger);
+
+export const setupScrollVideo = ({
+  video,
+  trigger,
+  start = 'top bottom',
+  end = 'bottom top',
+  frameRate = 24,
+  onProgress,
+}) => {
   if (!video || !trigger) return null;
 
   const frameStep = 1 / frameRate;
@@ -17,10 +27,11 @@ export const setupScrollVideo = ({ video, trigger, start = 'top bottom', end = '
   };
 
   const updateVideoTime = (progress) => {
-    if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+    if (!Number.isFinite(video.duration) || video.duration <= 0) return null;
     const rawTime = Math.min(video.duration - frameStep, video.duration * progress);
     targetTime = Math.round(rawTime / frameStep) * frameStep;
     if (seekFrame === null) seekFrame = requestAnimationFrame(flushSeek);
+    return targetTime;
   };
 
   video.pause();
@@ -30,16 +41,23 @@ export const setupScrollVideo = ({ video, trigger, start = 'top bottom', end = '
   video.playsInline = true;
   video.loop = false;
 
-  const scrollTrigger = gsap.to(video, {
-    scrollTrigger: {
-      trigger,
-      start,
-      end,
-      scrub: true,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => updateVideoTime(self.progress),
-    },
-  }).scrollTrigger;
+  const syncToScroll = (self) => {
+    const requestedTime = updateVideoTime(self.progress);
+    onProgress?.({
+      progress: self.progress,
+      requestedTime,
+      currentTime: video.currentTime,
+    });
+  };
+
+  const scrollTrigger = ScrollTrigger.create({
+    trigger,
+    start,
+    end,
+    invalidateOnRefresh: true,
+    onUpdate: syncToScroll,
+    onRefresh: syncToScroll,
+  });
 
   const refresh = () => {
     updateVideoTime(scrollTrigger?.progress || 0);

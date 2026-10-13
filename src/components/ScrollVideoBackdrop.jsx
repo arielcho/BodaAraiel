@@ -7,6 +7,7 @@ import { setupScrollVideo } from '../utils/scrollVideo';
 const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
   const layerRef = useRef(null);
   const videoRef = useRef(null);
+  const progressLogRef = useRef(-1);
   const sourceUrl = assetUrl(source);
 
   useEffect(() => {
@@ -82,6 +83,25 @@ const ScrollVideoBackdrop = ({ source, triggerRef, label }) => {
       start: 'top bottom',
       end: 'bottom top',
       frameRate: 24,
+      onProgress: ({ progress, requestedTime, currentTime }) => {
+        const bucket = Math.min(4, Math.floor(progress * 4));
+        const diagnostics = window.__BODA_VIDEO_DIAGNOSTICS__ ||= {};
+        diagnostics[source] = {
+          ...diagnostics[source],
+          scrollProgress: progress,
+          requestedTime,
+          currentTime,
+        };
+
+        if (bucket !== progressLogRef.current) {
+          progressLogRef.current = bucket;
+          console.info(`[Boda video: ${source}] Scroll`, {
+            progress: `${Math.round(progress * 100)}%`,
+            requestedTime,
+            currentTime,
+          });
+        }
+      },
     });
 
     gsap.set(layer, { opacity: 0, filter: 'blur(2px)' });
